@@ -9,6 +9,12 @@ class AppImageAsset {
   static const String slider3 = "$rootImages/slider3.jpg";
   static const String slider4 = "$rootImages/slider4.jpg";
   static const String shop = "$rootImages/shop.png";
+  static const String fruits = "$rootImages/fruits.png";
+  static const String oil = "$rootImages/oil.png";
+  static const String meat = "$rootImages/meat.png";
+  static const String bakery = "$rootImages/bakery.png";
+  static const String dairy = "$rootImages/dairy.png";
+  static const String beverages = "$rootImages/beverages.png";
 
 
   //  static const String avatar = "$rootImages/avatar.png" ; 

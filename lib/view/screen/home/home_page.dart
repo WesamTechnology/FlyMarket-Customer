@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flymarket_customer/core/constant/color.dart';
+import 'package:flymarket_customer/view/screen/home/categories.dart';
 import 'package:flymarket_customer/view/screen/home/shop.dart';
 import 'package:flymarket_customer/view/screen/onboarding/onboarding.dart';
 import 'package:motion_tab_bar/MotionTabBar.dart';
@@ -94,7 +95,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
             child: Shop(),
           ),
           const Center(
-            child: Shop(),
+            child: Categories(),
           ),
           const Center(
             child: Shop(),

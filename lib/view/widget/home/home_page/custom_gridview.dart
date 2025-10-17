@@ -23,7 +23,7 @@ class CustomGridview extends StatelessWidget {
               borderRadius: BorderRadius.circular(15),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withOpacity(0.1),
+                  color: Colors.black.withValues(alpha: 0.3),
                   blurRadius: 4,
                   offset: const Offset(2, 2),
                 ),
@@ -32,7 +32,7 @@ class CustomGridview extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                // الصورة
+
                 Expanded(
                   child: ClipRRect(
                     borderRadius: const BorderRadius.vertical(top: Radius.circular(15)),
@@ -44,7 +44,6 @@ class CustomGridview extends StatelessWidget {
                   ),
                 ),
 
-                // الوصف تحت الصورة
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
