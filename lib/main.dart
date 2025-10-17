@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flymarket_customer/routes.dart';
 import 'package:flymarket_customer/view/screen/auth/splash.dart';
+import 'package:flymarket_customer/view/screen/home/home_page.dart';
 import 'package:get/get.dart';
 
 import 'binding.dart';
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
       initialBinding: MyBinding(),
       theme: controller.themeData,
       home: Scaffold(
-        body: SplashScreen(),
+        body: HomePage(),
       ),
       routes: routes,
     );

@@ -9,6 +9,7 @@ import 'package:flymarket_customer/view/screen/auth/signup.dart';
 import 'package:flymarket_customer/view/screen/auth/splash.dart';
 import 'package:flymarket_customer/view/screen/auth/success_signup.dart';
 import 'package:flymarket_customer/view/screen/auth/verifycodesignup.dart';
+import 'package:flymarket_customer/view/screen/home/home_page.dart';
 import 'package:flymarket_customer/view/screen/onboarding/onboarding.dart';
 
 Map<String, Widget Function(BuildContext)> routes ={
@@ -24,4 +25,7 @@ Map<String, Widget Function(BuildContext)> routes ={
 
   //Onboarding
   AppRoute.onboarding : (context) => const Onboarding(),
+
+  //Home
+  AppRoute.homepage : (context) => const HomePage(),
 };

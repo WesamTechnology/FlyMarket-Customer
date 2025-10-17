@@ -27,6 +27,7 @@ class LoginControllerImp extends LoginController{
     var formdate = formState.currentState;
     if(formdate!.validate()){
       print("is valid");
+      Get.offNamed(AppRoute.homepage);
     }
     else{
       print("is note valid");
