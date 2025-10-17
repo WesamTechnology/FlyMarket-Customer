@@ -1,16 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:flymarket_customer/routes.dart';
+import 'package:flymarket_customer/view/screen/auth/splash.dart';
+import 'package:get/get.dart';
 
-void main() => runApp(MyApp());
+import 'binding.dart';
+import 'core/localization/changelocal.dart';
+import 'core/localization/translation.dart';
+import 'core/services/services.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await initialServices();
+  runApp(MyApp());}
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Material App',
+    LocaleController controller = Get.put(LocaleController());
+    return GetMaterialApp(
+      locale: controller.language,
+      translations: MyTranslation(),
+      initialBinding: MyBinding(),
+      theme: controller.themeData,
       home: Scaffold(
-        appBar: AppBar(title: Text('Material App Bar')),
-        body: Center(child: Container(child: Text('Hello World'))),
+        body: SplashScreen(),
       ),
+      routes: routes,
     );
   }
 }
