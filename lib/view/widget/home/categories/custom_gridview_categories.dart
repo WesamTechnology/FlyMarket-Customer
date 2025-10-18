@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flymarket_customer/view/screen/home/CategoryDetailPages/bakery_snacks.dart';
+import 'package:flymarket_customer/view/screen/home/CategoryDetailPages/beverages.dart';
+import 'package:flymarket_customer/view/screen/home/CategoryDetailPages/fruits_vegetable.dart';
+import 'package:flymarket_customer/view/screen/home/CategoryDetailPages/meat_fish.dart';
+import 'package:flymarket_customer/view/screen/home/CategoryDetailPages/oil_ghee.dart';
+import 'package:get/get.dart';
 
 import '../../../../core/constant/imgaeasset.dart';
+import '../../../screen/home/CategoryDetailPages/dairy_eggs.dart';
 
 class CustomGridviewCategories extends StatelessWidget {
   const CustomGridviewCategories({super.key});
@@ -46,6 +53,19 @@ class CustomGridviewCategories extends StatelessWidget {
       },
     ];
 
+    final List CategoryDetailClass = [
+      FruitsVegetable(),
+      OilGhee(),
+      MeatFish(),
+      BakerySnacks(),
+      DairyEggs(),
+      Beverages(),
+
+
+
+
+    ];
+
 
     return Expanded(
       child: GridView.builder(
@@ -59,37 +79,42 @@ class CustomGridviewCategories extends StatelessWidget {
         itemCount: categories.length,
         itemBuilder: (context, index) {
           final item = categories[index];
-          return Container(
-            decoration: BoxDecoration(
-              color: item['color'],
-              borderRadius: BorderRadius.circular(20),
-              border: Border.all(color: item['borderColor'], width: 1.5),
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Image.asset(
-                      item['image'],
-                      fit: BoxFit.contain,
+          return InkWell(
+            onTap: (){
+              Get.to(CategoryDetailClass[index]);
+            },
+            child: Container(
+              decoration: BoxDecoration(
+                color: item['color'],
+                borderRadius: BorderRadius.circular(20),
+                border: Border.all(color: item['borderColor'], width: 1.5),
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Image.asset(
+                        item['image'],
+                        fit: BoxFit.contain,
+                      ),
                     ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 12),
-                  child: Text(
-                    item['title'],
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black87,
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 12),
+                    child: Text(
+                      item['title'],
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black87,
+                      ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           );
         },
