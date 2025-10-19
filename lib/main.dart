@@ -24,10 +24,8 @@ class MyApp extends StatelessWidget {
       translations: MyTranslation(),
       initialBinding: MyBinding(),
       theme: controller.themeData,
-      home: Scaffold(
-        body: HomePage(),
-      ),
-      routes: routes,
+      getPages: routes,
+
     );
   }
 }

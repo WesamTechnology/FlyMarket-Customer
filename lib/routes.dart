@@ -11,21 +11,23 @@ import 'package:flymarket_customer/view/screen/auth/success_signup.dart';
 import 'package:flymarket_customer/view/screen/auth/verifycodesignup.dart';
 import 'package:flymarket_customer/view/screen/home/home_page.dart';
 import 'package:flymarket_customer/view/screen/onboarding/onboarding.dart';
+import 'package:get/get.dart';
 
-Map<String, Widget Function(BuildContext)> routes ={
-  AppRoute.splash : (context) => const SplashScreen(),
-  AppRoute.login :  (context)=> Login(),
-  AppRoute.signUp :  (context)=> SignUp(),
-  AppRoute.forgetPassword :  (context)=> ForgetPassword(),
-  AppRoute.verfiyCode :  (context)=> VerifyCode(),
-  AppRoute.resetPassword :  (context)=> ResetPassword(),
-  AppRoute.verfiyCodeSignUp :  (context)=> VerifCodeSignup(),
-  AppRoute.successResetpassword :  (context)=> SuccessResetpassword(),
-  AppRoute.successSignUp :  (context)=> SuccessSignup(),
 
-  //Onboarding
-  AppRoute.onboarding : (context) => const Onboarding(),
+List<GetPage<dynamic>> routes = [
+  GetPage(name: "/", page: () => const SplashScreen()),
+  GetPage(name: AppRoute.login, page: () => Login()),
+  GetPage(name: AppRoute.signUp, page: () => SignUp()),
+  GetPage(name: AppRoute.forgetPassword, page: () => ForgetPassword()),
+  GetPage(name: AppRoute.verfiyCode, page: () => VerifyCode()),
+  GetPage(name: AppRoute.resetPassword, page: () => ResetPassword()),
+  GetPage(name: AppRoute.verfiyCodeSignUp, page: () => VerifCodeSignup()),
+  GetPage(name: AppRoute.successResetpassword, page: () => SuccessResetpassword()),
+  GetPage(name: AppRoute.successSignUp, page: () => SuccessSignup()),
 
-  //Home
-  AppRoute.homepage : (context) => const HomePage(),
-};
+  // Onboarding
+  GetPage(name: AppRoute.onboarding, page: () => const Onboarding()),
+
+  // Home
+  GetPage(name: AppRoute.homepage, page: () => const HomePage()),
+];
