@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flymarket_customer/core/constant/routes.dart';
+import 'package:flymarket_customer/core/middleware/mymiddleware.dart';
 import 'package:flymarket_customer/view/screen/auth/forgetpassword/forgetpassword.dart';
 import 'package:flymarket_customer/view/screen/auth/forgetpassword/resetpassword.dart';
 import 'package:flymarket_customer/view/screen/auth/forgetpassword/success_resetpassword.dart';
 import 'package:flymarket_customer/view/screen/auth/forgetpassword/verifycode.dart';
+import 'package:flymarket_customer/view/screen/auth/language.dart';
 import 'package:flymarket_customer/view/screen/auth/login.dart';
 import 'package:flymarket_customer/view/screen/auth/signup.dart';
 import 'package:flymarket_customer/view/screen/auth/splash.dart';
@@ -16,6 +18,7 @@ import 'package:get/get.dart';
 
 List<GetPage<dynamic>> routes = [
   GetPage(name: "/", page: () => const SplashScreen()),
+  GetPage(name: AppRoute.language, page: () => Language(),middlewares: [Mymiddleware()]),
   GetPage(name: AppRoute.login, page: () => Login()),
   GetPage(name: AppRoute.signUp, page: () => SignUp()),
   GetPage(name: AppRoute.forgetPassword, page: () => ForgetPassword()),

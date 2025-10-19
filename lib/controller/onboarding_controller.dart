@@ -1,5 +1,6 @@
 
 import 'package:flutter/cupertino.dart';
+import 'package:flymarket_customer/core/services/services.dart';
 import 'package:get/get.dart';
 
 import '../core/constant/routes.dart';
@@ -15,11 +16,12 @@ class OnboardingControllerImp extends OnboardingController {
   int currentPage = 0;
 
   late PageController pageController;
-
+  MyServices myServices = Get.find();
   @override
   next() {
     currentPage++;
     if (currentPage > onBoardingList.length - 1) {
+      myServices.sharedPreferences.setBool('onBoarding', true);
       Get.offAllNamed(AppRoute.login);
     } else {
       pageController.animateToPage(

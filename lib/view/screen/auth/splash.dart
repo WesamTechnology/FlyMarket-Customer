@@ -16,7 +16,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Timer(const Duration(seconds: 3), () => Get.off(Language()));
+    Timer(const Duration(seconds: 3), () => Get.offNamed(AppRoute.language));
   }
 
   @override

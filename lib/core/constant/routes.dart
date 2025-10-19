@@ -2,6 +2,7 @@ class AppRoute {
 
   // Auth
   static const String splash = "/splash";
+  static const String language = "/language";
   static const String onboarding = "/onboarding";
   static const String login = "/login";
 

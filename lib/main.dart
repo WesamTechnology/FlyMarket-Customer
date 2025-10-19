@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flymarket_customer/core/constant/routes.dart';
 import 'package:flymarket_customer/routes.dart';
 import 'package:flymarket_customer/view/screen/auth/splash.dart';
 import 'package:flymarket_customer/view/screen/home/home_page.dart';
@@ -24,6 +25,7 @@ class MyApp extends StatelessWidget {
       translations: MyTranslation(),
       initialBinding: MyBinding(),
       theme: controller.themeData,
+      initialRoute: AppRoute.homepage,
       getPages: routes,
 
     );
