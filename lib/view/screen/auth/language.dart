@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_utils/get_utils.dart';
 
@@ -18,9 +19,9 @@ class Language extends GetView<LocaleController> {
         child: Card(
           elevation: 8,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(20).r,
           ),
-          margin: const EdgeInsets.symmetric(horizontal: 24),
+          margin:  EdgeInsets.symmetric(horizontal: 24.w),
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 40),
             child: Column(
@@ -28,19 +29,19 @@ class Language extends GetView<LocaleController> {
               children: [
                 Icon(
                   Icons.language,
-                  size: 60,
+                  size: 60.r,
                   color: AppColor.primaryColor,
                 ),
                 const SizedBox(height: 16),
                 Text(
                   "1".tr, // النص المترجم
                   style: TextStyle(
-                    fontSize: 22,
+                    fontSize: 22.sp,
                     fontWeight: FontWeight.bold,
                     color: AppColor.black,
                   ),
                 ),
-                const SizedBox(height: 30),
+                 SizedBox(height: 30.h),
                 _buildLanguageButton(
                   context,
                   'English',
@@ -51,7 +52,7 @@ class Language extends GetView<LocaleController> {
                      Get.toNamed(AppRoute.onboarding);
                   },
                 ),
-                const SizedBox(height: 16),
+                 SizedBox(height: 16.h),
                 _buildLanguageButton(
                   context,
                   'العربية',

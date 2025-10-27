@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../../../core/constant/color.dart';
@@ -20,16 +21,16 @@ class SuccessSignup extends StatelessWidget {
           centerTitle: true,
         ),
         body: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 20,horizontal: 30),
+          padding:  EdgeInsets.symmetric(vertical: 18,horizontal: 25).r,
           child: Column(
 
               children: [
-                Center(child: Icon(Icons.check_circle_outline,color: AppColor.primaryColor,size: 200,)),
-                SizedBox(height: 25,),
-                Text("38".tr,style: TextStyle(color: AppColor.fourthColor,fontSize: 20),),
+                Center(child: Icon(Icons.check_circle_outline,color: AppColor.primaryColor,size: 180.r,)),
+                SizedBox(height: 20.h,),
+                Text("38".tr,style: TextStyle(color: AppColor.fourthColor,fontSize: 17.5.sp),),
                 Spacer(),
                 Custombuttonauth(text: "31".tr,onTap: (){Get.offAllNamed(AppRoute.login);},),
-                SizedBox(height: 50,),
+                SizedBox(height: 40.h,),
               ]
           ),
         )

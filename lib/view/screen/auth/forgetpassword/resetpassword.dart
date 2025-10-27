@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_utils/get_utils.dart';
 
@@ -23,15 +24,15 @@ class ResetPassword extends StatelessWidget {
         centerTitle: true,
       ),
       body: Container(
-        padding: EdgeInsets.symmetric(horizontal: 30),
+        padding: EdgeInsets.symmetric(horizontal: 25.w),
         child: Form(
           key: controller.formState,
           child: ListView(
             children: [
-              SizedBox(height: 50),
+              SizedBox(height: 40.h),
 
               Customtexttitleauth(text: "34".tr,),
-              SizedBox(height: 40),
+              SizedBox(height: 35.h),
               CustomTextFormAuth(
                 val: (val){
                   return  validInput(val!, 5, 100, "password");
@@ -49,10 +50,10 @@ class ResetPassword extends StatelessWidget {
                 labelTextl: "19".tr,
                 icon: Icons.remove_red_eye_outlined,
               ),
-              SizedBox(height: 50),
+              SizedBox(height: 40.h),
               Custombuttonauth(text: "33".tr,onTap: (){
                 controller.checkPassword();
-                controller.goToSuccessResetPassword();
+                //controller.goToSuccessResetPassword();
               },),
             ],
           ),

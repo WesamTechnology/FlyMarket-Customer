@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../../controller/onboarding_controller.dart';
@@ -23,9 +24,9 @@ class CustomSliderOnboarding extends GetView {
             onBoardingList[i].title,
             style: Theme.of(context).textTheme.headlineLarge,
           ),
-          SizedBox(height: 80),
-          Image(image: AssetImage(onBoardingList[i].image),width: 220,height: 230,),
-          SizedBox(height: 80),
+          SizedBox(height: 50.h),
+          Image(image: AssetImage(onBoardingList[i].image),width: 200.w,height: 210.h,),
+          SizedBox(height: 60.h),
           Text(
             onBoardingList[i].subtitle,
             style: Theme.of(context).textTheme.bodyMedium,

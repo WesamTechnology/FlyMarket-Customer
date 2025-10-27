@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flymarket_customer/core/constant/imgaeasset.dart';
 import 'package:flymarket_customer/core/constant/routes.dart';
 import 'package:flymarket_customer/view/screen/auth/language.dart';
@@ -27,15 +28,15 @@ class _SplashScreenState extends State<SplashScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Image.asset(AppImageAsset.splash, height: 160),
-            const SizedBox(height: 20),
-            const Row(
+            Image.asset(AppImageAsset.splash, height: 160.h),
+             SizedBox(height: 20.h),
+             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
                   'Fly',
                   style: TextStyle(
-                    fontSize: 22,
+                    fontSize: 22.sp,
                     fontWeight: FontWeight.bold,
                     fontFamily: "PlayfairDisplay",
                     color: Color(0xff0088FF)
@@ -45,7 +46,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 Text(
                   'Market',
                   style: TextStyle(
-                    fontSize: 22,
+                    fontSize: 22.sp,
                     fontWeight: FontWeight.bold,
                     fontFamily: "PlayfairDisplay",
                     color: Color(0xff5EC401)

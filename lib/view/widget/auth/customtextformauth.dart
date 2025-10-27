@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 
 class CustomTextFormAuth extends StatelessWidget {
@@ -20,13 +21,13 @@ class CustomTextFormAuth extends StatelessWidget {
       validator: val,
       controller: controller,
       decoration: InputDecoration(
-        contentPadding: EdgeInsets.symmetric(horizontal: 25),
+        contentPadding: EdgeInsets.symmetric(horizontal: 20,vertical: 12).r,
         hintText: hintTextl,
         floatingLabelBehavior: FloatingLabelBehavior.always,
         labelText: labelTextl,
         suffix: Icon(icon),
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(30),
+          borderRadius: BorderRadius.circular(20).r,
         ),
       ),
     );

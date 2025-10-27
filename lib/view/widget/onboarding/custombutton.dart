@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../../controller/onboarding_controller.dart';
@@ -18,13 +19,13 @@ class CustomButtonOnboarding extends GetView {
       },
       child: Text(
         "8".tr,
-        style: TextStyle(color: Colors.white,fontSize: 20),
+        style: TextStyle(color: Colors.white,fontSize: 18.sp),
       ),
       style: ElevatedButton.styleFrom(
         backgroundColor: AppColor.primaryColor,
         padding: EdgeInsets.symmetric(
-          horizontal: 100,
-          vertical: 15,
+          horizontal: 90.w,
+          vertical: 10.h,
         ),
       ),
     );

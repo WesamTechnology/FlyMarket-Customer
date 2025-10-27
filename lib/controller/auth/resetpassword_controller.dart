@@ -24,7 +24,7 @@ class ResetPasswordControllerImp extends ResetPasswordController{
   checkPassword() {
     var formdate = formState.currentState;
     if(formdate!.validate()){
-      print("is valid");
+      Get.toNamed(AppRoute.successResetpassword);
     }
     else{
       print("is note valid");

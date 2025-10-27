@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../core/constant/imgaeasset.dart';
 
@@ -10,8 +11,8 @@ class LogoAuth extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
 
-      width: 170,
-      height: 170,
+      width: 130.w,
+      height: 130.h,
       decoration: BoxDecoration(
         color: Colors.white,
         shape: BoxShape.circle,

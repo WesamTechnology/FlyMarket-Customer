@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
 import 'package:get/get_utils/get_utils.dart';
@@ -23,16 +24,16 @@ class VerifyCode extends StatelessWidget {
         centerTitle: true,
       ),
       body: Container(
-        padding: EdgeInsets.symmetric(horizontal: 30),
+        padding: EdgeInsets.symmetric(horizontal: 25).r,
         child: ListView(
           children: [
-            SizedBox(height: 50),
+            SizedBox(height: 40.h),
 
             Customtexttitleauth(text: "Check Code",),
 
-            SizedBox(height: 30),
+            SizedBox(height: 25.h),
             OtpTextField(
-              fieldWidth: 55,
+              fieldWidth: 52.w,
               borderRadius: BorderRadius.circular(20),
               numberOfFields: 5,
               borderColor: Color(0xFF512DA8),

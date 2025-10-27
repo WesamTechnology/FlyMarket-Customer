@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flymarket_customer/view/screen/home/CategoryDetailPages/bakery_snacks.dart';
 import 'package:flymarket_customer/view/screen/home/CategoryDetailPages/beverages.dart';
 import 'package:flymarket_customer/view/screen/home/CategoryDetailPages/fruits_vegetable.dart';
@@ -69,12 +70,12 @@ class CustomGridviewCategories extends StatelessWidget {
 
     return Expanded(
       child: GridView.builder(
-        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 7).r,
+        gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
-          crossAxisSpacing: 15,
-          mainAxisSpacing: 15,
-          childAspectRatio: 0.95,
+          crossAxisSpacing: 13.w,
+          mainAxisSpacing: 13.h,
+          childAspectRatio: 0.65.h,
         ),
         itemCount: categories.length,
         itemBuilder: (context, index) {
@@ -86,15 +87,15 @@ class CustomGridviewCategories extends StatelessWidget {
             child: Container(
               decoration: BoxDecoration(
                 color: item['color'],
-                borderRadius: BorderRadius.circular(20),
-                border: Border.all(color: item['borderColor'], width: 1.5),
+                borderRadius: BorderRadius.circular(20).r,
+                border: Border.all(color: item['borderColor'], width: 1.2.w),
               ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Expanded(
                     child: Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.all(7.0).r,
                       child: Image.asset(
                         item['image'],
                         fit: BoxFit.contain,
@@ -102,12 +103,12 @@ class CustomGridviewCategories extends StatelessWidget {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(bottom: 12),
+                    padding: const EdgeInsets.only(bottom: 12).r,
                     child: Text(
                       item['title'],
                       textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        fontSize: 15,
+                      style:  TextStyle(
+                        fontSize: 13.sp,
                         fontWeight: FontWeight.bold,
                         color: Colors.black87,
                       ),

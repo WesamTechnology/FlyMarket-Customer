@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../../core/constant/color.dart';
@@ -12,9 +13,9 @@ final void Function()? onTap ;
     return InkWell(
       onTap: onTap,
       child: Container(
-        padding: EdgeInsets.symmetric(vertical: 15),
+        padding: EdgeInsets.symmetric(vertical: 15).r,
         width: double.infinity,
-        height: 60,
+        height: 43.h,
         decoration: BoxDecoration(
           color: AppColor.primaryColor,
           borderRadius: BorderRadius.circular(20),

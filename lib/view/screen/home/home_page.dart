@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flymarket_customer/core/constant/color.dart';
 import 'package:flymarket_customer/view/screen/home/categories.dart';
 import 'package:flymarket_customer/view/screen/home/shop.dart';
@@ -63,16 +64,16 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
 
         // optional badges, length must be same with labels
 
-        tabSize: 50,
-        tabBarHeight: 55,
-        textStyle: const TextStyle(
-          fontSize: 12,
+        tabSize: 48.r,
+        tabBarHeight: 48.h,
+        textStyle:  TextStyle(
+          fontSize: 11.sp,
           color: Colors.black,
           fontWeight: FontWeight.w500,
         ),
         tabIconColor: AppColor.primaryColor2,
-        tabIconSize: 28.0,
-        tabIconSelectedSize: 26.0,
+        tabIconSize: 27.0.r,
+        tabIconSelectedSize: 26.0.r,
         tabSelectedColor: AppColor.primaryColor,
         tabIconSelectedColor: Colors.white,
         tabBarColor: Colors.white,

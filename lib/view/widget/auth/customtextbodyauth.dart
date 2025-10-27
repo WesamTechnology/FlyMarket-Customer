@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_utils/get_utils.dart';
 
 class Customtextbodyauth extends StatelessWidget {
@@ -8,7 +9,7 @@ class Customtextbodyauth extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 30),
+      padding: EdgeInsets.symmetric(horizontal: 25).r,
       child: Text(
         text,
         textAlign: TextAlign.center,

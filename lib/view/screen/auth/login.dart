@@ -1,5 +1,7 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_utils/get_utils.dart';
 
@@ -26,30 +28,39 @@ class Login extends StatelessWidget {
         backgroundColor: AppColor.backgroundcolor,
         centerTitle: true,
       ),
-      body: WillPopScope(
-        onWillPop: alertExitApp,
+      body: PopScope(
+        canPop: false,
+        onPopInvokedWithResult: (didPop, result) async {
+          if (didPop) return;
+
+          bool shouldExit = await alertExitApp();
+          if (shouldExit) {
+            SystemNavigator.pop(); // ✅ خروج فعلي من التطبيق
+          }
+        },
         child: Container(
           padding: EdgeInsets.symmetric(horizontal: 30),
           child: Form(
             key: controller.formState,
             child: ListView(
               children: [
-                SizedBox(height: 30),
+                SizedBox(height: 20.h),
                 LogoAuth(),
-                SizedBox(height: 20),
+                SizedBox(height: 17.h),
                 Customtexttitleauth(text: "10".tr),
-                SizedBox(height: 20),
+                SizedBox(height: 17.h),
                 Customtextbodyauth(text: "11".tr),
-                SizedBox(height: 30),
+                SizedBox(height: 25.h),
                 CustomTextFormAuth(
                   val: (val) {
-                    return validInput(val!, 5, 100, "email");
+                    return validInput(val!, 5, 100, "phone");
                   },
-                  hintTextl: "12".tr,
-                  labelTextl: "18".tr,
-                  icon: Icons.email_outlined,
+                  hintTextl: "22".tr,
+                  labelTextl: "21".tr,
+                  icon: Icons.phone_android,
+                  keyboardType: TextInputType.numberWithOptions(decimal: true),
                 ),
-                SizedBox(height: 30),
+                SizedBox(height: 25.h),
                 CustomTextFormAuth(
                   val: (val) {
                     return validInput(val!, 5, 30, "password");
@@ -59,25 +70,25 @@ class Login extends StatelessWidget {
                   icon: Icons.remove_red_eye_outlined,
                 ),
 
-                SizedBox(height: 20),
+                SizedBox(height: 17.h),
                 InkWell(
                   onTap: () {
                     controller.goToForgetPassword();
                   },
                   child: Text(
                     "14".tr,
-                    style: TextStyle(fontSize: 14),
+                    style: TextStyle(fontSize: 12.5.sp),
                     textAlign: TextAlign.end,
                   ),
                 ),
-                SizedBox(height: 20),
+                SizedBox(height: 17.h),
                 Custombuttonauth(
                   text: "9".tr,
                   onTap: () {
                     controller.login();
                   },
                 ),
-                SizedBox(height: 50),
+                SizedBox(height: 35.h),
                 TextSignUpOrSignIn(
                   textOne: "16".tr,
                   textTow: "17".tr,
