@@ -19,7 +19,7 @@ class CustomGridview extends StatelessWidget {
       itemBuilder: (context, index) {
         return Container(
           decoration: BoxDecoration(
-            color: Color(0xffb2ffb2),
+            color: Color(0xffe7fae7),
             borderRadius: BorderRadius.circular(15).r,
             boxShadow: [
               BoxShadow(

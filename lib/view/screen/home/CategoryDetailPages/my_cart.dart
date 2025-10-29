@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flymarket_customer/view/widget/home/myCart/custom_button_cart.dart';
 import 'package:flymarket_customer/view/widget/home/myCart/custom_list_view_cart.dart';
+import 'package:flymarket_customer/view/widget/home/myCart/custom_title.dart';
 
 
 class MyCart extends StatelessWidget {
@@ -12,12 +13,7 @@ class MyCart extends StatelessWidget {
     return SafeArea(
       child: Column(
         children: [
-          Text(
-            "My Cart",
-            style: TextStyle(color: Colors.black, fontSize: 20.sp),
-          ),
-          SizedBox(height: 10.h),
-          Divider(color: Colors.grey[400],),
+          CustomTitle(title: "My Cart",),
           Expanded(
             child: CustomListViewCart(),
           ),

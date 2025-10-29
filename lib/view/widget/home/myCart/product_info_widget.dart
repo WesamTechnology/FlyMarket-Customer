@@ -11,6 +11,7 @@ class Productinfowidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           "Bell Pepper Red",
@@ -48,7 +49,7 @@ class Productinfowidget extends StatelessWidget {
               "2",
               style: TextStyle(
                 color: Colors.black,
-                fontSize:20.sp,
+                fontSize:18.sp,
               ),
             ),
             SizedBox(width: 15.w),

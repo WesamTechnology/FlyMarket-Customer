@@ -22,7 +22,7 @@ class CustomButtonCart extends StatelessWidget {
           "Buy Now ${"\$"} 1000",
           style: TextStyle(
             color: Colors.white,
-            fontSize: 19.sp,
+            fontSize: 17.sp,
             fontWeight: FontWeight.bold,
           ),
         ),

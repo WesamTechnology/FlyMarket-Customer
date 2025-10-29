@@ -6,7 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'color.dart';
 
 ThemeData themeEnglish = ThemeData(
-  fontFamily: "PlayfairDisplay",
+  fontFamily: "Montserrat",
   textTheme: TextTheme(
     headlineLarge:  TextStyle(
       fontSize: 23,

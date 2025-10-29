@@ -94,6 +94,9 @@ flutter:
         - asset: assets/fonts/PlayfairDisplay/PlayfairDisplay-Bold.ttf
           weight: 700
 
+    - family: Montserrat
+      fonts:
+        - asset: assets/fonts/Montserrat/Montserrat-Regular.ttf
 
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
