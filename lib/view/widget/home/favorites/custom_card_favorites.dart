@@ -24,18 +24,18 @@ class CustomCardFavorites extends StatelessWidget {
         leading: Image.asset(image),
         title: Text(
           title,
-          style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.bold),
+          style: TextStyle(fontSize: 15.sp, fontWeight: FontWeight.bold),
         ),
         subtitle: Text(
           subtitle,
-          style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w400),
+          style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.w400),
         ),
         trailing: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
               price,
-              style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.bold),
             ),
             SizedBox(width: 5.w),
             IconButton(

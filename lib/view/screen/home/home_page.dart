@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flymarket_customer/core/constant/color.dart';
-import 'package:flymarket_customer/view/screen/home/CategoryDetailPages/my_cart.dart';
+import 'package:flymarket_customer/view/screen/home/my_cart.dart';
 import 'package:flymarket_customer/view/screen/home/categories.dart';
 import 'package:flymarket_customer/view/screen/home/favorites.dart';
 import 'package:flymarket_customer/view/screen/home/setting_page.dart';
@@ -54,7 +54,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
       bottomNavigationBar: MotionTabBar(
         controller: _motionTabBarController, // ADD THIS if you need to change your tab programmatically
         initialSelectedTab: "Home",
-        labels: const ["Home", "Categories","My Cart","Favourite","Account"],
+        labels: const ["Home", "Categories","My Cart","Favourite","Setting"],
         icons: const [
          // Icons.home,
           Icons.home_outlined, // Using a mosque icon for prayers

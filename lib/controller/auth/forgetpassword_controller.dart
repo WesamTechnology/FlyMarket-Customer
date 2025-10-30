@@ -22,7 +22,7 @@ class ForgetPasswordControllerImp extends ForgetPasswordController{
   checkemail() {
     var formdate = formState.currentState;
     if(formdate!.validate()){
-      print("is valid");
+      Get.toNamed(AppRoute.verfiyCode);
     }
     else{
       print("is note valid");

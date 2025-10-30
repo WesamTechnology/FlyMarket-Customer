@@ -10,15 +10,19 @@ class MyCart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Column(
-        children: [
-          CustomTitle(title: "My Cart",),
-          Expanded(
-            child: CustomListViewCart(),
-          ),
-          CustomButtonCart(),
-        ],
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: SafeArea(
+        child: Column(
+          children: [
+            SizedBox(height: 15.h,),
+            CustomTitle(title: "My Cart",),
+            Expanded(
+              child: CustomListViewCart(),
+            ),
+            CustomButtonCart(),
+          ],
+        ),
       ),
     );
   }

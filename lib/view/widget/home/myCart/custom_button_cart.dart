@@ -13,8 +13,8 @@ class CustomButtonCart extends StatelessWidget {
       padding: EdgeInsets.only(
         bottom: 20.h,
         top: 10.h,
-        right: 25.w,
-        left: 25.w,
+        right: 30.w,
+        left: 30.w,
       ),
       child: ElevatedButton(
         onPressed: () {},
@@ -22,7 +22,7 @@ class CustomButtonCart extends StatelessWidget {
           "Buy Now ${"\$"} 1000",
           style: TextStyle(
             color: Colors.white,
-            fontSize: 17.sp,
+            fontSize: 15.sp,
             fontWeight: FontWeight.bold,
           ),
         ),

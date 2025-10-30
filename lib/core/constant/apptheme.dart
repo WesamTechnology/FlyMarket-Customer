@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'color.dart';
 
 ThemeData themeEnglish = ThemeData(
+  scaffoldBackgroundColor: Colors.white,
   fontFamily: "Montserrat",
   textTheme: TextTheme(
     headlineLarge:  TextStyle(
@@ -28,6 +29,7 @@ ThemeData themeEnglish = ThemeData(
 
 
 ThemeData themeArbic = ThemeData(
+  scaffoldBackgroundColor: Colors.white,
   fontFamily: "Cairo",
   textTheme: TextTheme(
     headlineLarge: const TextStyle(

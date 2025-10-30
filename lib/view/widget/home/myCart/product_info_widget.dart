@@ -17,11 +17,14 @@ class Productinfowidget extends StatelessWidget {
           "Bell Pepper Red",
           style: TextStyle(
             color: Colors.black,
-            fontSize: 15.3.sp,
+            fontSize: 14.sp,
           ),
         ),
         SizedBox(height: 5.h),
-        Text("1kg, Price"),
+        Text("1kg, Price", style: TextStyle(
+          color: AppColor.grey,
+          fontSize: 12.sp,
+        ),),
         SizedBox(height: 15.h),
         Row(
           children: [
@@ -49,7 +52,7 @@ class Productinfowidget extends StatelessWidget {
               "2",
               style: TextStyle(
                 color: Colors.black,
-                fontSize:18.sp,
+                fontSize:16.sp,
               ),
             ),
             SizedBox(width: 15.w),

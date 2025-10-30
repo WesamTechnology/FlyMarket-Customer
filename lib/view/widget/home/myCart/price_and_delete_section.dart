@@ -25,7 +25,7 @@ class PriceAndDeleteSection extends StatelessWidget {
             r"$4.99",
             style: TextStyle(
               color: Colors.black,
-              fontSize: 16.sp,
+              fontSize: 14.sp,
             ),
           ),
         ),

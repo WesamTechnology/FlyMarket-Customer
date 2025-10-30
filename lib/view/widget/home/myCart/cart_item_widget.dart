@@ -34,8 +34,8 @@ class CartItemWidget extends StatelessWidget {
                     borderRadius: BorderRadius.circular(12.r),
                     child: Image.asset(
                       AppImageAsset.pepper_red,
-                      width: 80.w,
-                      height: 80.w,
+                      width: 70.w,
+                      height: 70.w,
                       fit: BoxFit.cover,
                     ),
                   ),

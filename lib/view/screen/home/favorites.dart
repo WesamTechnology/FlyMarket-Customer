@@ -9,25 +9,28 @@ class Favorites extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Column(
-        children: [
-          CustomTitle(title: "Favorites"),
-          Expanded(
-            child: ListView.builder(
-              itemCount: 10,
-              itemBuilder: (context, index) {
-                return CustomCardFavorites(
-                  title: "Sprite Can",
-                  subtitle: "325ml, Price",
-                  image: AppImageAsset.spriteCan,
-                  price: r"$1.50",
-                  onPressedFavorite: () {},
-                );
-              },
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: SafeArea(
+        child: Column(
+          children: [
+            CustomTitle(title: "Favorites"),
+            Expanded(
+              child: ListView.builder(
+                itemCount: 10,
+                itemBuilder: (context, index) {
+                  return CustomCardFavorites(
+                    title: "Sprite Can",
+                    subtitle: "325ml, Price",
+                    image: AppImageAsset.spriteCan,
+                    price: r"$1.50",
+                    onPressedFavorite: () {},
+                  );
+                },
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

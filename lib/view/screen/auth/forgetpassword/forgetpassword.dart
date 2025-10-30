@@ -40,7 +40,7 @@ class ForgetPassword extends StatelessWidget {
               SizedBox(height: 25.h),
               CustomTextFormAuth(
                 val: (val) {
-                  return validInput(val!, 5, 100, "email");
+                  return validInput(val!, 5, 100, "phone");
                 },
                 hintTextl: "22".tr,
                 labelTextl: "21".tr,
@@ -52,7 +52,6 @@ class ForgetPassword extends StatelessWidget {
                 text: "30".tr,
                 onTap: () {
                   controller.checkemail();
-                  controller.goToVerifyCode();
                 },
               ),
             ],
