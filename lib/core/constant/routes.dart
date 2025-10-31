@@ -18,8 +18,11 @@ class AppRoute {
   static const String homepage = "/homepage";
   static const String items = "/items";
   static const String productdetails = "/productdetails";
-  static const String myfavroite = "/myfavroite";
-  static const String cart = "/cart";
+  static const String myFavroite = "/myfavroite";
+  static const String myCart = "/mycart";
+  static const String shope = "/shope";
+  static const String categories = "/categories";
+  static const String setting = "/setting";
   // Address
 
   static const String addressview = "/addressview";
@@ -30,6 +33,7 @@ class AppRoute {
   static const String orderspending = "/orderspending";
   static const String ordersarchive = "/ordersarchive";
   static const String ordersdetails = "/ordersdetails";
+  static const String supermarketDetailsPage = "/supermarketDetailsPage";
 
 
 }

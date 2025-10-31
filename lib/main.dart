@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
         translations: MyTranslation(),
         initialBinding: MyBinding(),
         theme: controller.themeData,
-        initialRoute: AppRoute.splash,
+        initialRoute: AppRoute.homepage,
         getPages: routes,
       ); }
     );
