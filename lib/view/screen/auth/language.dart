@@ -7,9 +7,12 @@ import 'package:get/get_utils/get_utils.dart';
 import '../../../core/constant/color.dart';
 import '../../../core/constant/routes.dart';
 import '../../../core/localization/changelocal.dart';
+import '../../widget/languages.dart';
 
 class Language extends GetView<LocaleController> {
-  const Language({super.key});
+  const Language(  {super.key, required this.appRoute});
+
+ final String appRoute ;
 
   @override
   Widget build(BuildContext context) {
@@ -42,25 +45,25 @@ class Language extends GetView<LocaleController> {
                   ),
                 ),
                  SizedBox(height: 30.h),
-                _buildLanguageButton(
-                  context,
-                  'English',
-                  AppColor.primaryColor,
-                  Icons.flag,
-                  () {
+                buildLanguageButton(
+                  context:  context,
+                 text:  'English',
+                color:   AppColor.primaryColor,
+                 icon:  Icons.flag,
+                onPressed:   () {
                      controller.changeLang("en");
-                     Get.toNamed(AppRoute.onboarding);
+                     Get.offAllNamed(appRoute );
                   },
                 ),
                  SizedBox(height: 16.h),
-                _buildLanguageButton(
-                  context,
-                  'العربية',
-                  AppColor.primaryColor,
-                  Icons.translate,
-                      () {
+                buildLanguageButton(
+                 context:  context,
+                 text:  'العربية',
+                color:   AppColor.primaryColor,
+                 icon:  Icons.translate,
+                  onPressed:     () {
                     controller.changeLang("ar");
-                    Get.toNamed(AppRoute.onboarding);
+                    Get.offAllNamed(appRoute);
                   },
                 ),
               ],
@@ -69,37 +72,37 @@ class Language extends GetView<LocaleController> {
         ),
       ),
     );
-  }
-
-  Widget _buildLanguageButton(
-      BuildContext context,
-      String text,
-      Color color,
-      IconData icon,
-      void Function()? onPressed,
-      ) {
-    return SizedBox(
-      width: double.infinity,
-      child: ElevatedButton.icon(
-        onPressed: onPressed,
-        icon: Icon(icon, color: Colors.white),
-        label: Text(
-          text,
-          style: const TextStyle(
-            fontSize: 18,
-            color: Colors.white,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-        style: ElevatedButton.styleFrom(
-          backgroundColor: color,
-          padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 10),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
-          ),
-          elevation: 4,
-        ),
-      ),
-    );
-  }
-}
+  }}
+//
+//   Widget _buildLanguageButton(
+//       BuildContext context,
+//       String text,
+//       Color color,
+//       IconData icon,
+//       void Function()? onPressed,
+//       ) {
+//     return SizedBox(
+//       width: double.infinity,
+//       child: ElevatedButton.icon(
+//         onPressed: onPressed,
+//         icon: Icon(icon, color: Colors.white),
+//         label: Text(
+//           text,
+//           style: const TextStyle(
+//             fontSize: 18,
+//             color: Colors.white,
+//             fontWeight: FontWeight.w600,
+//           ),
+//         ),
+//         style: ElevatedButton.styleFrom(
+//           backgroundColor: color,
+//           padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 10),
+//           shape: RoundedRectangleBorder(
+//             borderRadius: BorderRadius.circular(12),
+//           ),
+//           elevation: 4,
+//         ),
+//       ),
+//     );
+//   }
+// }

@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomListSetting extends StatelessWidget {
-  const CustomListSetting({super.key, required this.title, required this.iconLeading, required this.iconTrailing});
+  const CustomListSetting({super.key, required this.title, required this.iconLeading, required this.iconTrailing,this.onTap});
 final String title;
 final IconData iconLeading,iconTrailing;
+ final void Function()? onTap;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -15,13 +16,16 @@ final IconData iconLeading,iconTrailing;
           bottom: BorderSide(color: Colors.black12, width: 1.5),
         ),
       ),
-      child: ListTile(
-        leading: Icon(iconLeading),
-        title: Text(
-          title,
-          style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w600),
+      child: InkWell(
+        onTap: onTap,
+        child: ListTile(
+          leading: Icon(iconLeading),
+          title: Text(
+            title,
+            style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w600),
+          ),
+          trailing: Icon(iconTrailing, color: Colors.grey),
         ),
-        trailing: Icon(iconTrailing, color: Colors.grey),
       ),
     );
   }

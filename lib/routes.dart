@@ -15,6 +15,7 @@ import 'package:flymarket_customer/view/screen/home/categories.dart';
 import 'package:flymarket_customer/view/screen/home/favorites.dart';
 import 'package:flymarket_customer/view/screen/home/home_page.dart';
 import 'package:flymarket_customer/view/screen/home/my_cart.dart';
+import 'package:flymarket_customer/view/screen/home/setting_page.dart';
 import 'package:flymarket_customer/view/screen/home/shop.dart';
 import 'package:flymarket_customer/view/screen/onboarding/onboarding.dart';
 import 'package:get/get.dart';
@@ -22,7 +23,7 @@ import 'package:get/get.dart';
 
 List<GetPage<dynamic>> routes = [
   GetPage(name: "/", page: () => const SplashScreen()),
-  GetPage(name: AppRoute.language, page: () => Language(),middlewares: [Mymiddleware()]),
+  GetPage(name: AppRoute.language, page: () => Language(appRoute: AppRoute.onboarding,),middlewares: [Mymiddleware()]),
   GetPage(name: AppRoute.login, page: () => Login()),
   GetPage(name: AppRoute.signUp, page: () => SignUp()),
   GetPage(name: AppRoute.forgetPassword, page: () => ForgetPassword()),
@@ -41,4 +42,5 @@ List<GetPage<dynamic>> routes = [
   GetPage(name: AppRoute.categories, page: () => const Categories()),
   GetPage(name: AppRoute.myCart, page: () => const MyCart()),
   GetPage(name: AppRoute.myFavroite, page: () => const Favorites()),
+  GetPage(name: AppRoute.setting, page: () => const SettingPage()),
 ];
