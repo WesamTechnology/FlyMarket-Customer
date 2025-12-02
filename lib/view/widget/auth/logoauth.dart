@@ -18,7 +18,7 @@ class LogoAuth extends StatelessWidget {
         shape: BoxShape.circle,
 
         image: DecorationImage(
-          image: AssetImage(AppImageAsset.splash),
+          image: AssetImage(AppImageAsset.splash2),
           fit: BoxFit.scaleDown,
         ),
       ),

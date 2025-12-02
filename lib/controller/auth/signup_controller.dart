@@ -22,8 +22,8 @@ class SignUpControllerImp extends SignUpController{
 
   @override
   signUp() {
-    var formdate = formState.currentState;
-    if(formdate!.validate()){
+    var formDate = formState.currentState;
+    if(formDate!.validate()){
       print("is valid");
       Get.offNamed(AppRoute.verfiyCodeSignUp);
     }

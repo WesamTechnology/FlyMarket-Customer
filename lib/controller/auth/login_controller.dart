@@ -1,6 +1,7 @@
 
 
 import 'package:flutter/cupertino.dart';
+import 'package:flymarket_customer/core/services/services.dart';
 import 'package:get/get.dart';
 
 import '../../core/constant/routes.dart';
@@ -15,6 +16,8 @@ class LoginControllerImp extends LoginController{
   late TextEditingController email;
  late TextEditingController password;
 
+ MyServices myServices = Get.find();
+
  GlobalKey<FormState> formState = GlobalKey<FormState>();
 
   @override
@@ -27,6 +30,7 @@ class LoginControllerImp extends LoginController{
     var formdate = formState.currentState;
     if(formdate!.validate()){
       print("is valid");
+      myServices.sharedPreferences.setString("strep", "2");
       Get.offNamed(AppRoute.homepage);
     }
     else{

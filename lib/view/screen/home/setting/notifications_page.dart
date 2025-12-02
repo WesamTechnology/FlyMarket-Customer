@@ -29,7 +29,7 @@ class NotificationsPage extends StatelessWidget {
 
   Widget _switchTile(String title, bool value) {
     return SwitchListTile(
-      activeColor: AppColor.primaryColor,
+      activeThumbColor: AppColor.primaryColor,
       title: Text(title, style: const TextStyle(fontWeight: FontWeight.w500)),
       value: value,
       onChanged: (_) {},

@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flymarket_customer/core/constant/routes.dart';
 import 'package:flymarket_customer/routes.dart';
-import 'package:flymarket_customer/view/screen/auth/splash.dart';
-import 'package:flymarket_customer/view/screen/home/home_page.dart';
 import 'package:get/get.dart';
 
 import 'binding.dart';
@@ -33,7 +31,7 @@ class MyApp extends StatelessWidget {
         translations: MyTranslation(),
         initialBinding: MyBinding(),
         theme: controller.themeData,
-        initialRoute: AppRoute.homepage,
+        initialRoute: AppRoute.splash,
         getPages: routes,
       ); }
     );
