@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flymarket_customer/controller/home/categories_controller.dart';
+import 'package:flymarket_customer/core/functions/translate_database.dart';
+import 'package:flymarket_customer/link_api.dart';
+import 'package:get/get.dart';
 
 class HeaderSection extends StatelessWidget {
-  final String name;
-  final String image;
+
 
   const HeaderSection({
     super.key,
-    required this.name,
-    required this.image,
   });
+
 
   bool _isNetworkImage(String path) {
     return path.startsWith('http') || path.startsWith('https');
@@ -17,6 +19,8 @@ class HeaderSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+CategoriesControllerImp controller = Get.put(CategoriesControllerImp());
+
     return SliverAppBar(
       pinned: true,
       expandedHeight: 240.h,
@@ -26,7 +30,7 @@ class HeaderSection extends StatelessWidget {
       flexibleSpace: FlexibleSpaceBar(
         titlePadding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
         title: Text(
-          name,
+          translateDatabase(controller.supermarketModel.supermarketNameAr!, controller.supermarketModel.supermarketName!),
           style: TextStyle(
             fontSize: 16.sp,
             fontWeight: FontWeight.bold,
@@ -41,9 +45,7 @@ class HeaderSection extends StatelessWidget {
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
         ),
-        background: _isNetworkImage(image)
-            ? Image.network(image, fit: BoxFit.cover)
-            : Image.asset(image, fit: BoxFit.cover),
+        background: Image.network("${AppLink.imageSupermarket}/${controller.supermarketModel.supermarketImage!}", fit: BoxFit.cover)
       ),
     );
   }

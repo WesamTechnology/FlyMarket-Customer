@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flymarket_customer/bindings/intialbinfing.dart';
 import 'package:flymarket_customer/core/constant/routes.dart';
 import 'package:flymarket_customer/routes.dart';
 import 'package:get/get.dart';
@@ -29,9 +30,9 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         locale: controller.language,
         translations: MyTranslation(),
-        initialBinding: MyBinding(),
+        initialBinding: Intialbinfing(),
         theme: controller.themeData,
-        initialRoute: AppRoute.splash,
+        initialRoute: AppRoute.homepage,
         getPages: routes,
       ); }
     );

@@ -1,20 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../../data/model/supermarket_model.dart';
+import 'package:flymarket_customer/controller/home/items_controller.dart';
+import 'package:flymarket_customer/core/constant/color.dart';
+import 'package:flymarket_customer/core/functions/translate_database.dart';
+import 'package:flymarket_customer/data/model/itemsmodel.dart';
+import 'package:flymarket_customer/link_api.dart';
+import 'package:get/get.dart';
+import '../../../../data/model/product_model.dart';
 
+class ProductCard extends GetView<ItemsControllerImp> {
+  const ProductCard({super.key, required this.itemsModel});
 
-
-class ProductCard extends StatelessWidget {
-  final ProductModel product;
-  final VoidCallback? onAddToCart;
-  final VoidCallback? onFavorite;
-
-  const ProductCard({
-    super.key,
-    required this.product,
-    this.onAddToCart,
-    this.onFavorite,
-  });
+  final ItemsModel itemsModel;
 
   bool _isNetworkImage(String path) {
     return path.startsWith('http') || path.startsWith('https');
@@ -53,19 +50,12 @@ class ProductCard extends StatelessWidget {
                       borderRadius: BorderRadius.vertical(
                         top: Radius.circular(14.r),
                       ),
-                      child: _isNetworkImage(product.image)
-                          ? Image.network(
-                              product.image,
-                              fit: BoxFit.fitHeight,
-                              width: double.infinity,
-                              height: double.infinity,
-                            )
-                          : Image.asset(
-                              product.image,
-                              fit: BoxFit.fitHeight,
-                              width: double.infinity,
-                              height: double.infinity,
-                            ),
+                      child: Image.network(
+                        "${AppLink.imageItems}/${itemsModel.itmesImage}",
+                        fit: BoxFit.fitHeight,
+                        width: double.infinity,
+                        height: double.infinity,
+                      ),
                     ),
                     Positioned(
                       top: 8.h,
@@ -79,13 +69,11 @@ class ProductCard extends StatelessWidget {
                           padding: EdgeInsets.zero,
                           constraints: BoxConstraints.tight(Size(32.w, 32.w)),
                           icon: Icon(
-                            product.isFavorite
-                                ? Icons.favorite
-                                : Icons.favorite_border,
+                            Icons.favorite_border_outlined,
                             size: 18.sp,
-                            color: Colors.redAccent,
+                            color: AppColor.primaryColor,
                           ),
-                          onPressed: onFavorite,
+                          onPressed: () {},
                         ),
                       ),
                     ),
@@ -102,7 +90,10 @@ class ProductCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        product.name,
+                        translateDatabase(
+                          itemsModel.itmesNameAr!,
+                          itemsModel.itmesName!,
+                        ),
                         style: TextStyle(
                           fontSize: 14.sp,
                           fontWeight: FontWeight.w600,
@@ -115,7 +106,10 @@ class ProductCard extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            "\$${product.price}",
+                            translateDatabase(
+                              "${itemsModel.itmesPrice} ريال يمني",
+                              "${itemsModel.itmesPrice} RYE",
+                            ),
                             style: TextStyle(
                               fontSize: 14.sp,
                               fontWeight: FontWeight.bold,
@@ -123,7 +117,7 @@ class ProductCard extends StatelessWidget {
                             ),
                           ),
                           ElevatedButton(
-                            onPressed: onAddToCart,
+                            onPressed: () {},
                             style: ElevatedButton.styleFrom(
                               padding: EdgeInsets.symmetric(
                                 horizontal: 10.w,

@@ -11,9 +11,11 @@ import 'package:flymarket_customer/view/screen/auth/signup.dart';
 import 'package:flymarket_customer/view/screen/auth/splash.dart';
 import 'package:flymarket_customer/view/screen/auth/success_signup.dart';
 import 'package:flymarket_customer/view/screen/auth/verifycodesignup.dart';
+import 'package:flymarket_customer/view/screen/home/SupermarketDetails/supermarket_details_page.dart';
 import 'package:flymarket_customer/view/screen/home/categories.dart';
 import 'package:flymarket_customer/view/screen/home/favorites.dart';
 import 'package:flymarket_customer/view/screen/home/home_page.dart';
+import 'package:flymarket_customer/view/screen/home/items/items.dart';
 import 'package:flymarket_customer/view/screen/home/my_cart.dart';
 import 'package:flymarket_customer/view/screen/home/setting_page.dart';
 import 'package:flymarket_customer/view/screen/home/shop.dart';
@@ -39,6 +41,8 @@ List<GetPage<dynamic>> routes = [
   // Home
   GetPage(name: AppRoute.homepage, page: () => const HomePage()),
   GetPage(name: AppRoute.shope, page: () => const Shop()),
+  GetPage(name: AppRoute.supermarketDetailsPage, page: () => const SupermarketDetailsPage()),
+  GetPage(name: AppRoute.items, page: () => const Items()),
   GetPage(name: AppRoute.categories, page: () => const Categories()),
   GetPage(name: AppRoute.myCart, page: () => const MyCart()),
   GetPage(name: AppRoute.myFavroite, page: () => const Favorites()),

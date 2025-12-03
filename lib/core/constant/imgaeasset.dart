@@ -1,5 +1,8 @@
 class AppImageAsset {
   static const String rootImages = "assets/images";
+  static const String rootLottie = "assets/lottie";
+
+  //  ====================  image ===================
   static const String splash = "$rootImages/splash.png";
   static const String splash2 = "$rootImages/splash2.png";
   static const String onboarding1 = "$rootImages/onboarding1.jpg";
@@ -19,12 +22,24 @@ class AppImageAsset {
   static const String pepper_red = "$rootImages/pepper_red.png";
   static const String spriteCan = "$rootImages/sprite_can.png";
   static const String me = "$rootImages/me.png";
+
+
+  // ======================= lottie =====================
+
   static const String splash3 = "assets/lottie/mm.json";
   static const String cart = "assets/lottie/cart.json";
   static const String flyMarketSplash = "assets/lottie/flyMarket.json";
+  static const String ecommerce = "$rootLottie/ecommerce.json";
+  static const String loading = "$rootLottie/cart.json";
+  static const String offline = "$rootLottie/offline.json";
+  static const String noData = "$rootLottie/nodata.json";
+  static const String server = "$rootLottie/server.json";
+  static const String mm = "$rootLottie/mm.json";
+  static const String handLoading = "$rootLottie/hand_loding.json";
 
 
-  //  static const String avatar = "$rootImages/avatar.png" ; 
+
+//  static const String avatar = "$rootImages/avatar.png" ;
 
   // static const String onBoardingImageFour   = "$rootImages/onboardingfour.PNG" ;
 
