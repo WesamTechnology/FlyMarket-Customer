@@ -21,4 +21,5 @@ class AppLink{
   static String categories = "$server/categories/view.php";
   static String categoriesAll = "$server/categories/categories_all.php";
   static String items = "$server/items/items.php";
+  static String itemsAll = "$server/items/items_all.php";
 }

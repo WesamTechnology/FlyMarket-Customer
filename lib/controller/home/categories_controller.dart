@@ -15,7 +15,7 @@ abstract class CategoriesController extends GetxController {
 
   getcategory(String categoryId);
 
-  goToItems(List categories, int selectedCat, String categoryId);
+  goToItems(List categories, int selectedCat, String categoryId,String supermarket);
 }
 
 class CategoriesControllerImp extends CategoriesController {
@@ -71,11 +71,12 @@ class CategoriesControllerImp extends CategoriesController {
   }
 
   @override
-  goToItems(categories,selectedCat,categoryId) {
+  goToItems(categories,selectedCat,categoryId,supermarket) {
     Get.toNamed(AppRoute.items,arguments: {
       "categories": categories,
       "selectedCat": selectedCat,
       "categoryId": categoryId,
+      "supermarket": supermarket,
     });
   }
 }

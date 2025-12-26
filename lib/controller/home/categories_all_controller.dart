@@ -13,10 +13,10 @@ abstract class CategoriesAllController extends GetxController {
 
   initialData();
 
-  goToCategories(
-      List categories,
-      int selectedCat,
-      String categoriesId,
+  goToItemsAll(
+      List categoriesAll,
+      int selecteCatAll,
+      String categoriesAllId,
       );
 }
 
@@ -29,7 +29,7 @@ class CategoriesAllControllerImp extends CategoriesAllController {
   CategoresAllData categoresAllData = CategoresAllData(Get.find());
 
   List data = [];
-  List categories = [];
+  List categoriesAll = [];
   List supermarket = [];
   List items = [];
 
@@ -56,7 +56,7 @@ class CategoriesAllControllerImp extends CategoriesAllController {
     statusRequest = handlingData(response);
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {
-        categories.addAll(response['data']);
+        categoriesAll.addAll(response['data']);
       } else {
         statusRequest = StatusRequest.failure;
         print("222222222225555555555555555699999999999999");
@@ -68,13 +68,13 @@ class CategoriesAllControllerImp extends CategoriesAllController {
   }
 
   @override
-  goToCategories(categories,selecteCat, categoriesId) {
+  goToItemsAll(categoriesAll,selecteCatAll, categoriesAllId) {
     Get.toNamed(
-      AppRoute.supermarketDetailsPage,
+      AppRoute.itemsAll,
       arguments: {
-        "supermarket": categories,
-        "selectedsuper": selecteCat,
-        "superid": categoriesId,
+        "categoriesAll": categoriesAll,
+        "selecteCatAll": selecteCatAll,
+        "categoriesAllId": categoriesAllId,
       },
     );
   }

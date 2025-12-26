@@ -7,10 +7,11 @@ import 'package:flymarket_customer/core/functions/translate_database.dart';
 import 'package:flymarket_customer/data/model/itemsmodel.dart';
 import 'package:flymarket_customer/link_api.dart';
 import 'package:get/get.dart';
+import '../../../../controller/home/items_all_controller.dart';
 import '../../../../data/model/product_model.dart';
 
-class ProductCard extends GetView<ItemsControllerImp> {
-  const ProductCard({super.key, required this.itemsModel});
+class ProductAllCard extends GetView<ItemsAllControllerImp> {
+  const ProductAllCard({super.key, required this.itemsModel});
 
   final ItemsModel itemsModel;
 
@@ -25,7 +26,7 @@ class ProductCard extends GetView<ItemsControllerImp> {
       child: InkWell(
         borderRadius: BorderRadius.circular(14.r),
         onTap: () {
-          controller.goToItemsDetails(itemsModel);
+          controller.goItemsAllDetails(itemsModel);
         },
         child: Container(
           decoration: BoxDecoration(
@@ -53,8 +54,9 @@ class ProductCard extends GetView<ItemsControllerImp> {
                       ),
                       child: Hero(
                         tag: "${itemsModel.itmesId}",
-                        child: CachedNetworkImage(imageUrl:
-                          "${AppLink.imageItems}/${itemsModel.itmesImage}",
+                        child: CachedNetworkImage(
+                          imageUrl:
+                              "${AppLink.imageItems}/${itemsModel.itmesImage}",
                           fit: BoxFit.fitHeight,
                           width: double.infinity,
                           height: double.infinity,

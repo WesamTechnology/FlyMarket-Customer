@@ -12,8 +12,8 @@ import '../../data/model/itemsmodel.dart';
 abstract class ItemsController extends GetxController {
   initialData();
   changCat(int val,String catVal);
-  getItems(String categoryId);
-  goToProductDetails(ItemsModel itemsModel);
+  getItems(String categoryId,String supermarket_id);
+  goToItemsDetails(ItemsModel itemsModel);
 }
 
 class ItemsControllerImp extends ItemsController {
@@ -22,6 +22,7 @@ class ItemsControllerImp extends ItemsController {
   List categories = [];
   List items = [];
   String? catid;
+  String? superid;
   int? selectedCat;
 
   ItemsData itemsData = ItemsData(Get.find());
@@ -43,7 +44,8 @@ class ItemsControllerImp extends ItemsController {
     categories = Get.arguments["categories"];
     selectedCat = Get.arguments["selectedCat"];
     catid = Get.arguments["categoryId"];
-    getItems(catid!);
+    superid = Get.arguments["supermarket"];
+    getItems(catid!,superid!);
 
   }
 
@@ -53,15 +55,15 @@ class ItemsControllerImp extends ItemsController {
   changCat(val,catVal) {
     selectedCat = val;
     catid = catVal;
-    getItems(catid!);
+    getItems(catid!,superid!);
     update();
   }
 
   @override
-  getItems(categoryId) async {
+  getItems(categoryId,supermarket_id) async {
     items.clear();
     statusRequest = StatusRequest.loding;
-    var response = await itemsData.getData(categoryId);
+    var response = await itemsData.getData(categoryId,supermarket_id);
     statusRequest = handlingData(response);
     if(StatusRequest.success == statusRequest){
       if(response['status'] == "success"){
@@ -74,8 +76,8 @@ class ItemsControllerImp extends ItemsController {
   }
 
   @override
-  goToProductDetails(itemsModel) {
-    Get.toNamed(AppRoute.productdetails,arguments: {
+  goToItemsDetails(itemsModel) {
+    Get.toNamed(AppRoute.itemsDetails,arguments: {
       "itemsmodel": itemsModel,
     });
   }

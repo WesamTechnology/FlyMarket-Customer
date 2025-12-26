@@ -27,7 +27,10 @@ class SupermarketDetailsPage extends StatelessWidget {
       backgroundColor: const Color(0xFFF6F7FB),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () => Get.toNamed(AppRoute.myCart),
-        label: Text(translateDatabase("السلة", "Cart"), style: TextStyle(fontSize: 14.sp)),
+        label: Text(
+          translateDatabase("السلة", "Cart"),
+          style: TextStyle(fontSize: 14.sp),
+        ),
         icon: Icon(Icons.shopping_cart_outlined, size: 20.sp),
       ),
       body: SafeArea(
@@ -94,6 +97,7 @@ class CategoriesSuper extends GetView<CategoriesControllerImp> {
           controller.categories,
           i!,
           categoriesModel.categoriesId.toString(),
+          categoriesModel.categoriesSuper.toString(),
         );
       },
       child: Container(
@@ -117,8 +121,10 @@ class CategoriesSuper extends GetView<CategoriesControllerImp> {
             Padding(
               padding: const EdgeInsets.only(bottom: 12).r,
               child: Text(
-                translateDatabase(categoriesModel.categoriesNameAr!, categoriesModel.categoriesName!)
-                ,
+                translateDatabase(
+                  categoriesModel.categoriesNameAr!,
+                  categoriesModel.categoriesName!,
+                ),
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 13.sp,
