@@ -38,6 +38,7 @@ class HomeShopControllerImp extends HomeShopController {
   @override
   initialData() {
     username = myServices.sharedPreferences.getString("username");
+    username = myServices.sharedPreferences.getString("phone");
     id = myServices.sharedPreferences.getString("id");
   }
 

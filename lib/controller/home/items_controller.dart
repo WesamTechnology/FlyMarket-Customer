@@ -4,8 +4,10 @@ import 'package:get/get.dart';
 import '../../core/class/statuserequest.dart';
 import '../../core/constant/routes.dart';
 import '../../core/functions/handling_data_controller.dart';
+import '../../core/services/services.dart';
 import '../../data/datasource/remote/items_data.dart';
 import '../../data/model/itemsmodel.dart';
+import '../favorite/favorite_controller.dart';
 
 
 
@@ -24,10 +26,10 @@ class ItemsControllerImp extends ItemsController {
   String? catid;
   String? superid;
   int? selectedCat;
-
+  MyServices myServices = Get.find();
   ItemsData itemsData = ItemsData(Get.find());
 
-  List data = [];
+  //List data = [];
 
   late StatusRequest statusRequest ;
 
@@ -68,6 +70,8 @@ class ItemsControllerImp extends ItemsController {
     if(StatusRequest.success == statusRequest){
       if(response['status'] == "success"){
         items.addAll(response['data']);
+        FavoriteController fav = Get.find();
+        fav.initFavorites(items);
       }else{
       statusRequest = StatusRequest.failure;
       }

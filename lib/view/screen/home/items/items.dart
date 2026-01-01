@@ -6,6 +6,7 @@ import 'package:flymarket_customer/data/model/itemsmodel.dart';
 import 'package:flymarket_customer/view/widget/home/items/product_card.dart';
 import 'package:get/get.dart';
 
+import '../../../../controller/favorite/favorite_controller.dart';
 import '../../../widget/home/categories/custom_Search.dart';
 
 class Items extends StatelessWidget {
@@ -14,6 +15,7 @@ class Items extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Get.put(ItemsControllerImp());
+    FavoriteController controllerFav = Get.put(FavoriteController());
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(7.0).r,
@@ -36,7 +38,7 @@ class Items extends StatelessWidget {
                     ),
                     itemBuilder: (BuildContext context, index) {
                       print(
-                        "===========================lenth = ${controller.data.length}==================================",
+                        "===========================lenth = ${controller.items.length}==================================",
                       );
                       return ProductCard(
                         itemsModel: ItemsModel.fromJson(

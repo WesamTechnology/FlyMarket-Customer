@@ -34,7 +34,7 @@ List<GetPage<dynamic>> routes = [
   GetPage(name: AppRoute.verfiyCode, page: () => VerifyCode()),
   GetPage(name: AppRoute.resetPassword, page: () => ResetPassword()),
   GetPage(name: AppRoute.verfiyCodeSignUp, page: () => VerifCodeSignup()),
-  GetPage(name: AppRoute.successResetpassword, page: () => SuccessResetpassword()),
+  //GetPage(name: AppRoute.successResetpassword, page: () => SuccessResetpassword()),
   GetPage(name: AppRoute.successSignUp, page: () => SuccessSignup()),
 
   // Onboarding

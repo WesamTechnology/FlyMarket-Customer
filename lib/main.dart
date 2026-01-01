@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flymarket_customer/bindings/intialbinfing.dart';
 import 'package:flymarket_customer/core/constant/routes.dart';
@@ -12,6 +13,7 @@ import 'core/services/services.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await dotenv.load(fileName: ".env");
   await initialServices();
   runApp(MyApp());
 }
