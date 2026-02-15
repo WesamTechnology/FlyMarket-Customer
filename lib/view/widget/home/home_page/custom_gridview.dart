@@ -12,6 +12,7 @@ class CustomGridview extends GetView<HomeShopControllerImp> {
 
   @override
   Widget build(BuildContext context) {
+
     return GridView.builder(
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2, // عدد الأعمدة
@@ -23,12 +24,15 @@ class CustomGridview extends GetView<HomeShopControllerImp> {
       padding: const EdgeInsets.all(5).r,
       itemBuilder: (context, index) {
         print(
-          "============ Length = ${controller.supermarket.length}=========================",
+          "============ Length = ${controller.supermarket
+              .length}=========================",
         );
         return Container(
           decoration: BoxDecoration(
             color: Color(0xffe7fae7),
-            borderRadius: BorderRadius.circular(15).r,
+            borderRadius: BorderRadius
+                .circular(15)
+                .r,
             boxShadow: [
               BoxShadow(
                 color: Colors.black.withValues(alpha: 0.3),
@@ -75,11 +79,22 @@ class Supermarket extends GetView<HomeShopControllerImp> {
         children: [
           Expanded(
             child: ClipRRect(
-              borderRadius: BorderRadius.vertical(top: Radius.circular(13).r),
-              child: Image.network(
-                "${AppLink.imageSupermarket}/${supermarketModel.supermarketImage}",
+              borderRadius: BorderRadius.vertical(top: Radius
+                  .circular(13)
+                  .r),
+              child: "${supermarketModel
+                  .supermarketImage}" != "default.png" && "${supermarketModel
+                  .supermarketImage}" != "empty"  ? Image.network(
+                "${AppLink.imageSupermarket}/${supermarketModel
+                    .supermarketImage}",
                 fit: BoxFit.fill,
                 width: double.infinity,
+
+              ) :Image.asset(
+                "assets/images/bakery.png",
+                fit: BoxFit.fill,
+                width: double.infinity,
+
               ),
             ),
           ),
@@ -87,7 +102,8 @@ class Supermarket extends GetView<HomeShopControllerImp> {
           Padding(
             padding: const EdgeInsets.all(7.0).r,
             child: Text(
-              translateDatabase('${supermarketModel.supermarketNameAr}', '${supermarketModel.supermarketName}')
+              translateDatabase('${supermarketModel.supermarketNameAr}',
+                  '${supermarketModel.supermarketName}')
               ,
               style: TextStyle(
                 fontSize: 14.5.sp,

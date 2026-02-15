@@ -13,4 +13,17 @@ class ItemsData {
     });
     return respons.fold((l) => l, (r) => r);
   }
+
+
+
+  searchData(String search, String supermarket_id) async {
+    var respons = await crud.postData(AppLink.search, {
+      "search": search,
+      "supermarket_id": supermarket_id.toString(),
+    });
+    return respons.fold((l) => l, (r) => r);
+  }
+
+
+
 }

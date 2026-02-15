@@ -1,7 +1,11 @@
 class AppLink{
-  static String server = "http://10.0.2.2:8012/flymarket";
+  //static String server = "http://10.0.2.2:8012/flymarket";
+  //static String server = "http://10.0.2.2:8012/flymarket_php_api/app/customer";
+  static String server = "http://46.101.225.45/flymarket/app/customer";
 
-  static String imageStatic = "http://10.0.2.2:8012/flymarket/upload";
+  //static String imageStatic = "http://10.0.2.2:8012/flymarket/upload";
+  //static String imageStatic = "http://10.0.2.2:8012/flymarket_php_api/app/customer/upload";
+  static String imageStatic = "http://46.101.225.45/flymarket/app/customer/upload";
 
 
   static String imageSupermarket = "$imageStatic/supermarket";
@@ -24,6 +28,7 @@ class AppLink{
   static String categories = "$server/categories/view.php";
   static String categoriesAll = "$server/categories/categories_all.php";
   static String items = "$server/items/items.php";
+  static String search = "$server/items/search.php";
   static String itemsAll = "$server/items/items_all.php";
 
 
@@ -34,6 +39,16 @@ class AppLink{
   static String favoriteRemove = "$server/favorite/remove.php";
   static String myFavorite = "$server/favorite/view.php";
   static String deleteFromFavorite = "$server/favorite/deletefromfavroite.php";
+
+
+
+
+
+  // ================= Cart ==================
+  static String cartView = "$server/cart/view.php";
+  static String cartAdd = "$server/cart/add.php";
+  static String cartDelete = "$server/cart/delete.php";
+  static String getCountItems = "$server/cart/getcountitems.php";
 
 
 

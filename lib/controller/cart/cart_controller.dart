@@ -1,43 +1,26 @@
 
-import 'package:flymarket_customer/data/model/itemsmodel.dart';
 import 'package:get/get.dart';
+import 'package:flutter/material.dart';
 
 import '../../core/class/statuserequest.dart';
 import '../../core/functions/handling_data_controller.dart';
 import '../../core/services/services.dart';
 import '../../data/datasource/remote/cart_data.dart';
-import 'package:flutter/material.dart';
-
-abstract class ItemsDetailsController extends GetxController {
-  initialData();
-}
-
-class ItemsDetailsControllerImp extends ItemsDetailsController {
-
-  late ItemsModel itemsModel ;
+import '../../data/model/cart_model.dart';
 
 
-
+class CartController extends GetxController {
   CartData cartData = CartData(Get.find());
 
   MyServices myServices = Get.find();
 
+  List<CartModel> data = [];
+  int priceOrder = 0;
+  int totalCountItems = 0;
+
   late StatusRequest statusRequest;
-  //CartController cartController = Get.put(CartController());
-  int count = 0;
 
-  @override
-  initialData() async {
-    statusRequest = StatusRequest.loding;
-    itemsModel = Get.arguments["itemsmodel"];
-    count = await getCountItems(itemsModel.itmesId);
-    statusRequest = StatusRequest.success;
-    update();
-  }
-
-
-
-  addItems(itemsID) async {
+  add(itemsID) async {
     statusRequest = StatusRequest.loding;
     update();
     var response = await cartData.addCart(
@@ -59,7 +42,7 @@ class ItemsDetailsControllerImp extends ItemsDetailsController {
     update();
   }
 
-  deleteItems(itemsID) async {
+  delete(itemsID) async {
     statusRequest = StatusRequest.loding;
     update();
     var response = await cartData.deleteCart(
@@ -101,29 +84,57 @@ class ItemsDetailsControllerImp extends ItemsDetailsController {
     update();
   }
 
+  resetVarCart() {
+    totalCountItems = 0;
+    priceOrder = 0;
+    data.clear();
+  }
 
+  refreshPage(){
+    resetVarCart();
+    view();
+  }
 
-  add(){
-    addItems(itemsModel.itmesId);
-    count++;
+  view() async {
+    statusRequest = StatusRequest.loding;
+    update();
+
+    var response = await cartData.viewCart(
+      myServices.sharedPreferences.getString("id")!,
+    );
+
+    statusRequest = handlingData(response);
+
+    if (StatusRequest.success == statusRequest) {
+      if (response['status'] == "success") {
+        if(response['datacart']['status'] == "success"){
+          data.clear();
+
+          List dataResponse = response['datacart']['data'];
+          Map dataResponseCountPrice = response['countprice'];
+
+          data.addAll(dataResponse.map((e) => CartModel.fromJson(e)));
+
+          totalCountItems = dataResponseCountPrice['totalcount'] ?? 0;
+          priceOrder = dataResponseCountPrice['totalprice'] ?? 0;
+
+          print("✅ Count = $totalCountItems");
+          print("✅ Price = $priceOrder");
+
+          update();
+        }
+
+      } else {
+        statusRequest = StatusRequest.failure;
+        update();
+      }
+    }
     update();
   }
 
-  delete(){
-    if(count > 0){
-      deleteItems(itemsModel.itmesId);
-      count--;
-      update();
-    }
-  }
-
-
-
-
   @override
   void onInit() {
-    initialData();
+    view();
     super.onInit();
   }
-
 }

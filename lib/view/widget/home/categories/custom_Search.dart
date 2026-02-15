@@ -4,15 +4,23 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/constant/color.dart';
 
 class CustomSearch extends StatelessWidget {
-  const CustomSearch({super.key});
+  const CustomSearch({super.key, this.myControlle, this.onChanged, this.onPressedSearch});
 
+  final TextEditingController? myControlle;
+  final void Function(String)? onChanged;
+  final void Function()? onPressedSearch;
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20).r,
       child: TextField(
+        controller: myControlle,
+        onChanged: onChanged,
         decoration: InputDecoration(
-          prefixIcon: Icon(Icons.search),
+          prefixIcon: IconButton(
+            onPressed: onPressedSearch,
+            icon: Icon(Icons.search),
+          ),
           hintText: "Search",
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(20).r,

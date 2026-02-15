@@ -6,7 +6,7 @@ import 'package:flymarket_customer/core/constant/routes.dart';
 import 'package:flymarket_customer/routes.dart';
 import 'package:get/get.dart';
 
-import 'binding.dart';
+
 import 'core/localization/changelocal.dart';
 import 'core/localization/translation.dart';
 import 'core/services/services.dart';

@@ -5,8 +5,8 @@ import '../../../../core/constant/color.dart';
 
 
 class PriceAndDeleteSection extends StatelessWidget {
-  const PriceAndDeleteSection({super.key});
-
+  const PriceAndDeleteSection({super.key, required this.price});
+  final String price;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -22,7 +22,7 @@ class PriceAndDeleteSection extends StatelessWidget {
         Padding(
           padding:  EdgeInsets.symmetric(horizontal: 15.w),
           child: Text(
-            r"$4.99",
+            "\$ $price",
             style: TextStyle(
               color: Colors.black,
               fontSize: 14.sp,
