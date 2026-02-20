@@ -13,6 +13,7 @@ class ItemsModel {
   int? itmesCat;
   int? itmesCatAll;
   int? itmesSuper;
+  int? itemspricedisount;
 
   ItemsModel(
       {this.itmesId,
@@ -29,6 +30,7 @@ class ItemsModel {
         this.itmesCat,
         this.itmesCatAll,
         this.itmesSuper,
+        this.itemspricedisount,
       });
 
   ItemsModel.fromJson(Map<String, dynamic> json) {
@@ -46,6 +48,7 @@ class ItemsModel {
     itmesCat = json['itmes_cat'];
     itmesCatAll = json['itmes_cat_all'];
     itmesSuper = json['itmes_super'];
+    itemspricedisount = json['itemspricedisount'];
   }
 
   Map<String, dynamic> toJson() {
@@ -64,6 +67,7 @@ class ItemsModel {
     data['itmes_cat'] = this.itmesCat;
     data['itmes_cat_all'] = this.itmesCatAll;
     data['itmes_super'] = this.itmesSuper;
+    data['itemspricedisount'] = this.itemspricedisount;
     return data;
   }
 }

@@ -83,6 +83,30 @@ class ProductAllCard extends GetView<ItemsAllControllerImp> {
                         ),
                       ),
                     ),
+                   if( itemsModel.itmesDiscount !=0)
+                    Positioned(child:  Row(
+                      children: [
+                        Text(
+                          "${itemsModel.itmesPrice}",
+                          style: TextStyle(
+                            fontSize: 13.sp,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.green[700],
+                            decoration: TextDecoration.lineThrough, // ✅ خط في الوسط
+                            decorationThickness: 2,
+                          ),
+                        ),
+                        SizedBox(width: 4.w),
+                        Text(
+                          "%${itemsModel.itmesDiscount}",
+                          style: TextStyle(
+                            fontSize: 10.sp,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.red[700],
+                          ),
+                        ),
+                      ],
+                    ),)
                   ],
                 ),
               ),
@@ -113,8 +137,8 @@ class ProductAllCard extends GetView<ItemsAllControllerImp> {
                         children: [
                           Text(
                             translateDatabase(
-                              "${itemsModel.itmesPrice} ريال يمني",
-                              "${itemsModel.itmesPrice} RYE",
+                              "${itemsModel.itemspricedisount} ريال يمني",
+                              "${itemsModel.itemspricedisount} RYE",
                             ),
                             style: TextStyle(
                               fontSize: 14.sp,

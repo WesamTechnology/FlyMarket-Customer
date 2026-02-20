@@ -42,25 +42,58 @@ class ItemsDetails extends StatelessWidget {
               child: Column(
                 children: [
                   // ----------------------  صورة المنتج  -------------------------
-                  Container(
-                    width: double.infinity,
-                    padding: const EdgeInsets.all(20),
-                    decoration: const BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(25),
-                        bottomRight: Radius.circular(25),
+                  Stack(
+                    children: [
+                      Container(
+                        width: double.infinity,
+                        padding: const EdgeInsets.all(20),
+                        decoration: const BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.only(
+                            bottomLeft: Radius.circular(25),
+                            bottomRight: Radius.circular(25),
+                          ),
+                        ),
+                        child: Hero(
+                          tag: "${controller.itemsModel.itmesId}",
+                          child: CachedNetworkImage(
+                            imageUrl:
+                                "${AppLink.imageItems}/${controller.itemsModel.itmesImage}",
+                            height: 200.h,
+                            fit: BoxFit.contain,
+                          ),
+                        ),
                       ),
-                    ),
-                    child: Hero(
-                      tag: "${controller.itemsModel.itmesId}",
-                      child: CachedNetworkImage(
-                        imageUrl:
-                            "${AppLink.imageItems}/${controller.itemsModel.itmesImage}",
-                        height: 200.h,
-                        fit: BoxFit.contain,
+                      if( controller.itemsModel.itmesDiscount !=0)
+                      Positioned(
+                        top: 12.h,
+                        left: 12.w,
+
+                        child: Row(
+                          children: [
+                            Text(
+                              "${controller.itemsModel.itmesPrice}",
+                              style: TextStyle(
+                                fontSize: 17.sp,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.green[700],
+                                decoration: TextDecoration.lineThrough, // ✅ خط في الوسط
+                                decorationThickness: 2,
+                              ),
+                            ),
+                            SizedBox(width: 8.w),
+                            Text(
+                              "%${controller.itemsModel.itmesDiscount}",
+                              style: TextStyle(
+                                fontSize: 13.sp,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.red[700],
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
+                    ],
                   ),
 
                   const SizedBox(height: 25),
@@ -156,8 +189,8 @@ class ItemsDetails extends StatelessWidget {
 
                         Text(
                           translateDatabase(
-                            "${controller.itemsModel.itmesPrice} ريال يمني ",
-                            "${controller.itemsModel.itmesPrice} RYE",
+                            "${controller.itemsModel.itemspricedisount} ريال يمني ",
+                            "${controller.itemsModel.itemspricedisount} RYE",
                           ),
                           style: TextStyle(
                             fontSize: 22,

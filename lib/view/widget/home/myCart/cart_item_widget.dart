@@ -52,7 +52,7 @@ class CartItemWidget extends StatelessWidget {
                       "${AppLink.imageItems}/${image}",
                       width: 70.w,
                       height: 70.w,
-                      fit: BoxFit.cover,
+                      fit: BoxFit.contain,
                     ),
                   ),
                   SizedBox(width: 10.w),

@@ -157,7 +157,7 @@ class ListSearch extends GetView<ItemsControllerImp> {
                         Row(
                           children: [
                             Text(
-                              "${item.itmesPrice} \$",
+                              "${item.itemspricedisount} RYE",
                               style: const TextStyle(
                                 fontSize: 15,
                                 fontWeight: FontWeight.bold,
