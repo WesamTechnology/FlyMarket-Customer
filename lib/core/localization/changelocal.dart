@@ -1,6 +1,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 
 import '../constant/apptheme.dart';
@@ -19,10 +20,31 @@ class LocaleController extends GetxController{
     Get.updateLocale(locale);
   }
 
+  determinePosition() async {
+    bool serviceEnabled;
+    LocationPermission permission;
+
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      return Get.snackbar("تنبية", "الرجاء تشغيل الموقع");
+    }
+
+    permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        return Get.snackbar("تنبية", "الرجاء منح صلاحسة الموقع لتطبيق");
+      }
+    }
+
+    if (permission == LocationPermission.deniedForever) {
+      return Get.snackbar("تنبية", "الرجاء لايكمنك استخدام التطبيق طالما لم تقم بنح صلاحية الموقع");
+    }
+  }
 
   @override
   void onInit() {
-
+    determinePosition();
     String? sharedPrefLang = myServices.sharedPreferences.getString("lang");
 
     if(sharedPrefLang =="ar"){

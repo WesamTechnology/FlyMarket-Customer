@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flymarket_customer/core/constant/routes.dart';
 import 'package:flymarket_customer/core/middleware/mymiddleware.dart';
+import 'package:flymarket_customer/view/screen/address/add_address.dart';
+import 'package:flymarket_customer/view/screen/address/add_part_two_address.dart';
 import 'package:flymarket_customer/view/screen/auth/forgetpassword/forgetpassword.dart';
 import 'package:flymarket_customer/view/screen/auth/forgetpassword/resetpassword.dart';
 import 'package:flymarket_customer/view/screen/auth/forgetpassword/success_resetpassword.dart';
@@ -51,4 +53,6 @@ List<GetPage<dynamic>> routes = [
   GetPage(name: AppRoute.myCart, page: () => const MyCart()),
   GetPage(name: AppRoute.myFavroite, page: () => const Favorites()),
   GetPage(name: AppRoute.setting, page: () => const SettingPage()),
+  GetPage(name: AppRoute.addressadd, page: () => const AddAddress()),
+  GetPage(name: AppRoute.addressadddetails, page: () => const AddPartTwoAddress()),
 ];

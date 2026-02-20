@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flymarket_customer/core/constant/color.dart';
 import 'package:flymarket_customer/core/constant/routes.dart';
+import 'package:flymarket_customer/view/screen/address/view_address.dart';
 import 'package:flymarket_customer/view/screen/auth/language.dart';
 import 'package:flymarket_customer/view/screen/home/setting/about_page.dart';
 import 'package:flymarket_customer/view/screen/home/setting/delivery_address_page.dart';
@@ -49,11 +50,11 @@ class SettingPage extends StatelessWidget {
                       },
                     ),
                     CustomListSetting(
-                      title: "Delivery Address",
+                      title: "My Address",
                       iconLeading: Icons.location_on_outlined,
                       iconTrailing: Icons.arrow_forward_ios_outlined,
                       onTap: (){
-                        Get.to(DeliveryAddressPage());
+                        Get.to(ViewAddress());
                       },
                     ),
                     CustomListSetting(

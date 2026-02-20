@@ -49,6 +49,9 @@ dependencies:
   intl_phone_field: ^3.2.0
   webview_flutter: ^4.13.0
   flutter_dotenv: ^6.0.0
+  google_maps_flutter: ^2.14.2
+  geolocator: ^14.0.2
+  geocoding: ^4.0.0
 
 dev_dependencies:
   flutter_test:

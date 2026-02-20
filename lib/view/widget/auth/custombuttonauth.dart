@@ -15,7 +15,7 @@ final void Function()? onTap ;
       child: Container(
         padding: EdgeInsets.symmetric(vertical: 15).r,
         width: double.infinity,
-        height: 50.h,
+        height: 40.h,
         decoration: BoxDecoration(
           color: AppColor.primaryColor,
           borderRadius: BorderRadius.circular(20),
