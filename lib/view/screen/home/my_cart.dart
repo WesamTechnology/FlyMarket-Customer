@@ -6,6 +6,7 @@ import 'package:flymarket_customer/view/widget/home/myCart/custom_title.dart';
 import 'package:get/get.dart';
 
 import '../../../controller/cart/cart_controller.dart';
+import '../../widget/cart/custom_bottom_navgation_bar_cart.dart';
 
 
 class MyCart extends StatelessWidget {
@@ -16,6 +17,17 @@ class MyCart extends StatelessWidget {
     Get.put(CartController());
     return Scaffold(
       backgroundColor: Colors.white,
+      bottomNavigationBar: GetBuilder<CartController>(
+        builder:
+            (controller) => BottomNavgationBarCart(
+          price: "${controller.priceOrder}",
+          discount: "${controller.disCountCoupon}%",
+          shipping: "0",
+          totalprice: "${controller.getTotalPrice()}",
+          controllercoupon: controller.controllercoupon!,
+          onApplyCoupon: (){controller.checkCoupon();},
+        ),
+      ),
       body: SafeArea(
         child: Column(
           children: [
@@ -24,7 +36,7 @@ class MyCart extends StatelessWidget {
             Expanded(
               child: CustomListViewCart(),
             ),
-            CustomButtonCart(),
+           // CustomButtonCart(),
           ],
         ),
       ),

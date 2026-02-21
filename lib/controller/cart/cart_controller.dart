@@ -7,12 +7,19 @@ import '../../core/functions/handling_data_controller.dart';
 import '../../core/services/services.dart';
 import '../../data/datasource/remote/cart_data.dart';
 import '../../data/model/cart_model.dart';
+import '../../data/model/coupon/coupon_model.dart';
 
 
 class CartController extends GetxController {
   CartData cartData = CartData(Get.find());
 
   MyServices myServices = Get.find();
+  int? disCountCoupon = 0;
+  String? couponname;
+  CouponModel? couponModel ;
+
+  TextEditingController? controllercoupon ;
+
 
   List<CartModel> data = [];
   int priceOrder = 0;
@@ -132,8 +139,39 @@ class CartController extends GetxController {
     update();
   }
 
+
+
+
+  checkCoupon() async {
+    var response = await cartData.checkCoupon(
+      controllercoupon!.text,
+    );
+    statusRequest = handlingData(response);
+    if (StatusRequest.success == statusRequest) {
+      if (response['status'] == "success") {
+        Map<String,dynamic> dataCoupon = response['data'];
+        couponModel = CouponModel.fromJson(dataCoupon);
+        disCountCoupon = couponModel!.couponDiscount!;
+        couponname = couponModel!.couponName!;
+      } else {
+        disCountCoupon = 0;
+        couponname = null;
+      }
+    }
+    update();
+  }
+
+
+  getTotalPrice(){
+    return (priceOrder - (priceOrder * disCountCoupon!)/100);
+  }
+
+
+
+
   @override
   void onInit() {
+    controllercoupon = TextEditingController();
     view();
     super.onInit();
   }

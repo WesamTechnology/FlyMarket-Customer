@@ -40,4 +40,12 @@ class CartData {
   }
 
 
+  checkCoupon( String couponName) async {
+    var respons = await crud.postData(AppLink.checkCoupon, {
+      "couponname": couponName.toString(),
+    });
+    return respons.fold((l) => l, (r) => r);
+  }
+
+
 }
