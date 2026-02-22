@@ -157,7 +157,7 @@ class BottomNavgationBarCart extends StatelessWidget {
           CustomButtonCart(
             textbutton: "Place Order",
             onPressed: () {
-              //Get.toNamed(AppRoute.checkout);
+              Get.toNamed(AppRoute.checkout);
             },
           ),
         ],

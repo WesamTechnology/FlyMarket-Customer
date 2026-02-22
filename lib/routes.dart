@@ -13,6 +13,7 @@ import 'package:flymarket_customer/view/screen/auth/signup.dart';
 import 'package:flymarket_customer/view/screen/auth/splash.dart';
 import 'package:flymarket_customer/view/screen/auth/success_signup.dart';
 import 'package:flymarket_customer/view/screen/auth/verifycodesignup.dart';
+import 'package:flymarket_customer/view/screen/checkout/checkout.dart';
 import 'package:flymarket_customer/view/screen/home/SupermarketDetails/supermarket_details_page.dart';
 import 'package:flymarket_customer/view/screen/home/categories.dart';
 import 'package:flymarket_customer/view/screen/home/favorites.dart';
@@ -55,4 +56,5 @@ List<GetPage<dynamic>> routes = [
   GetPage(name: AppRoute.setting, page: () => const SettingPage()),
   GetPage(name: AppRoute.addressadd, page: () => const AddAddress()),
   GetPage(name: AppRoute.addressadddetails, page: () => const AddPartTwoAddress()),
+  GetPage(name: AppRoute.checkout, page: () => const Checkout()),
 ];

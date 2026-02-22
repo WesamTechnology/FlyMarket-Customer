@@ -1,11 +1,11 @@
 class AppLink{
   //static String server = "http://10.0.2.2:8012/flymarket";
-  //static String server = "http://10.0.2.2:8012/flymarket_php_api/app/customer";
-  static String server = "http://46.101.225.45/flymarket/app/customer";
+  static String server = "http://10.0.2.2:8012/flymarket_php_api/app/customer";
+  //static String server = "http://46.101.225.45/flymarket/app/customer";
 
   //static String imageStatic = "http://10.0.2.2:8012/flymarket/upload";
-  //static String imageStatic = "http://10.0.2.2:8012/flymarket_php_api/app/customer/upload";
-  static String imageStatic = "http://46.101.225.45/flymarket/app/customer/upload";
+  static String imageStatic = "http://10.0.2.2:8012/flymarket_php_api/app/customer/upload";
+  //static String imageStatic = "http://46.101.225.45/flymarket/app/customer/upload";
 
 
   static String imageSupermarket = "$imageStatic/supermarket";
