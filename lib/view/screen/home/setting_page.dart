@@ -46,7 +46,7 @@ class SettingPage extends StatelessWidget {
                       iconLeading: Icons.shopping_bag_outlined,
                       iconTrailing: Icons.arrow_forward_ios_outlined,
                       onTap: (){
-                        Get.to(OrdersPage());
+                        Get.toNamed(AppRoute.orderspending);
                       },
                     ),
                     CustomListSetting(

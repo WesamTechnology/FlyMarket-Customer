@@ -48,10 +48,17 @@ class HomeShopControllerImp extends HomeShopController {
     initialData();
     super.onInit();
   }
+  refreshPage(){
+    supermarket.clear();
+    categories.clear();
+    items.clear();
+    getData();
+  }
 
   @override
   getData() async {
     statusRequest = StatusRequest.loding;
+    update();
     var response = await homeData.getData();
     print("=============================== Controller $response ");
     statusRequest = handlingData(response);

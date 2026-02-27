@@ -7,7 +7,7 @@ import '../../../core/constant/routes.dart';
 import 'custom_button_cart.dart';
 import 'custom_button_coupon.dart';
 
-class BottomNavgationBarCart extends StatelessWidget {
+class BottomNavgationBarCart extends GetView<CartController> {
   final String price;
   final String discount;
   final String shipping;
@@ -157,7 +157,8 @@ class BottomNavgationBarCart extends StatelessWidget {
           CustomButtonCart(
             textbutton: "Place Order",
             onPressed: () {
-              Get.toNamed(AppRoute.checkout);
+              controller.goToCheckout();
+             // Get.toNamed(AppRoute.checkout);
             },
           ),
         ],

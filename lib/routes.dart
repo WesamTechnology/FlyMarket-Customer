@@ -25,7 +25,10 @@ import 'package:flymarket_customer/view/screen/home/my_cart.dart';
 import 'package:flymarket_customer/view/screen/home/setting_page.dart';
 import 'package:flymarket_customer/view/screen/home/shop.dart';
 import 'package:flymarket_customer/view/screen/onboarding/onboarding.dart';
+import 'package:flymarket_customer/view/screen/order/order_pending.dart';
 import 'package:get/get.dart';
+
+import 'bindings/home_binding.dart';
 
 
 List<GetPage<dynamic>> routes = [
@@ -44,7 +47,7 @@ List<GetPage<dynamic>> routes = [
   GetPage(name: AppRoute.onboarding, page: () => const Onboarding()),
 
   // Home
-  GetPage(name: AppRoute.homepage, page: () => const HomePage()),
+  GetPage(name: AppRoute.homepage, page: () => const HomePage(),binding: HomeBinding(),),
   GetPage(name: AppRoute.shope, page: () => const Shop()),
   GetPage(name: AppRoute.supermarketDetailsPage, page: () => const SupermarketDetailsPage()),
   GetPage(name: AppRoute.items, page: () => const Items()),
@@ -57,4 +60,5 @@ List<GetPage<dynamic>> routes = [
   GetPage(name: AppRoute.addressadd, page: () => const AddAddress()),
   GetPage(name: AppRoute.addressadddetails, page: () => const AddPartTwoAddress()),
   GetPage(name: AppRoute.checkout, page: () => const Checkout()),
+  GetPage(name: AppRoute.orderspending, page: () => const OrderPending()),
 ];

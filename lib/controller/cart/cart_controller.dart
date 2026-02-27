@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 
 import '../../core/class/statuserequest.dart';
+import '../../core/constant/routes.dart';
 import '../../core/functions/handling_data_controller.dart';
 import '../../core/services/services.dart';
 import '../../data/datasource/remote/cart_data.dart';
@@ -16,6 +17,7 @@ class CartController extends GetxController {
   MyServices myServices = Get.find();
   int? disCountCoupon = 0;
   String? couponname;
+  String? couponId;
   CouponModel? couponModel ;
 
   TextEditingController? controllercoupon ;
@@ -24,7 +26,7 @@ class CartController extends GetxController {
   List<CartModel> data = [];
   int priceOrder = 0;
   int totalCountItems = 0;
-
+  late int supermarketId ;
   late StatusRequest statusRequest;
 
   add(itemsID) async {
@@ -73,6 +75,7 @@ class CartController extends GetxController {
 
   getCountItems(itemsID) async {
     statusRequest = StatusRequest.loding;
+    update();
     var response = await cartData.getCountItems(
       myServices.sharedPreferences.getString("id")!,
       itemsID,
@@ -124,6 +127,7 @@ class CartController extends GetxController {
 
           totalCountItems = dataResponseCountPrice['totalcount'] ?? 0;
           priceOrder = dataResponseCountPrice['totalprice'] ?? 0;
+          supermarketId = data.first.itmesSuper!;
 
           print("✅ Count = $totalCountItems");
           print("✅ Price = $priceOrder");
@@ -153,12 +157,23 @@ class CartController extends GetxController {
         couponModel = CouponModel.fromJson(dataCoupon);
         disCountCoupon = couponModel!.couponDiscount!;
         couponname = couponModel!.couponName!;
+        couponId = couponModel!.couponId!.toString();
       } else {
         disCountCoupon = 0;
         couponname = null;
+        couponId = null;
       }
     }
     update();
+  }
+  goToCheckout(){
+    if(data.isEmpty) return Get.snackbar("تنبية", "السلة فارغة");
+    Get.toNamed(AppRoute.checkout,arguments: {
+      "couponid" : couponId ?? "0",
+      "priceorder" : priceOrder.toString(),
+      "discountcoupon" : disCountCoupon.toString(),
+      "supermarketid": supermarketId.toString(),
+    });
   }
 
 

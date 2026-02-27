@@ -1,12 +1,9 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../../controller/checkout/checkout_controller.dart';
 import '../../../core/class/handlingdataview.dart';
 import '../../../core/constant/color.dart';
 import '../../../core/constant/imgaeasset.dart';
-import '../../../data/model/address/address_view_model.dart';
 import '../../widget/checkout/carddeliveerytype.dart';
 import '../../widget/checkout/cardpaymentmethod.dart';
 import '../../widget/checkout/cardshippingaddress.dart';
@@ -36,7 +33,11 @@ class Checkout extends StatelessWidget {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
           ),
-          onPressed: () {},
+          onPressed: () {
+            print("======================== checkout supermarketId = ${controller.supermarketId} ");
+            print("======================== checkout couponId = ${controller.couponId} ");
+            controller.checkout();
+          },
           child: Text("Checkout"),
         ),
       ),
@@ -60,18 +61,18 @@ class Checkout extends StatelessWidget {
                   SizedBox(height: 15),
                   CardPaymentMethodCheckout(
                     onTap: () {
-                      controller.choosePaymentMethod("cash");
+                      controller.choosePaymentMethod("0"); // 0 = > cash
                     },
                     title: "Cash On Delivery",
-                    isActive: controller.paymentChoos == "cash" ? true : false,
+                    isActive: controller.paymentChoos == "0" ? true : false,
                   ),
                   SizedBox(height: 10),
                   CardPaymentMethodCheckout(
                     onTap: () {
-                      controller.choosePaymentMethod("card");
+                      controller.choosePaymentMethod("1"); // 1 => card
                     },
                     title: "Payment Card",
-                    isActive: controller.paymentChoos == "card" ? true : false,
+                    isActive: controller.paymentChoos == "1" ? true : false,
                   ),
                   SizedBox(height: 30),
                   Text(
@@ -87,29 +88,25 @@ class Checkout extends StatelessWidget {
                     children: [
                       CardDeliveryTypeCheckout(
                         onTap: () {
-                          controller.chooseDeliveryMethod("delivery");
+                          controller.chooseDeliveryMethod("0"); // 0 => delivery
                         },
                         imagename: AppImageAsset.deliveryImage2,
                         title: "Delivery",
-                        active:
-                            controller.deliveryChoos == "delivery"
-                                ? true
-                                : false,
+                        active: controller.deliveryChoos == "0" ? true : false,
                       ),
                       SizedBox(width: 20),
                       CardDeliveryTypeCheckout(
                         onTap: () {
-                          controller.chooseDeliveryMethod("pick");
+                          controller.chooseDeliveryMethod("1"); // 1 => pick
                         },
                         imagename: AppImageAsset.drivethruImage,
                         title: "Pick Up",
-                        active:
-                            controller.deliveryChoos == "pick" ? true : false,
+                        active: controller.deliveryChoos == "1" ? true : false,
                       ),
                     ],
                   ),
                   SizedBox(height: 30),
-                  if (controller.deliveryChoos == "delivery")
+                  if (controller.deliveryChoos == "0")
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -132,26 +129,22 @@ class Checkout extends StatelessWidget {
                                 controller.chooseAddress(
                                   controller
                                       .listDataAddress[index]
-                                      .addressName!,
+                                      .addressId!.toString(),
                                 );
                               },
                               title:
+                              controller
+                                  .listDataAddress[index]
+                                  .addressName!,
+                              body:
+                              "${controller.listDataAddress[index].addressCity!} ${controller.listDataAddress[index].addressStreet!}",
+                              isactive:
+                              controller.addressChoos ==
                                   controller
                                       .listDataAddress[index]
-                                      .addressName!,
-                              body:
-                                  "${controller
-                                      .listDataAddress[index]
-                                      .addressCity!} ${controller
-                                      .listDataAddress[index]
-                                      .addressStreet!}",
-                              isactive:
-                                  controller.addressChoos ==
-                                          controller
-                                              .listDataAddress[index]
-                                              .addressName!
-                                      ? true
-                                      : false,
+                                      .addressId!.toString()
+                                  ? true
+                                  : false,
                             );
                           },
                         ),

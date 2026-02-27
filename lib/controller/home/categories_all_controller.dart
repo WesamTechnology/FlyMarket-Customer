@@ -47,10 +47,15 @@ class CategoriesAllControllerImp extends CategoriesAllController {
     initialData();
     super.onInit();
   }
+  refreshPage(){
+    categoriesAll.clear();
+    getData();
+  }
 
   @override
   getData() async {
     statusRequest = StatusRequest.loding;
+    update();
     var response = await categoresAllData.getData();
     print("=============================== Controller $response ");
     statusRequest = handlingData(response);

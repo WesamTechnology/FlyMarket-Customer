@@ -8,8 +8,14 @@ import 'package:flymarket_customer/view/screen/home/favorites.dart';
 import 'package:flymarket_customer/view/screen/home/setting_page.dart';
 import 'package:flymarket_customer/view/screen/home/shop.dart';
 import 'package:flymarket_customer/view/screen/onboarding/onboarding.dart';
+import 'package:get/get.dart';
 import 'package:motion_tab_bar/MotionTabBar.dart';
 import 'package:motion_tab_bar/MotionTabBarController.dart';
+
+import '../../../controller/cart/cart_controller.dart';
+import '../../../controller/favorite/my_favorite_controller.dart';
+import '../../../controller/home/categories_all_controller.dart';
+import '../../../controller/home/home_shop_controller.dart';
 
 
 class HomePage extends StatefulWidget {
@@ -81,12 +87,26 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
         tabSelectedColor: AppColor.primaryColor,
         tabIconSelectedColor: Colors.white,
         tabBarColor: Colors.white,
-        onTabItemSelected: (int value) {
-          setState(() {
-            // _tabController!.index = value;
-            _motionTabBarController!.index = value;
-          });
-        },
+          onTabItemSelected: (int value) {
+            setState(() {
+              _motionTabBarController!.index = value;
+
+              switch (value) {
+                case 0:
+                  Get.find<HomeShopControllerImp>().refreshPage();
+                  break;
+                case 1:
+                  Get.find<CategoriesAllControllerImp>().refreshPage();
+                  break;
+                case 2:
+                  Get.find<CartController>().refreshPage();
+                  break;
+                case 3:
+                  Get.find<MyFavoriteController>().refreshPage();
+                  break;
+              }
+            });
+          }
       ),
       body: TabBarView(
         physics: NeverScrollableScrollPhysics(), // swipe navigation handling is not supported

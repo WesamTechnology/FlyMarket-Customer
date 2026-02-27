@@ -21,6 +21,7 @@ class MyFavoriteController extends GetxController {
   getData() async {
     data.clear();
     statusRequest = StatusRequest.loding;
+    update();
     var response = await myFavoriteData.getData(
       myServices.sharedPreferences.getString("id")!,
     );
@@ -42,6 +43,11 @@ class MyFavoriteController extends GetxController {
     var response =  myFavoriteData.deleteFromFavorite(favoriteId);
     data.removeWhere((element) => element.favoriteId.toString() == favoriteId);
     update();
+  }
+
+  refreshPage(){
+    data.clear();
+    getData();
   }
 
   @override
