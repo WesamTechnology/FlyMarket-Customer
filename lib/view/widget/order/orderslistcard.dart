@@ -6,6 +6,7 @@ import 'package:jiffy/jiffy.dart';
 
 import '../../../controller/orders/order_pending_controller.dart';
 import '../../../core/constant/color.dart';
+import '../../../core/constant/routes.dart';
 import '../../../data/model/orders/order_pending_model.dart';
 class CardOrdersList extends GetView<OrderPendingController> {
   final OrderPendingModel listdata;
@@ -96,8 +97,9 @@ class CardOrdersList extends GetView<OrderPendingController> {
 
                 OutlinedButton(
                   onPressed: () {
-                    // Get.toNamed(AppRoute.ordersdetails,
-                    // arguments: {"ordersmodel": listdata});
+                    print("================================== pp ${listdata.addressLat}");
+                    Get.toNamed(AppRoute.ordersdetails,
+                        arguments: {"ordersmodel": listdata});
                   },
                   child: const Text("Details"),
                 ),

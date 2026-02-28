@@ -26,6 +26,7 @@ import 'package:flymarket_customer/view/screen/home/setting_page.dart';
 import 'package:flymarket_customer/view/screen/home/shop.dart';
 import 'package:flymarket_customer/view/screen/notification/notification_view.dart';
 import 'package:flymarket_customer/view/screen/onboarding/onboarding.dart';
+import 'package:flymarket_customer/view/screen/order/order_details_view.dart';
 import 'package:flymarket_customer/view/screen/order/order_pending.dart';
 import 'package:get/get.dart';
 
@@ -63,5 +64,5 @@ List<GetPage<dynamic>> routes = [
   GetPage(name: AppRoute.checkout, page: () => const Checkout()),
   GetPage(name: AppRoute.orderspending, page: () => const OrderPending()),
   GetPage(name: AppRoute.notification, page: () => const NotificationView()),
-  GetPage(name: AppRoute.ordersdetails, page: () => const NotificationView()),
+  GetPage(name: AppRoute.ordersdetails, page: () => const OrderDetailsView()),
 ];
