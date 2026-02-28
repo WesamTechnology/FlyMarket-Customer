@@ -70,6 +70,7 @@ class AppLink{
   static String checkOut = "$server/orders/checkout.php";
   static String pending = "$server/orders/pending.php";
   static String ordersDetails = "$server/orders/details.php";
+  static String ordersDelete = "$server/orders/delete.php";
 
 
   // ==================== Notification ===============================

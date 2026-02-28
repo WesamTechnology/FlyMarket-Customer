@@ -106,15 +106,15 @@ class CardOrdersList extends GetView<OrderPendingController> {
 
                 const SizedBox(width: 8),
 
-                if (listdata.ordersStatus == "0")
+                if (listdata.ordersStatus == 0)
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.red,
                     ),
                     onPressed: () {
-                      // controller.deleteOrder(listdata.ordersId!);
+                      controller.deleteOrder(listdata.ordersId!.toString());
                     },
-                    child: const Text("Delete"),
+                    child: const Text("Delete",style: TextStyle(color: Colors.white),),
                   ),
               ],
             ),
