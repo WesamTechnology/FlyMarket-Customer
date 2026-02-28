@@ -22,9 +22,14 @@ class OrderPending extends StatelessWidget {
               child: ListView.builder(
                 itemCount: controller.listdata.length,
                 itemBuilder: (context, index) {
-                  return CardOrdersList(listdata: controller.listdata[index]);
+                  final reversedIndex =
+                      controller.listdata.length - 1 - index;
+
+                  return CardOrdersList(
+                    listdata: controller.listdata[reversedIndex],
+                  );
                 },
-              ),
+              )
             ),
           );
         },

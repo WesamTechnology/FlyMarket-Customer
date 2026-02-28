@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:jiffy/jiffy.dart';
 
 import '../../../controller/orders/order_pending_controller.dart';
 import '../../../core/constant/color.dart';
@@ -71,6 +72,11 @@ class CardOrdersList extends GetView<OrderPendingController> {
               title: "Payment",
               value: controller.printPaymentMethod(
                   listdata.ordersPaymentmethod!.toString()),
+            ),
+            _buildInfoRow(
+                icon: Icons.watch_later_outlined,
+                title: "Data Time",
+                value: "${Jiffy.parse('${listdata.ordersDatetime}').fromNow()}"
             ),
 
             const Divider(height: 30),

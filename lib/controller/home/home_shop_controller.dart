@@ -1,3 +1,4 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flymarket_customer/data/model/supermarket_model.dart';
 import 'package:get/get.dart';
 
@@ -44,8 +45,13 @@ class HomeShopControllerImp extends HomeShopController {
 
   @override
   void onInit() {
-    getData();
+
     initialData();
+    FirebaseMessaging.instance.subscribeToTopic("users");
+    FirebaseMessaging.instance.subscribeToTopic("users${id}");
+    print("==============USER ID = $id");
+    print("==============SUBSCRIBE users$id");
+    getData();
     super.onInit();
   }
   refreshPage(){

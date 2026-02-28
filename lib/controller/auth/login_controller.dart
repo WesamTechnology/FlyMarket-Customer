@@ -1,3 +1,4 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -110,6 +111,9 @@ class LoginController extends GetxController {
           "username", user['users_name']);
       myServices.sharedPreferences.setString(
           "phone", user['users_phone']);
+      String userId = myServices.sharedPreferences.getString("id")!;
+      FirebaseMessaging.instance.subscribeToTopic("users");
+      FirebaseMessaging.instance.subscribeToTopic("users${userId}");
       myServices.sharedPreferences.setString("step", "2");
 
       isLoading.value = false;

@@ -70,7 +70,7 @@ class SettingPage extends StatelessWidget {
                       iconLeading: Icons.notifications_active_outlined,
                       iconTrailing: Icons.arrow_forward_ios_outlined,
                       onTap: (){
-                        Get.to(NotificationsPage());
+                        Get.toNamed(AppRoute.notification);
                       },
                     ),
                     CustomListSetting(

@@ -67,6 +67,10 @@ class OrderPendingController extends GetxController {
     update();
   }
 
+  refrehOrder(){
+    getOrdersData();
+  }
+
   @override
   void onInit() {
   getOrdersData();

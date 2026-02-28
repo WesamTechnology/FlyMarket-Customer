@@ -38,4 +38,7 @@ class AppRoute {
   static const String supermarketDetailsPage = "/supermarketDetailsPage";
 
 
+  // Notification
+  static const String notification = "/notification";
+
 }

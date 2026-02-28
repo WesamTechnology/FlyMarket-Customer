@@ -5,6 +5,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 
 import '../constant/apptheme.dart';
+import '../functions/fcmconfig.dart';
 import '../services/services.dart';
 
 class LocaleController extends GetxController{
@@ -44,6 +45,9 @@ class LocaleController extends GetxController{
 
   @override
   void onInit() {
+    myServices.sharedPreferences.setString("id", "14"); // ملاحضه هاذا خطأ ينحذف سويته لتجربة
+    requestPermissionNotification();
+    fcmconfig();
     determinePosition();
     String? sharedPrefLang = myServices.sharedPreferences.getString("lang");
 
