@@ -7,18 +7,20 @@ class FavoriteData {
 
   FavoriteData(this.crud);
 
-  addFavorite( usersid,  itemsid) async {
+  addFavorite( usersid,  itemsid,superid) async {
     var respons = await crud.postData(AppLink.favoriteAdd, {
       "usersid": usersid.toString(),
       "itemsid": itemsid.toString(),
+      "superid": superid.toString(),
     });
     return respons.fold((l) => l, (r) => r);
   }
 
-  removeFavorite( usersid,  itemsid) async {
+  removeFavorite( usersid,  itemsid,superid) async {
     var respons = await crud.postData(AppLink.favoriteRemove, {
       "usersid": usersid.toString(),
       "itemsid": itemsid.toString(),
+      "superid": superid.toString(),
     });
     return respons.fold((l) => l, (r) => r);
   }

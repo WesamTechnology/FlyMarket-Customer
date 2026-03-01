@@ -50,6 +50,15 @@ class SettingPage extends StatelessWidget {
                       },
                     ),
                     CustomListSetting(
+                      title: "Order Archive",
+                      iconLeading: Icons.shopping_bag_sharp,
+                      iconTrailing: Icons.arrow_forward_ios_outlined,
+                      onTap: (){
+                        Get.toNamed(AppRoute.ordersarchive);
+                      },
+                    ),
+
+                    CustomListSetting(
                       title: "My Address",
                       iconLeading: Icons.location_on_outlined,
                       iconTrailing: Icons.arrow_forward_ios_outlined,

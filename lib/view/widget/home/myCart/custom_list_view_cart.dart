@@ -25,11 +25,11 @@ class CustomListViewCart extends GetView<CartController> {
                 price: controller.data[index].itemsprice.toString(),
                 count: controller.data[index].countitems.toString(),
                 add: () async {
-                  await controller.add(controller.data[index].itmesId);
+                  await controller.add(controller.data[index].itmesId, controller.data[index].itmesSuper);
                   controller.refreshPage();
                 },
                 delete: () async {
-                  await controller.delete(controller.data[index].itmesId);
+                  await controller.delete(controller.data[index].itmesId, controller.data[index].itmesSuper);
                   controller.refreshPage();
                 },
               );

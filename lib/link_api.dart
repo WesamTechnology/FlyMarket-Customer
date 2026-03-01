@@ -71,10 +71,18 @@ class AppLink{
   static String pending = "$server/orders/pending.php";
   static String ordersDetails = "$server/orders/details.php";
   static String ordersDelete = "$server/orders/delete.php";
+  static String ordersArchive = "$server/orders/archive.php";
 
 
   // ==================== Notification ===============================
 
   static String notification = "$server/notification/notification.php";
+
+
+  // ==================== Rating ===============================
+
+  static String rating = "$server/rating/rating.php";
+
+
 
 }

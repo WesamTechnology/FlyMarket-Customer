@@ -52,6 +52,7 @@ class CardOrdersList extends GetView<OrderPendingController> {
             const Divider(),
 
             /// ===== Info =====
+
             _buildInfoRow(
               icon: Icons.local_shipping,
               title: "Order Type",

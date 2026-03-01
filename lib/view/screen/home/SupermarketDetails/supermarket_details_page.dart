@@ -7,6 +7,7 @@ import 'package:flymarket_customer/link_api.dart';
 import 'package:get/get.dart';
 import 'package:flymarket_customer/core/constant/routes.dart';
 
+import '../../../../controller/cart/cart_controller.dart';
 import '../../../widget/home/supermarket/header_section.dart';
 import '../../../widget/home/supermarket/info_section.dart';
 
@@ -26,7 +27,9 @@ class SupermarketDetailsPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color(0xFFF6F7FB),
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: () => Get.toNamed(AppRoute.myCart),
+        onPressed: () {
+          Get.find<CartController>().refreshPage();
+          Get.toNamed(AppRoute.myCart);},
         label: Text(
           translateDatabase("السلة", "Cart"),
           style: TextStyle(fontSize: 14.sp),

@@ -56,6 +56,7 @@ dependencies:
   firebase_messaging: ^16.1.1
   flutter_ringtone_player: ^4.0.0+4
   jiffy: ^6.4.4
+  rating_dialog: ^2.0.4
 
 dev_dependencies:
   flutter_test:

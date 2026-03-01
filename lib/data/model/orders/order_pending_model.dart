@@ -1,12 +1,15 @@
 class OrderPendingModel {
   int? ordersId;
   int? ordersUsersid;
+  int? ordersSupermarketid;
   int? ordersAddress;
   int? ordersType;
   int? ordersPricedelivery;
   int? ordersPrice;
   int? ordersTotalprice;
   int? ordersCoupon;
+  int? ordersRating;
+  String? ordersNoteRating;
   String? ordersDatetime;
   int? ordersPaymentmethod;
   int? ordersStatus;
@@ -17,16 +20,31 @@ class OrderPendingModel {
   String? addressStreet;
   double? addressLat;
   double? addressLong;
+  int? supermarketId;
+  String? supermarketName;
+  String? supermarketEmail;
+  String? supermarketNameAr;
+  String? supermarketPhone;
+  String? supermarketImage;
+  String? supermarketLocation;
+  String? supermarketTimeOpen;
+  int? roleId;
+  int? status;
+  String? createdAt;
+  String? firebaseUid;
 
   OrderPendingModel(
       {this.ordersId,
         this.ordersUsersid,
+        this.ordersSupermarketid,
         this.ordersAddress,
         this.ordersType,
         this.ordersPricedelivery,
         this.ordersPrice,
         this.ordersTotalprice,
         this.ordersCoupon,
+        this.ordersRating,
+        this.ordersNoteRating,
         this.ordersDatetime,
         this.ordersPaymentmethod,
         this.ordersStatus,
@@ -36,17 +54,32 @@ class OrderPendingModel {
         this.addressCity,
         this.addressStreet,
         this.addressLat,
-        this.addressLong});
+        this.addressLong,
+        this.supermarketId,
+        this.supermarketName,
+        this.supermarketEmail,
+        this.supermarketNameAr,
+        this.supermarketPhone,
+        this.supermarketImage,
+        this.supermarketLocation,
+        this.supermarketTimeOpen,
+        this.roleId,
+        this.status,
+        this.createdAt,
+        this.firebaseUid});
 
   OrderPendingModel.fromJson(Map<String, dynamic> json) {
     ordersId = json['orders_id'];
     ordersUsersid = json['orders_usersid'];
+    ordersSupermarketid = json['orders_supermarketid'];
     ordersAddress = json['orders_address'];
     ordersType = json['orders_type'];
     ordersPricedelivery = json['orders_pricedelivery'];
     ordersPrice = json['orders_price'];
     ordersTotalprice = json['orders_totalprice'];
     ordersCoupon = json['orders_coupon'];
+    ordersRating = json['orders_rating'];
+    ordersNoteRating = json['orders_noterating'];
     ordersDatetime = json['orders_datetime'];
     ordersPaymentmethod = json['orders_paymentmethod'];
     ordersStatus = json['orders_status'];
@@ -57,18 +90,33 @@ class OrderPendingModel {
     addressStreet = json['address_street'];
     addressLat = json['address_lat'];
     addressLong = json['address_long'];
+    supermarketId = json['supermarket_id'];
+    supermarketName = json['supermarket_name'];
+    supermarketEmail = json['supermarket_email'];
+    supermarketNameAr = json['supermarket_name_ar'];
+    supermarketPhone = json['supermarket_phone'];
+    supermarketImage = json['supermarket_image'];
+    supermarketLocation = json['supermarket_location'];
+    supermarketTimeOpen = json['supermarket_time_open'];
+    roleId = json['role_id'];
+    status = json['status'];
+    createdAt = json['created_at'];
+    firebaseUid = json['firebase_uid'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['orders_id'] = this.ordersId;
     data['orders_usersid'] = this.ordersUsersid;
+    data['orders_supermarketid'] = this.ordersSupermarketid;
     data['orders_address'] = this.ordersAddress;
     data['orders_type'] = this.ordersType;
     data['orders_pricedelivery'] = this.ordersPricedelivery;
     data['orders_price'] = this.ordersPrice;
     data['orders_totalprice'] = this.ordersTotalprice;
     data['orders_coupon'] = this.ordersCoupon;
+    data['orders_rating'] = this.ordersRating;
+    data['orders_noterating'] = this.ordersNoteRating;
     data['orders_datetime'] = this.ordersDatetime;
     data['orders_paymentmethod'] = this.ordersPaymentmethod;
     data['orders_status'] = this.ordersStatus;
@@ -79,6 +127,18 @@ class OrderPendingModel {
     data['address_street'] = this.addressStreet;
     data['address_lat'] = this.addressLat;
     data['address_long'] = this.addressLong;
+    data['supermarket_id'] = this.supermarketId;
+    data['supermarket_name'] = this.supermarketName;
+    data['supermarket_email'] = this.supermarketEmail;
+    data['supermarket_name_ar'] = this.supermarketNameAr;
+    data['supermarket_phone'] = this.supermarketPhone;
+    data['supermarket_image'] = this.supermarketImage;
+    data['supermarket_location'] = this.supermarketLocation;
+    data['supermarket_time_open'] = this.supermarketTimeOpen;
+    data['role_id'] = this.roleId;
+    data['status'] = this.status;
+    data['created_at'] = this.createdAt;
+    data['firebase_uid'] = this.firebaseUid;
     return data;
   }
 }

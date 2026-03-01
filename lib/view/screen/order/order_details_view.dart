@@ -44,9 +44,10 @@ class OrderDetailsView extends StatelessWidget {
                               ),
                             ),
                             columnWidths: const {
-                              0: FlexColumnWidth(4),
-                              1: FlexColumnWidth(2),
+                              0: FlexColumnWidth(2),
+                              1: FlexColumnWidth(1),
                               2: FlexColumnWidth(3),
+                              3: FlexColumnWidth(2),
                             },
                             children: [
 
@@ -83,6 +84,18 @@ class OrderDetailsView extends StatelessWidget {
                                   Padding(
                                     padding: const EdgeInsets.symmetric(vertical: 14),
                                     child: Text(
+                                      "SuperMarket",
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 15,
+                                        color: AppColor.primaryColor,
+                                      ),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(vertical: 14),
+                                    child: Text(
                                       "Price",
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
@@ -92,6 +105,7 @@ class OrderDetailsView extends StatelessWidget {
                                       ),
                                     ),
                                   ),
+
                                 ],
                               ),
 
@@ -130,6 +144,16 @@ class OrderDetailsView extends StatelessWidget {
                                     Padding(
                                       padding: const EdgeInsets.symmetric(vertical: 12),
                                       child: Text(
+                                        "${item.supermarketName}",
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(vertical: 12),
+                                      child: Text(
                                         "${item.itemsprice} RYE",
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
@@ -138,6 +162,7 @@ class OrderDetailsView extends StatelessWidget {
                                         ),
                                       ),
                                     ),
+
                                   ],
                                 );
                               }),

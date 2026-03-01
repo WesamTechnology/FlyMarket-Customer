@@ -73,7 +73,8 @@ class ItemsControllerImp extends ItemsController {
       if (response['status'] == "success") {
         items.addAll(response['data']);
         FavoriteController fav = Get.find();
-        fav.initFavorites(data);
+        //fav.initFavorites(data);
+        fav.initFavorites(items);
       } else {
         statusRequest = StatusRequest.failure;
       }

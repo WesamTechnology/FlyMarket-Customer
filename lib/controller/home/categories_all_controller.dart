@@ -43,7 +43,7 @@ class CategoriesAllControllerImp extends CategoriesAllController {
 
   @override
   void onInit() {
-    getData();
+    //getData();
     initialData();
     super.onInit();
   }

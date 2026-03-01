@@ -81,8 +81,7 @@ class ProductCard extends GetView<ItemsControllerImp> {
                               ),
                               child: GetBuilder<FavoriteController>(
                                 builder: (controllerFav) {
-                                  final fav = controllerFav
-                                      .isFavorite[itemsModel.itmesId];
+                                  final fav = controllerFav.isFavorite[itemsModel.itmesId] ?? 0;
 
                                   return IconButton(
                                     onPressed: () {
@@ -93,6 +92,7 @@ class ProductCard extends GetView<ItemsControllerImp> {
                                         );
                                         controllerFav.removeFavorite(
                                           itemsModel.itmesId!,
+                                          itemsModel.itmesSuper
                                         );
                                       } else {
                                         controllerFav.setFavorite(
@@ -101,6 +101,7 @@ class ProductCard extends GetView<ItemsControllerImp> {
                                         );
                                         controllerFav.addFavorite(
                                           itemsModel.itmesId!,
+                                          itemsModel.itmesSuper
                                         );
                                       }
                                     },

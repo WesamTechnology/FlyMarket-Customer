@@ -7,27 +7,30 @@ class CartData {
 
   CartData(this.crud);
 
-  addCart( usersid,  itemsid) async {
+  addCart( usersid,  itemsid,superid) async {
     var respons = await crud.postData(AppLink.cartAdd, {
       "usersid": usersid.toString(),
       "itemsid": itemsid.toString(),
+      "superid": superid.toString(),
     });
     return respons.fold((l) => l, (r) => r);
   }
 
-  deleteCart( usersid,  itemsid) async {
+  deleteCart( usersid,  itemsid,superid) async {
     var respons = await crud.postData(AppLink.cartDelete, {
       "usersid": usersid.toString(),
       "itemsid": itemsid.toString(),
+      "superid": superid.toString(),
     });
     return respons.fold((l) => l, (r) => r);
   }
 
 
-  getCountItems( usersid,  itemsid) async {
+  getCountItems( usersid,  itemsid,superid) async {
     var respons = await crud.postData(AppLink.getCountItems, {
       "usersid": usersid.toString(),
       "itemsid": itemsid.toString(),
+      "superid": superid.toString(),
     });
     return respons.fold((l) => l, (r) => r);
   }

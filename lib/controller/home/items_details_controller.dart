@@ -30,19 +30,20 @@ class ItemsDetailsControllerImp extends ItemsDetailsController {
   initialData() async {
     statusRequest = StatusRequest.loding;
     itemsModel = Get.arguments["itemsmodel"];
-    count = await getCountItems(itemsModel.itmesId);
+    count = await getCountItems(itemsModel.itmesId,itemsModel.itmesSuper);
     statusRequest = StatusRequest.success;
     update();
   }
 
 
 
-  addItems(itemsID) async {
+  addItems(itemsID,superid) async {
     statusRequest = StatusRequest.loding;
     update();
     var response = await cartData.addCart(
       myServices.sharedPreferences.getString("id")!,
       itemsID,
+        superid
     );
     statusRequest = handlingData(response);
     if (StatusRequest.success == statusRequest) {
@@ -59,12 +60,13 @@ class ItemsDetailsControllerImp extends ItemsDetailsController {
     update();
   }
 
-  deleteItems(itemsID) async {
+  deleteItems(itemsID,superid) async {
     statusRequest = StatusRequest.loding;
     update();
     var response = await cartData.deleteCart(
       myServices.sharedPreferences.getString("id")!,
       itemsID,
+        superid
     );
     statusRequest = handlingData(response);
     if (StatusRequest.success == statusRequest) {
@@ -81,11 +83,12 @@ class ItemsDetailsControllerImp extends ItemsDetailsController {
     update();
   }
 
-  getCountItems(itemsID) async {
+  getCountItems(itemsID,superid) async {
     statusRequest = StatusRequest.loding;
     var response = await cartData.getCountItems(
       myServices.sharedPreferences.getString("id")!,
       itemsID,
+        superid
     );
     statusRequest = handlingData(response);
     if (StatusRequest.success == statusRequest) {
@@ -104,14 +107,14 @@ class ItemsDetailsControllerImp extends ItemsDetailsController {
 
 
   add(){
-    addItems(itemsModel.itmesId);
+    addItems(itemsModel.itmesId,itemsModel.itmesSuper);
     count++;
     update();
   }
 
   delete(){
     if(count > 0){
-      deleteItems(itemsModel.itmesId);
+      deleteItems(itemsModel.itmesId,itemsModel.itmesSuper);
       count--;
       update();
     }

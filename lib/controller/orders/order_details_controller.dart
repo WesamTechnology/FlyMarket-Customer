@@ -29,7 +29,7 @@ class OrderDetailsController extends GetxController {
     cameraPosition = CameraPosition(
       target: LatLng(orderPendingModel.addressLat!, orderPendingModel.addressLong!),
 
-      zoom: 14.4746,
+      zoom: 16.4746,
     );
     marker.add(
       Marker(

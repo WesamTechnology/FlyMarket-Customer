@@ -4,12 +4,12 @@ import 'package:get/get.dart';
 import '../../core/class/statuserequest.dart';
 import '../../core/functions/handling_data_controller.dart';
 import '../../core/services/services.dart';
-import '../../data/datasource/remote/orders/order_pending_data.dart';
+import '../../data/datasource/remote/orders/order_archive_data.dart';
 import '../../data/model/orders/order_pending_model.dart';
 
-class OrderPendingController extends GetxController {
+class OrderArchiveController extends GetxController {
 
-  OrderPendingData orderPendingData = OrderPendingData(Get.find());
+  OrderArchiveData orderArchiveData = OrderArchiveData(Get.find());
 
   MyServices myServices = Get.find();
 
@@ -39,9 +39,9 @@ class OrderPendingController extends GetxController {
       return "Await Approve";
     }
     else if(val == "1"){
-      return "Preparing ";
+      return "The Order is being Prepared ";
     } else if(val == "2"){
-      return "Ready";
+      return "Ready To Picked up by Delivery man";
     } else if (val == "3") {
       return "On The Way";
     }
@@ -51,9 +51,14 @@ class OrderPendingController extends GetxController {
   }
 
 
+
+
+
   getOrdersData() async {
+    listdata.clear();
     statusRequest = StatusRequest.loding;
-    var response = await orderPendingData.getData(
+    update();
+    var response = await orderArchiveData.getData(
       myServices.sharedPreferences.getString("id")!,
     );
     statusRequest = handlingData(response);
@@ -68,17 +73,20 @@ class OrderPendingController extends GetxController {
     update();
   }
 
-  deleteOrder(String orderId) async {
+
+  submentRating(String ordersId , String rating , String noteRating) async {
     listdata.clear();
     statusRequest = StatusRequest.loding;
     update();
-    var response = await orderPendingData.deleteData(
-      orderId,
+    var response = await orderArchiveData.ratingData(
+      ordersId,
+      rating,
+      noteRating,
     );
     statusRequest = handlingData(response);
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {
-        refrehOrder();
+        getOrdersData();
       } else {
         statusRequest = StatusRequest.failure;
       }
@@ -93,7 +101,7 @@ class OrderPendingController extends GetxController {
 
   @override
   void onInit() {
-  getOrdersData();
+    getOrdersData();
     super.onInit();
   }
 

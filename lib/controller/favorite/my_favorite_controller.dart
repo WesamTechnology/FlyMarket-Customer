@@ -52,7 +52,7 @@ class MyFavoriteController extends GetxController {
 
   @override
   void onInit() {
-    getData();
+    //getData();
     super.onInit();
   }
 }
