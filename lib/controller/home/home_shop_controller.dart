@@ -25,6 +25,7 @@ class HomeShopControllerImp extends HomeShopController {
   MyServices myServices = Get.find();
 
   String? username;
+  String? phone;
   String? id;
 
   HomeData homeData = HomeData(Get.find());
@@ -33,13 +34,14 @@ class HomeShopControllerImp extends HomeShopController {
   List categories = [];
   List supermarket = [];
   List items = [];
+  List banners = [];
 
   late StatusRequest statusRequest;
 
   @override
   initialData() {
     username = myServices.sharedPreferences.getString("username");
-    username = myServices.sharedPreferences.getString("phone");
+    phone = myServices.sharedPreferences.getString("phone");
     id = myServices.sharedPreferences.getString("id");
   }
 
@@ -73,6 +75,12 @@ class HomeShopControllerImp extends HomeShopController {
         supermarket.addAll(response['supermarket']['data']);
         categories.addAll(response['categories']['data']);
         items.addAll(response['items']['data']);
+        if (response['banners']?['status'] == "success") {
+          banners.clear();
+          banners.addAll(response['banners']['data']);
+        } else {
+          banners.clear();
+        }
       } else {
         statusRequest = StatusRequest.failure;
         print("222222222225555555555555555699999999999999");

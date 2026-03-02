@@ -27,14 +27,10 @@ class Shop extends StatelessWidget {
                 children: [
                   SizedBox(height: 40.h),
                   Text(
-                    "Order to",
-                    style: TextStyle(color: AppColor.black, fontSize: 18.sp),
+                    "FlyMarket",
+                    style: TextStyle(color: AppColor.primaryColor, fontSize: 19.sp,fontWeight: FontWeight.bold),
                   ),
-                  SizedBox(height: 5.h),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [Icon(Icons.location_on), Text("Yemen, Sanaa")],
-                  ),
+
                   SizedBox(height: 17.h),
                   Expanded(child: ImageSliderPage()),
                   SizedBox(height: 17.h),

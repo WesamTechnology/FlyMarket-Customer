@@ -67,38 +67,82 @@ class CategoriesAll extends GetView<CategoriesAllControllerImp> {
   Widget build(BuildContext context) {
     final List<Map<String, dynamic>> categories = [
       {
-        'title': 'Fresh Fruits & Vegetable',
-        'image': AppImageAsset.fruits,
         'color': const Color(0xFFEFF8F1),
         'borderColor': const Color(0xFF9DE09C),
       },
       {
-        'title': 'Cooking Oil & Ghee',
-        'image': AppImageAsset.oil,
         'color': const Color(0xFFFFF6ED),
         'borderColor': const Color(0xFFFAC89C),
       },
       {
-        'title': 'Meat & Fish',
-        'image': AppImageAsset.meat,
         'color': const Color(0xFFFFEFEF),
         'borderColor': const Color(0xFFFFB8B8),
       },
       {
-        'title': 'Bakery & Snacks',
-        'image': AppImageAsset.bakery,
         'color': const Color(0xFFF7F1FF),
         'borderColor': const Color(0xFFD1B4F8),
       },
       {
-        'title': 'Dairy & Eggs',
-        'image': AppImageAsset.dairy,
         'color': const Color(0xFFFFF9E8),
         'borderColor': const Color(0xFFF6D87E),
       },
       {
-        'title': 'Beverages',
-        'image': AppImageAsset.beverages,
+        'color': const Color(0xFFEFF8FF),
+        'borderColor': const Color(0xFFA7D6FF),
+      },
+      {
+        'color': const Color(0xFFD2F1C3),
+        'borderColor': const Color(0xFFA7D6FF),
+      },
+      {
+        'color': const Color(0xFFEFF8FF),
+        'borderColor': const Color(0xFFA7D6FF),
+      },
+      {
+        'color': const Color(0xFFEFF8FF),
+        'borderColor': const Color(0xFFA7D6FF),
+      },
+      {
+        'color': const Color(0xFFEFF8FF),
+        'borderColor': const Color(0xFFA7D6FF),
+      },
+      {
+        'color': const Color(0xFFEFF8F1),
+        'borderColor': const Color(0xFF9DE09C),
+      },
+      {
+        'color': const Color(0xFFFFF6ED),
+        'borderColor': const Color(0xFFFAC89C),
+      },
+      {
+        'color': const Color(0xFFFFEFEF),
+        'borderColor': const Color(0xFFFFB8B8),
+      },
+      {
+        'color': const Color(0xFFF7F1FF),
+        'borderColor': const Color(0xFFD1B4F8),
+      },
+      {
+        'color': const Color(0xFFFFF9E8),
+        'borderColor': const Color(0xFFF6D87E),
+      },
+      {
+        'color': const Color(0xFFEFF8FF),
+        'borderColor': const Color(0xFFA7D6FF),
+      },
+      {
+        'color': const Color(0xFFEFF8FF),
+        'borderColor': const Color(0xFFA7D6FF),
+      },
+      {
+        'color': const Color(0xFFEFF8FF),
+        'borderColor': const Color(0xFFA7D6FF),
+      },
+      {
+        'color': const Color(0xFFEFF8FF),
+        'borderColor': const Color(0xFFA7D6FF),
+      },
+      {
         'color': const Color(0xFFEFF8FF),
         'borderColor': const Color(0xFFA7D6FF),
       },
@@ -107,15 +151,16 @@ class CategoriesAll extends GetView<CategoriesAllControllerImp> {
     return InkWell(
       onTap: () {
         //Get.to(CategoryDetailClass[index]);
-        controller.goToItemsAll(controller.categoriesAll, i!,
-            categoriesAllModel.categoriesId.toString());
+        controller.goToItemsAll(
+          controller.categoriesAll,
+          i!,
+          categoriesAllModel.categoriesId.toString(),
+        );
       },
       child: Container(
         decoration: BoxDecoration(
           color: categories[i!]['color'],
-          borderRadius: BorderRadius
-              .circular(20)
-              .r,
+          borderRadius: BorderRadius.circular(20).r,
           border: Border.all(
             color: categories[i!]['borderColor'],
             width: 1.2.w,
@@ -128,8 +173,7 @@ class CategoriesAll extends GetView<CategoriesAllControllerImp> {
               child: Padding(
                 padding: const EdgeInsets.all(7.0).r,
                 child: Image.network(
-                  "${AppLink.imageCategories}/${categoriesAllModel
-                      .categoriesImage}",
+                  "${AppLink.imageCategories}/${categoriesAllModel.categoriesImage}",
                   fit: BoxFit.contain,
                 ),
               ),
