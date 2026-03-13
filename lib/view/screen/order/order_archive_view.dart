@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:flymarket_customer/core/constant/color.dart';
 import 'package:get/get.dart';
 
 import '../../../controller/orders/order_archive_controller.dart';
@@ -14,23 +15,38 @@ class OrderArchiveView extends StatelessWidget {
   Widget build(BuildContext context) {
     Get.put(OrderArchiveController());
     return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        centerTitle: true,
+        title: Text(
+          "Orders Archive",
+          style: TextStyle(
+            color: AppColor.primaryColor,
+            fontWeight: FontWeight.bold
+          ),
+        )
+      ),
       body: GetBuilder<OrderArchiveController>(
         builder: (controller) {
           return HandlingDataView(
             statusRequest: controller.statusRequest,
-            widget: Container(
-                padding: EdgeInsets.all(20),
-                child:ListView.builder(
-                  itemCount: controller.listdata.length,
-                  itemBuilder: (context, index) {
-                    final reversedIndex =
-                        controller.listdata.length - 1 - index;
+            widget: RefreshIndicator(
+              onRefresh: ()=> controller.getOrdersData(),
+              child: Container(
+                  padding: EdgeInsets.all(10),
+                  child:ListView.builder(
+                    itemCount: controller.listdata.length,
+                    itemBuilder: (context, index) {
+                      final reversedIndex =
+                          controller.listdata.length - 1 - index;
 
-                    return CardOrdersListArchive(
-                      listdata: controller.listdata[reversedIndex],
-                    );
-                  },
-                )
+                      return CardOrdersListArchive(
+                        listdata: controller.listdata[reversedIndex],
+                      );
+                    },
+                  )
+              ),
             ),
           );
         },

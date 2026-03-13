@@ -67,7 +67,11 @@ class ItemsControllerImp extends ItemsController {
   getItems(categoryId, supermarket_id) async {
     items.clear();
     statusRequest = StatusRequest.loding;
-    var response = await itemsData.getData(categoryId, supermarket_id);
+    var response = await itemsData.getData(
+      categoryId,
+      supermarket_id,
+      myServices.sharedPreferences.getString("id")!,
+    );
     statusRequest = handlingData(response);
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {
@@ -103,13 +107,12 @@ class ItemsControllerImp extends ItemsController {
     update();
   }
 
-
   checkSearch(val) {
     if (val.isEmpty) {
       isSearch = false;
       listData.clear();
       update();
-    }else{
+    } else {
       isSearch = true;
       searchData(superid!);
     }
@@ -121,9 +124,6 @@ class ItemsControllerImp extends ItemsController {
     isSearch = true;
     searchData(superid!);
   }
-
-
-
 
   @override
   goToItemsDetails(itemsModel) {

@@ -21,7 +21,7 @@ class CartController extends GetxController {
   TextEditingController? controllercoupon;
 
   List<CartModel> data = [];
-  int priceOrder = 0;
+  double priceOrder = 0.0;
   int totalCountItems = 0;
   late int supermarketId;
 
@@ -97,7 +97,7 @@ class CartController extends GetxController {
 
   resetVarCart() {
     totalCountItems = 0;
-    priceOrder = 0;
+    priceOrder = 0.0;
     data.clear();
   }
 
@@ -127,7 +127,8 @@ class CartController extends GetxController {
           data.addAll(dataResponse.map((e) => CartModel.fromJson(e)));
 
           totalCountItems = dataResponseCountPrice['totalcount'] ?? 0;
-          priceOrder = dataResponseCountPrice['totalprice'] ?? 0;
+          priceOrder =
+              (dataResponseCountPrice['totalprice'] as num?)?.toDouble() ?? 0.0;
           supermarketId = data.first.itmesSuper!;
 
           print("✅ Count = $totalCountItems");
@@ -175,7 +176,7 @@ class CartController extends GetxController {
     );
   }
 
-  getTotalPrice() {
+  double getTotalPrice() {
     return (priceOrder - (priceOrder * disCountCoupon!) / 100);
   }
 

@@ -8,12 +8,17 @@ import 'package:flymarket_customer/core/functions/translate_database.dart';
 import 'package:flymarket_customer/link_api.dart';
 import 'package:get/get.dart';
 
+import '../../../../../controller/cart/cart_controller.dart';
+import '../../../../../controller/favorite/favorite_controller.dart';
+import '../../../../../core/constant/routes.dart';
+
 class ItemsDetails extends StatelessWidget {
   const ItemsDetails({super.key});
 
   @override
   Widget build(BuildContext context) {
     ItemsDetailsControllerImp controller = Get.put(ItemsDetailsControllerImp());
+    FavoriteController controllerFav = Get.put(FavoriteController());
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -64,35 +69,36 @@ class ItemsDetails extends StatelessWidget {
                           ),
                         ),
                       ),
-                      if( controller.itemsModel.itmesDiscount !=0)
-                      Positioned(
-                        top: 12.h,
-                        left: 12.w,
+                      if (controller.itemsModel.itmesDiscount != 0)
+                        Positioned(
+                          top: 12.h,
+                          left: 12.w,
 
-                        child: Row(
-                          children: [
-                            Text(
-                              "${controller.itemsModel.itmesPrice}",
-                              style: TextStyle(
-                                fontSize: 17.sp,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.green[700],
-                                decoration: TextDecoration.lineThrough, // ✅ خط في الوسط
-                                decorationThickness: 2,
+                          child: Row(
+                            children: [
+                              Text(
+                                "${controller.itemsModel.itmesPrice}",
+                                style: TextStyle(
+                                  fontSize: 17.sp,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.green[700],
+                                  decoration: TextDecoration.lineThrough,
+                                  // ✅ خط في الوسط
+                                  decorationThickness: 2,
+                                ),
                               ),
-                            ),
-                            SizedBox(width: 8.w),
-                            Text(
-                              "%${controller.itemsModel.itmesDiscount}",
-                              style: TextStyle(
-                                fontSize: 13.sp,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.red[700],
+                              SizedBox(width: 8.w),
+                              Text(
+                                "%${controller.itemsModel.itmesDiscount}",
+                                style: TextStyle(
+                                  fontSize: 13.sp,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.red[700],
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
-                      ),
                     ],
                   ),
 
@@ -115,13 +121,40 @@ class ItemsDetails extends StatelessWidget {
                             color: Color(0xFF181725),
                           ),
                         ),
-                        IconButton(
-                          onPressed: () {},
-                          icon: Icon(
-                            Icons.favorite_border,
-                            size: 28,
-                            color: Colors.grey[700],
-                          ),
+                        GetBuilder<FavoriteController>(
+                          builder: (controllerFav) {
+                            final fav = controllerFav.isFavorite[controller.itemsModel.itmesId] ?? 0;
+
+                            return IconButton(
+                              onPressed: () {
+                                if (fav == 1) {
+                                  controllerFav.setFavorite(
+                                    controller.itemsModel.itmesId!,
+                                    0,
+                                  );
+                                  controllerFav.removeFavorite(
+                                      controller.itemsModel.itmesId!,
+                                      controller. itemsModel.itmesSuper
+                                  );
+                                } else {
+                                  controllerFav.setFavorite(
+                                    controller.itemsModel.itmesId!,
+                                    1,
+                                  );
+                                  controllerFav.addFavorite(
+                                      controller. itemsModel.itmesId!,
+                                      controller. itemsModel.itmesSuper
+                                  );
+                                }
+                              },
+                              icon: fav == 1
+                                  ? Icon(
+                                Icons.favorite,
+                                color: Colors.red,
+                              )
+                                  : Icon(Icons.favorite_border_outlined),
+                            );
+                          },
                         ),
                       ],
                     ),
@@ -159,12 +192,17 @@ class ItemsDetails extends StatelessWidget {
                             border: Border.all(color: const Color(0xFFE2E2E2)),
                             borderRadius: BorderRadius.circular(15),
                           ),
-                          child: IconButton(onPressed: (){controller.delete();}, icon: Icon(Icons.remove, size: 22)),
+                          child: IconButton(
+                            onPressed: () {
+                              controller.delete();
+                            },
+                            icon: Icon(Icons.remove, size: 22),
+                          ),
                         ),
 
                         const SizedBox(width: 18),
 
-                         Text(
+                        Text(
                           "${controller.count}",
                           style: TextStyle(
                             fontSize: 20,
@@ -182,7 +220,12 @@ class ItemsDetails extends StatelessWidget {
                             border: Border.all(color: const Color(0xFFE2E2E2)),
                             borderRadius: BorderRadius.circular(15),
                           ),
-                          child: IconButton(onPressed: (){controller.add();}, icon: Icon(Icons.add, size: 22),)
+                          child: IconButton(
+                            onPressed: () {
+                              controller.add();
+                            },
+                            icon: Icon(Icons.add, size: 22),
+                          ),
                         ),
 
                         const Spacer(),
@@ -217,9 +260,12 @@ class ItemsDetails extends StatelessWidget {
                             borderRadius: BorderRadius.circular(18),
                           ),
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          Get.find<CartController>().refreshPage();
+                          Get.toNamed(AppRoute.myCart);
+                        },
                         child: const Text(
-                          "Add To Cart",
+                          "Go To Cart",
                           style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.w600,

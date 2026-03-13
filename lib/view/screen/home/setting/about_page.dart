@@ -8,183 +8,174 @@ class AboutPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColor.backgroundcolor,
       appBar: AppBar(
-        title: const Text('About FlyMarket'),
-        backgroundColor: AppColor.primaryColor,
+        title: const Text(
+          'About FlyMarket',
+          style: TextStyle(fontWeight: FontWeight.bold, color: AppColor.fourthColor),
+        ),
+        backgroundColor: Colors.white,
         centerTitle: true,
         elevation: 0,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_ios_new, color: AppColor.fourthColor, size: 20),
+          onPressed: () => Navigator.pop(context),
+        ),
       ),
-      body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              AppColor.primaryColor.withOpacity(0.01),
-              Colors.white,
-            ],
-          ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            // قسم الهيدر مع اللوجو
+            Container(
+              width: double.infinity,
+              padding: EdgeInsets.symmetric(vertical: 40.h),
+              decoration: const BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.vertical(bottom: Radius.circular(30)),
+              ),
+              child: Column(
+                children: [
+                  Container(
+                    padding: EdgeInsets.all(25.w),
+                    decoration: BoxDecoration(
+                      color: AppColor.primaryColor.withOpacity(0.1),
+                      shape: BoxShape.circle,
+                    ),
+                    child: Icon(
+                      Icons.shopping_cart_rounded,
+                      size: 80.r,
+                      color: AppColor.primaryColor,
+                    ),
+                  ),
+                  SizedBox(height: 20.h),
+                  Text(
+                    'FlyMarket',
+                    style: TextStyle(
+                      fontSize: 28.sp,
+                      fontWeight: FontWeight.bold,
+                      color: AppColor.fourthColor,
+                    ),
+                  ),
+                  Text(
+                    'Version 1.0.0',
+                    style: TextStyle(
+                      fontSize: 14.sp,
+                      color: Colors.grey[500],
+                      letterSpacing: 1.2,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+
+            Padding(
+              padding: EdgeInsets.all(20.w),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // بطاقة الوصف
+                  _buildSectionCard(
+                    title: 'Our Vision',
+                    child: Text(
+                      'FlyMarket is a smart supermarket delivery app that revolutionizes your shopping experience. Browse nearby markets, compare prices in real-time, and place orders directly from your phone with our intuitive interface.',
+                      style: TextStyle(
+                        fontSize: 15.sp,
+                        height: 1.6,
+                        color: Colors.grey[700],
+                      ),
+                    ),
+                  ),
+
+                  SizedBox(height: 20.h),
+
+                  // بطاقة المميزات
+                  _buildSectionCard(
+                    title: 'Key Features',
+                    child: Column(
+                      children: [
+                        _buildFeatureItem(Icons.store_rounded, 'Browse Local Markets'),
+                        _buildFeatureItem(Icons.compare_arrows_rounded, 'Price Comparison'),
+                        _buildFeatureItem(Icons.shopping_bag_rounded, 'Easy Ordering'),
+                        _buildFeatureItem(Icons.local_shipping_rounded, 'Fast Delivery'),
+                      ],
+                    ),
+                  ),
+
+                  SizedBox(height: 20.h),
+
+                  // بطاقة التواصل
+                  _buildSectionCard(
+                    title: 'Contact Us',
+                    child: Column(
+                      children: [
+                        _buildContactItem(
+                          Icons.email_outlined,
+                          'contact@flymarket.com',
+                              () {},
+                        ),
+                        const Divider(height: 20),
+                        _buildContactItem(
+                          Icons.phone_iphone_rounded,
+                          '+967 123 456 789',
+                              () {},
+                        ),
+                        const Divider(height: 20),
+                        _buildContactItem(
+                          Icons.language_rounded,
+                          'www.flymarket.com',
+                              () {},
+                        ),
+                      ],
+                    ),
+                  ),
+
+                  SizedBox(height: 30.h),
+
+                  Center(
+                    child: Text(
+                      '© 2024 FlyMarket Team. All rights reserved.',
+                      style: TextStyle(fontSize: 12.sp, color: Colors.grey[400]),
+                    ),
+                  ),
+                  SizedBox(height: 20.h),
+                ],
+              ),
+            ),
+          ],
         ),
-        child: SingleChildScrollView(
-          padding: EdgeInsets.all(16.w),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Center(
-                child: Container(
-                  padding: EdgeInsets.all(20.w),
-                  decoration: BoxDecoration(
-                    color: AppColor.primaryColor.withOpacity(0.1),
-                    shape: BoxShape.circle,
-                  ),
-                  child: Icon(Icons.shopping_cart,
-                      size: 100.sp, color: AppColor.primaryColor),
-                ),
-              ),
-              SizedBox(height: 30.h),
-              Card(
-                elevation: 4,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15.r),
-                ),
-                child: Padding(
-                  padding: EdgeInsets.all(20.w),
-                  child: Column(
-                    children: [
-                      Text(
-                        'FlyMarket v1.0.0',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 24.sp,
-                          color: AppColor.primaryColor,
-                        ),
-                      ),
-                      SizedBox(height: 15.h),
-                      Text(
-                        'Developed by FlyMarket Team',
-                        style: TextStyle(
-                          fontSize: 16.sp,
-                          color: Colors.grey[600],
-                        ),
-                      ),
-                      SizedBox(height: 5.h),
-                      Text(
-                        'Al-Saeeda University, Yemen',
-                        style: TextStyle(
-                          fontSize: 14.sp,
-                          color: Colors.grey[500],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              SizedBox(height: 25.h),
-              Card(
-                elevation: 4,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15.r),
-                ),
-                child: Padding(
-                  padding: EdgeInsets.all(20.w),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'About FlyMarket',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18.sp,
-                        ),
-                      ),
-                      SizedBox(height: 15.h),
-                      Text(
-                        'FlyMarket is a smart supermarket delivery app that revolutionizes your shopping experience. Browse nearby markets, compare prices in real-time, and place orders directly from your phone with our intuitive interface.',
-                        style: TextStyle(
-                          fontSize: 15.sp,
-                          height: 1.6,
-                          color: Colors.grey[700],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              SizedBox(height: 25.h),
-              Card(
-                elevation: 4,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15.r),
-                ),
-                child: Padding(
-                  padding: EdgeInsets.all(20.w),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Key Features',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18.sp,
-                        ),
-                      ),
-                      SizedBox(height: 15.h),
-                      _buildFeatureItem(Icons.store, 'Browse Local Markets'),
-                      _buildFeatureItem(Icons.compare_arrows, 'Price Comparison'),
-                      _buildFeatureItem(Icons.shopping_bag, 'Easy Ordering'),
-                      _buildFeatureItem(Icons.local_shipping, 'Fast Delivery'),
-                    ],
-                  ),
-                ),
-              ),
-              SizedBox(height: 25.h),
-              Card(
-                elevation: 4,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15.r),
-                ),
-                child: Padding(
-                  padding: EdgeInsets.all(20.w),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Contact Us',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18.sp,
-                        ),
-                      ),
-                      SizedBox(height: 15.h),
-                      Row(
-                        children: [
-                          Icon(Icons.email, color: AppColor.primaryColor),
-                          SizedBox(width: 10.w),
-                          Text(
-                            'contact@flymarket.com',
-                            style: TextStyle(fontSize: 14.sp),
-                          ),
-                       ],
-                      ),
-                      SizedBox(height: 10.h),
-                      Row(
-                        children: [
-                          Icon(Icons.phone, color: AppColor.primaryColor),
-                          SizedBox(width: 10.w),
-                          Text(
-                            '+967 123 456 789',
-                            style: TextStyle(fontSize: 14.sp),
-                          ),
-                       ],
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              SizedBox(height: 30.h),
-            ],
+      ),
+    );
+  }
+
+  Widget _buildSectionCard({required String title, required Widget child}) {
+    return Container(
+      width: double.infinity,
+      padding: EdgeInsets.all(20.w),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(20.r),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.03),
+            blurRadius: 15,
+            offset: const Offset(0, 5),
           ),
-        ),
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            title,
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 18.sp,
+              color: AppColor.fourthColor,
+            ),
+          ),
+          SizedBox(height: 15.h),
+          child,
+        ],
       ),
     );
   }
@@ -194,13 +185,39 @@ class AboutPage extends StatelessWidget {
       padding: EdgeInsets.only(bottom: 12.h),
       child: Row(
         children: [
-          Icon(icon, color: AppColor.primaryColor, size: 20.sp),
-          SizedBox(width: 10.w),
+          Container(
+            padding: EdgeInsets.all(8.r),
+            decoration: BoxDecoration(
+              color: AppColor.primaryColor.withOpacity(0.08),
+              borderRadius: BorderRadius.circular(8.r),
+            ),
+            child: Icon(icon, color: AppColor.primaryColor, size: 20.sp),
+          ),
+          SizedBox(width: 15.w),
           Text(
             text,
-            style: TextStyle(fontSize: 15.sp),
+            style: TextStyle(fontSize: 15.sp, color: AppColor.fourthColor, fontWeight: FontWeight.w500),
           ),
-       ],
+        ],
+      ),
+    );
+  }
+
+  Widget _buildContactItem(IconData icon, String text, VoidCallback onTap) {
+    return InkWell(
+      onTap: onTap,
+      child: Row(
+        children: [
+          Icon(icon, color: AppColor.primaryColor, size: 22.sp),
+          SizedBox(width: 15.w),
+          Expanded(
+            child: Text(
+              text,
+              style: TextStyle(fontSize: 15.sp, color: Colors.grey[800]),
+            ),
+          ),
+          Icon(Icons.arrow_forward_ios, size: 14.r, color: Colors.grey[300]),
+        ],
       ),
     );
   }

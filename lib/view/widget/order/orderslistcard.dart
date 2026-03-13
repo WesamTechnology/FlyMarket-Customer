@@ -15,6 +15,7 @@ class CardOrdersList extends GetView<OrderPendingController> {
   @override
   Widget build(BuildContext context) {
     return Card(
+      color: AppColor.primaryColor3,
       elevation: 4,
       margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       shape: RoundedRectangleBorder(
@@ -78,7 +79,9 @@ class CardOrdersList extends GetView<OrderPendingController> {
             _buildInfoRow(
                 icon: Icons.watch_later_outlined,
                 title: "Data Time",
-                value: "${Jiffy.parse('${listdata.ordersDatetime}').fromNow()}"
+                value: "${Jiffy.parse(listdata.ordersDatetime!)
+                    .add(hours: 3)
+                    .fromNow()}"
             ),
 
             const Divider(height: 30),
@@ -86,15 +89,17 @@ class CardOrdersList extends GetView<OrderPendingController> {
             /// ===== Footer =====
             Row(
               children: [
-                Text(
-                  "Total: ${listdata.ordersPrice} \$",
-                  style: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                    color: AppColor.primaryColor,
+                Expanded(
+                  child: Text(
+                    "Total: ${listdata.ordersPrice} RYE",
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: AppColor.primaryColor,
+                    ),
                   ),
                 ),
-                const Spacer(),
+                const SizedBox(width: 2),
 
                 OutlinedButton(
                   onPressed: () {
@@ -105,7 +110,7 @@ class CardOrdersList extends GetView<OrderPendingController> {
                   child: const Text("Details"),
                 ),
 
-                const SizedBox(width: 8),
+                const SizedBox(width: 5),
 
                 if (listdata.ordersStatus == 0)
                   ElevatedButton(
@@ -116,6 +121,17 @@ class CardOrdersList extends GetView<OrderPendingController> {
                       controller.deleteOrder(listdata.ordersId!.toString());
                     },
                     child: const Text("Delete",style: TextStyle(color: Colors.white),),
+                  ),
+                if (listdata.ordersStatus == 3)
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: AppColor.primaryColor,
+                    ),
+                    onPressed: () {
+                      Get.toNamed(AppRoute.ordersTracking,
+                          arguments: {"ordersmodel": listdata});
+                    },
+                    child: const Text("Tracking",style: TextStyle(color: Colors.white),),
                   ),
               ],
             ),

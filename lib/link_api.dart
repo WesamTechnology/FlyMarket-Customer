@@ -31,6 +31,7 @@ class AppLink{
   static String items = "$server/items/items.php";
   static String search = "$server/items/search.php";
   static String itemsAll = "$server/items/items_all.php";
+  static String itemsFavorite = "$server/items/items_favorite.php";
 
 
 

@@ -22,7 +22,7 @@ class PriceAndDeleteSection extends StatelessWidget {
         Padding(
           padding:  EdgeInsets.symmetric(horizontal: 15.w),
           child: Text(
-            "\$ $price",
+            "$price RYE",
             style: TextStyle(
               color: Colors.black,
               fontSize: 14.sp,

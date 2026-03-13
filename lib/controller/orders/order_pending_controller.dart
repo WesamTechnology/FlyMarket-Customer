@@ -52,7 +52,9 @@ class OrderPendingController extends GetxController {
 
 
   getOrdersData() async {
+    listdata.clear();
     statusRequest = StatusRequest.loding;
+    update();
     var response = await orderPendingData.getData(
       myServices.sharedPreferences.getString("id")!,
     );
@@ -88,6 +90,7 @@ class OrderPendingController extends GetxController {
 
 
   refrehOrder(){
+    listdata.clear();
     getOrdersData();
   }
 

@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 
 import '../../../controller/orders/order_pending_controller.dart';
 import '../../../core/class/handlingdataview.dart';
+import '../../../core/constant/color.dart';
 import '../../widget/order/orderslistcard.dart';
 
 class OrderPending extends StatelessWidget {
@@ -13,23 +14,39 @@ class OrderPending extends StatelessWidget {
   Widget build(BuildContext context) {
     Get.put(OrderPendingController());
     return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+          backgroundColor: Colors.white,
+          centerTitle: true,
+          title: Text(
+            "Orders Pending",
+            style: TextStyle(
+                color: AppColor.primaryColor,
+                fontWeight: FontWeight.bold
+            ),
+          )
+      ),
       body: GetBuilder<OrderPendingController>(
         builder: (controller) {
           return HandlingDataView(
             statusRequest: controller.statusRequest,
-            widget: Container(
-              padding: EdgeInsets.all(20),
-              child: ListView.builder(
-                itemCount: controller.listdata.length,
-                itemBuilder: (context, index) {
-                  final reversedIndex =
-                      controller.listdata.length - 1 - index;
+            widget: RefreshIndicator(
+              onRefresh: ()=> controller.getOrdersData()
+              ,
+              child: Container(
+                padding: EdgeInsets.all(10),
+                child: ListView.builder(
+                  itemCount: controller.listdata.length,
+                  itemBuilder: (context, index) {
+                    final reversedIndex =
+                        controller.listdata.length - 1 - index;
 
-                  return CardOrdersList(
-                    listdata: controller.listdata[reversedIndex],
-                  );
-                },
-              )
+                    return CardOrdersList(
+                      listdata: controller.listdata[index],
+                    );
+                  },
+                )
+              ),
             ),
           );
         },

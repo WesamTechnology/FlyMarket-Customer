@@ -8,185 +8,192 @@ class HelpPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text('Help & Support'),
+        title: const Text(
+          'Help & Support',
+          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+        ),
         backgroundColor: AppColor.primaryColor,
         centerTitle: true,
         elevation: 0,
-      ),
-      body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              AppColor.primaryColor.withOpacity(0.1),
-              Colors.white,
-            ],
-          ),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(bottom: Radius.circular(20.r)),
         ),
+      ),
+      body: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(height: 20.h),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.w),
-              child: Text(
-                'How can we help you?',
-                style: TextStyle(
-                  fontSize: 24.sp,
-                  fontWeight: FontWeight.bold,
-                  color: AppColor.primaryColor,
-                ),
-              ),
-            ),
-            SizedBox(height: 10.h),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.w),
-              child: Text(
-                'We\'re here to help you with any questions or concerns',
-                style: TextStyle(
-                  fontSize: 14.sp,
-                  color: Colors.grey[600],
-                ),
-              ),
-            ),
-            SizedBox(height: 20.h),
-            
-            SizedBox(height: 30.h),
-            Expanded(
-              child: ListView(
-                padding: EdgeInsets.symmetric(horizontal: 16.w),
-                children: [
-                  _helpTile(
-                    Icons.chat_outlined,
-                    'Live Chat Support',
-                    'Get instant help from our support team',
-                    'Start Chat Now',
-                  ),
-                  _helpTile(
-                    Icons.email_outlined,
-                    'Email Support',
-                    'We\'ll get back to you within 24 hours',
-                    'support@flymarket.com',
-                  ),
-                  _helpTile(
-                    Icons.phone_outlined,
-                    'Call Center',
-                    'Available from 9AM to 6PM, Sunday to Thursday',
-                    '+967 775 904 988',
-                  ),
-                ],
-              ),
-            ),
+            // قسم الترحيب العلوي
             Container(
-              padding: EdgeInsets.all(16.w),
+              width: double.infinity,
+              padding: EdgeInsets.symmetric(vertical: 30.h, horizontal: 20.w),
               decoration: BoxDecoration(
-                color: AppColor.primaryColor.withOpacity(0.1),
-                borderRadius: BorderRadius.vertical(
-                  top: Radius.circular(20.r),
-                ),
+                color: AppColor.primaryColor.withOpacity(0.05),
+                borderRadius: BorderRadius.vertical(bottom: Radius.circular(30.r)),
               ),
               child: Column(
                 children: [
+                  Icon(Icons.support_agent_rounded, size: 60.r, color: AppColor.primaryColor),
+                  SizedBox(height: 15.h),
                   Text(
-                    'Need more help?',
+                    'How can we help you?',
                     style: TextStyle(
-                      fontSize: 16.sp,
+                      fontSize: 22.sp,
                       fontWeight: FontWeight.bold,
-                      color: AppColor.primaryColor,
+                      color: AppColor.fourthColor,
                     ),
                   ),
-                  SizedBox(height: 10.h),
+                  SizedBox(height: 8.h),
                   Text(
-                    'Visit our help center or contact us directly',
+                    'Our team is here to support you 24/7',
+                    textAlign: TextAlign.center,
                     style: TextStyle(
-                      fontSize: 12.sp,
+                      fontSize: 14.sp,
                       color: Colors.grey[600],
                     ),
                   ),
                 ],
               ),
             ),
+
+            SizedBox(height: 25.h),
+
+            // قائمة خيارات الدعم
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16.w),
+              child: Column(
+                children: [
+                  _helpTile(
+                    Icons.chat_bubble_outline_rounded,
+                    'Live Chat Support',
+                    'Chat with our experts right now',
+                    'Start Chat',
+                    Colors.blue,
+                  ),
+                  _helpTile(
+                    Icons.alternate_email_rounded,
+                    'Email Support',
+                    'Response time: within 24 hours',
+                    'support@flymarket.com',
+                    Colors.orange,
+                  ),
+                  _helpTile(
+                    Icons.phone_in_talk_rounded,
+                    'Call Center',
+                    'Sunday - Thursday (9AM - 6PM)',
+                    '+967 775 904 988',
+                    Colors.green,
+                  ),
+                ],
+              ),
+            ),
+
+            SizedBox(height: 20.h),
+
+            // قسم إضافي للمعلومات
+            Container(
+              margin: EdgeInsets.all(16.w),
+              padding: EdgeInsets.all(20.r),
+              decoration: BoxDecoration(
+                color: AppColor.fourthColor,
+                borderRadius: BorderRadius.circular(20.r),
+              ),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Frequently Asked Questions',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16.sp,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        SizedBox(height: 5.h),
+                        Text(
+                          'Find quick answers to common issues',
+                          style: TextStyle(color: Colors.white70, fontSize: 12.sp),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Icon(Icons.arrow_forward_ios, color: Colors.white, size: 20.r),
+                ],
+              ),
+            ),
+            SizedBox(height: 30.h),
           ],
         ),
       ),
     );
   }
 
-  Widget _helpTile(IconData icon, String title, String description, String subtitle) {
-    return Card(
+  Widget _helpTile(IconData icon, String title, String description, String actionText, Color iconColor) {
+    return Container(
       margin: EdgeInsets.only(bottom: 16.h),
-      elevation: 5,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(15.r),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(18.r),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.04),
+            blurRadius: 15,
+            offset: const Offset(0, 8),
+          ),
+        ],
       ),
       child: Material(
         color: Colors.transparent,
         child: InkWell(
-          borderRadius: BorderRadius.circular(15.r),
-          onTap: () {
-            // Add your navigation logic here
-          },
+          borderRadius: BorderRadius.circular(18.r),
+          onTap: () {},
           child: Padding(
-            padding: EdgeInsets.all(16.w),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            padding: EdgeInsets.all(16.r),
+            child: Row(
               children: [
-                Row(
-                  children: [
-                    Container(
-                      padding: EdgeInsets.all(8.r),
-                      decoration: BoxDecoration(
-                        color: AppColor.primaryColor.withOpacity(0.1),
-                        shape: BoxShape.circle,
-                      ),
-                      child: Icon(icon, color: AppColor.primaryColor, size: 24.r),
-                    ),
-                    SizedBox(width: 16.w),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            title,
-                            style: TextStyle(
-                              fontSize: 16.sp,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black87,
-                            ),
-                          ),
-                          SizedBox(height: 4.h),
-                          Text(
-                            description,
-                            style: TextStyle(
-                              fontSize: 12.sp,
-                              color: Colors.grey[600],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
+                Container(
+                  padding: EdgeInsets.all(12.r),
+                  decoration: BoxDecoration(
+                    color: iconColor.withOpacity(0.1),
+                    borderRadius: BorderRadius.circular(12.r),
+                  ),
+                  child: Icon(icon, color: iconColor, size: 28.r),
                 ),
-                SizedBox(height: 12.h),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      subtitle,
-                      style: TextStyle(
-                        fontSize: 14.sp,
-                        color: AppColor.primaryColor,
-                        fontWeight: FontWeight.w500,
+                SizedBox(width: 16.w),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        title,
+                        style: TextStyle(
+                          fontSize: 16.sp,
+                          fontWeight: FontWeight.bold,
+                          color: AppColor.fourthColor,
+                        ),
                       ),
-                    ),
-                    Icon(
-                      Icons.arrow_forward_ios,
-                      color: AppColor.primaryColor,
-                      size: 18.r,
-                    ),
-                  ],
+                      SizedBox(height: 4.h),
+                      Text(
+                        description,
+                        style: TextStyle(fontSize: 12.sp, color: Colors.grey[600]),
+                      ),
+                      SizedBox(height: 8.h),
+                      Text(
+                        actionText,
+                        style: TextStyle(
+                          fontSize: 13.sp,
+                          color: AppColor.primaryColor,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
+                Icon(Icons.arrow_forward_ios_rounded, color: Colors.grey[300], size: 16.r),
               ],
             ),
           ),

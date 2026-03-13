@@ -4,6 +4,7 @@ import '../../../controller/checkout/checkout_controller.dart';
 import '../../../core/class/handlingdataview.dart';
 import '../../../core/constant/color.dart';
 import '../../../core/constant/imgaeasset.dart';
+import '../../../core/constant/routes.dart';
 import '../../widget/checkout/carddeliveerytype.dart';
 import '../../widget/checkout/cardpaymentmethod.dart';
 import '../../widget/checkout/cardshippingaddress.dart';
@@ -119,6 +120,22 @@ class Checkout extends StatelessWidget {
                           ),
                         ),
                         SizedBox(height: 15),
+                        if (controller.listDataAddress.isEmpty)
+                          InkWell(
+                            onTap: () {
+                              Get.toNamed(AppRoute.addressadd);
+                            },
+                            child: Center(
+                              child: Text(
+                                "Please Add Shipping Address \n Click Here",
+                                style: TextStyle(
+                                  color: Colors.red,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                          ),
                         ListView.builder(
                           shrinkWrap: true,
                           physics: NeverScrollableScrollPhysics(),

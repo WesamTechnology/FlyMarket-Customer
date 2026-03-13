@@ -54,7 +54,9 @@ class CheckoutController extends GetxController {
           listData.map((e) => AddressViewModel.fromJson(e)),
         );
       } else {
-        statusRequest = StatusRequest.failure;
+        print("================== خطأ في عرض الموقع او لايوجد ===================");
+
+       // statusRequest = StatusRequest.failure;
       }
     } else {
       print("================== خطأ في الادرس ===================");
@@ -65,6 +67,7 @@ class CheckoutController extends GetxController {
   checkout() async {
     if(paymentChoos == null) return Get.snackbar("تنبية", "الرجاء اختيار وسيلة الدفع");
     if(deliveryChoos == null) return Get.snackbar("تنبية", "الرجاء اختيار التوصيل");
+    if(listDataAddress.isEmpty) return Get.snackbar("تنبية", "الرجاء اختيار موقع التوصيل");
     statusRequest = StatusRequest.loding;
     update();
 
@@ -87,7 +90,11 @@ class CheckoutController extends GetxController {
       if (response['status'] == "success") {
         if(paymentChoos == null) return Get.snackbar("تنبية", "الرجاء اختيار وسيلة الدفع");
         if(deliveryChoos == null) return Get.snackbar("تنبية", "الرجاء اختيار التوصيل");
+        if(listDataAddress.isEmpty) return Get.snackbar("تنبية", "الرجاء اختيار موقع التوصيل");
+
         Get.offAllNamed(AppRoute.homepage);
+        Get.snackbar("نجح", "يمكنك الان الطلب الى هاذا الموقع");
+
         Get.snackbar(
             "نجح",
             "تم العملية بنجاح"

@@ -1,5 +1,5 @@
 class CartModel {
-  int? itemsprice;
+  double? itemsprice;
   int? countitems;
   int? cartId;
   int? cartUsersid;
@@ -14,8 +14,8 @@ class CartModel {
   String? itmesImage;
   int? itmesCount;
   int? itmesActive;
-  int? itmesPrice;
-  int? itmesDiscount;
+  double? itmesPrice;
+  double? itmesDiscount;
   String? itmesDate;
   int? itmesCat;
   int? itmesCatAll;
@@ -69,7 +69,7 @@ class CartModel {
         this.firebaseUid});
 
   CartModel.fromJson(Map<String, dynamic> json) {
-    itemsprice = json['itemsprice'];
+    itemsprice = (json['itemsprice'] as num?)?.toDouble();
     countitems = json['countitems'];
     cartId = json['cart_id'];
     cartUsersid = json['cart_usersid'];
@@ -84,8 +84,8 @@ class CartModel {
     itmesImage = json['itmes_image'];
     itmesCount = json['itmes_count'];
     itmesActive = json['itmes_active'];
-    itmesPrice = json['itmes_price'];
-    itmesDiscount = json['itmes_discount'];
+    itmesPrice = (json['itmes_price'] as num?)?.toDouble();
+    itmesDiscount = (json['itmes_discount'] as num?)?.toDouble();
     itmesDate = json['itmes_date'];
     itmesCat = json['itmes_cat'];
     itmesCatAll = json['itmes_cat_all'];

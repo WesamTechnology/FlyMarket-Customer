@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 
 import '../../../controller/favorite/my_favorite_controller.dart';
 import '../../../core/class/handlingdataview.dart';
+import '../../../data/model/itemsmodel.dart';
 import '../../widget/myfavorite/custom_list_favorite_items.dart';
 
 class Favorites extends StatelessWidget {

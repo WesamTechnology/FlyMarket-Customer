@@ -170,49 +170,51 @@ class ProductCard extends GetView<ItemsControllerImp> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text(
-                                  translateDatabase(
-                                    "${itemsModel.itemspricedisount} ريال يمني",
-                                    "${itemsModel.itemspricedisount} RYE",
-                                  ),
-                                  style: TextStyle(
-                                    fontSize: 14.sp,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.green[700],
+                                Expanded(
+                                  child: Text(
+                                    translateDatabase(
+                                      "${itemsModel.itemspricedisount} ريال يمني",
+                                      "${itemsModel.itemspricedisount} RYE",
+                                    ),
+                                    style: TextStyle(
+                                      fontSize: 14.sp,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.green[700],
+                                    ),
                                   ),
                                 ),
 
-                                ElevatedButton(
-                                  onPressed: () {},
-                                  style: ElevatedButton.styleFrom(
-                                    padding: EdgeInsets.symmetric(
-                                      horizontal: 10.w,
-                                      vertical: 6.h,
-                                    ),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(10.r),
-                                    ),
-                                    elevation: 0,
-                                    backgroundColor: Colors.green[600],
-                                  ),
-                                  child: Row(
-                                    children: [
-                                      Icon(
-                                        Icons.add_shopping_cart,
-                                        size: 14.sp,
-                                        color: Colors.white,
-                                      ),
-                                      SizedBox(width: 4.w),
-                                      Text(
-                                        "Add",
-                                        style: TextStyle(
-                                          fontSize: 12.sp,
-                                          color: Colors.white,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
+                                // ElevatedButton(
+                                //   onPressed: () {},
+                                //   style: ElevatedButton.styleFrom(
+                                //     padding: EdgeInsets.symmetric(
+                                //       horizontal: 10.w,
+                                //       vertical: 6.h,
+                                //     ),
+                                //     shape: RoundedRectangleBorder(
+                                //       borderRadius: BorderRadius.circular(10.r),
+                                //     ),
+                                //     elevation: 0,
+                                //     backgroundColor: Colors.green[600],
+                                //   ),
+                                //   child: Row(
+                                //     children: [
+                                //       Icon(
+                                //         Icons.add_shopping_cart,
+                                //         size: 14.sp,
+                                //         color: Colors.white,
+                                //       ),
+                                //       SizedBox(width: 4.w),
+                                //       Text(
+                                //         "Add",
+                                //         style: TextStyle(
+                                //           fontSize: 12.sp,
+                                //           color: Colors.white,
+                                //         ),
+                                //       ),
+                                //     ],
+                                //   ),
+                                // ),
                               ],
                             ),
                           ],

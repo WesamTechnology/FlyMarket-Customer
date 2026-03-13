@@ -13,6 +13,13 @@ class MyFavoriteData {
     });
     return respons.fold((l) => l, (r) => r);
   }
+  getItemsDetails(String usersId,String itemsId) async {
+    var respons = await crud.postData(AppLink.itemsFavorite, {
+      "usersid": usersId.toString(),
+      "itemsid": itemsId.toString(),
+    });
+    return respons.fold((l) => l, (r) => r);
+  }
 
   deleteFromFavorite(String id) async {
     var respons = await crud.postData(AppLink.deleteFromFavorite, {

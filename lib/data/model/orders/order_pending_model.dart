@@ -4,9 +4,9 @@ class OrderPendingModel {
   int? ordersSupermarketid;
   int? ordersAddress;
   int? ordersType;
-  int? ordersPricedelivery;
-  int? ordersPrice;
-  int? ordersTotalprice;
+  double? ordersPricedelivery;
+  double? ordersPrice;
+  double? ordersTotalprice;
   int? ordersCoupon;
   int? ordersRating;
   String? ordersNoteRating;
@@ -74,9 +74,9 @@ class OrderPendingModel {
     ordersSupermarketid = json['orders_supermarketid'];
     ordersAddress = json['orders_address'];
     ordersType = json['orders_type'];
-    ordersPricedelivery = json['orders_pricedelivery'];
-    ordersPrice = json['orders_price'];
-    ordersTotalprice = json['orders_totalprice'];
+    ordersPricedelivery = (json['orders_pricedelivery'] as num?)?.toDouble();
+    ordersPrice = (json['orders_price'] as num?)?.toDouble();
+    ordersTotalprice = (json['orders_totalprice'] as num?)?.toDouble();
     ordersCoupon = json['orders_coupon'];
     ordersRating = json['orders_rating'];
     ordersNoteRating = json['orders_noterating'];

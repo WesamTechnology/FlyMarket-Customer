@@ -11,8 +11,9 @@ class MyFavoriteModel {
   String? itmesImage;
   int? itmesCount;
   int? itmesActive;
-  int? itmesPrice;
-  int? itmesDiscount;
+  double? itmesPrice;
+  double? itmesDiscount;
+  double? itemspricedisount;
   String? itmesDate;
   int? itmesCat;
   int? itmesCatAll;
@@ -46,6 +47,7 @@ class MyFavoriteModel {
         this.itmesActive,
         this.itmesPrice,
         this.itmesDiscount,
+        this.itemspricedisount,
         this.itmesDate,
         this.itmesCat,
         this.itmesCatAll,
@@ -77,8 +79,9 @@ class MyFavoriteModel {
     itmesImage = json['itmes_image'];
     itmesCount = json['itmes_count'];
     itmesActive = json['itmes_active'];
-    itmesPrice = json['itmes_price'];
-    itmesDiscount = json['itmes_discount'];
+    itmesPrice =  (json['itmes_price'] as num?)?.toDouble();
+    itmesDiscount  = (json['itmes_discount'] as num?)?.toDouble();
+    itemspricedisount  = (json['itemspricedisount'] as num?)?.toDouble();
     itmesDate = json['itmes_date'];
     itmesCat = json['itmes_cat'];
     itmesCatAll = json['itmes_cat_all'];
@@ -114,6 +117,7 @@ class MyFavoriteModel {
     data['itmes_active'] = this.itmesActive;
     data['itmes_price'] = this.itmesPrice;
     data['itmes_discount'] = this.itmesDiscount;
+    data['itemspricedisount'] = this.itemspricedisount;
     data['itmes_date'] = this.itmesDate;
     data['itmes_cat'] = this.itmesCat;
     data['itmes_cat_all'] = this.itmesCatAll;

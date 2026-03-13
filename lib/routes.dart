@@ -5,7 +5,6 @@ import 'package:flymarket_customer/view/screen/address/add_address.dart';
 import 'package:flymarket_customer/view/screen/address/add_part_two_address.dart';
 import 'package:flymarket_customer/view/screen/auth/forgetpassword/forgetpassword.dart';
 import 'package:flymarket_customer/view/screen/auth/forgetpassword/resetpassword.dart';
-import 'package:flymarket_customer/view/screen/auth/forgetpassword/success_resetpassword.dart';
 import 'package:flymarket_customer/view/screen/auth/forgetpassword/verifycode.dart';
 import 'package:flymarket_customer/view/screen/auth/language.dart';
 import 'package:flymarket_customer/view/screen/auth/login.dart';
@@ -29,6 +28,7 @@ import 'package:flymarket_customer/view/screen/onboarding/onboarding.dart';
 import 'package:flymarket_customer/view/screen/order/order_archive_view.dart';
 import 'package:flymarket_customer/view/screen/order/order_details_view.dart';
 import 'package:flymarket_customer/view/screen/order/order_pending.dart';
+import 'package:flymarket_customer/view/screen/order/order_tracking_view.dart';
 import 'package:get/get.dart';
 
 import 'bindings/home_binding.dart';
@@ -67,4 +67,5 @@ List<GetPage<dynamic>> routes = [
   GetPage(name: AppRoute.notification, page: () => const NotificationView()),
   GetPage(name: AppRoute.ordersdetails, page: () => const OrderDetailsView()),
   GetPage(name: AppRoute.ordersarchive, page: () => const OrderArchiveView()),
+  GetPage(name: AppRoute.ordersTracking, page: () => const OrderTrackingView()),
 ];

@@ -18,6 +18,7 @@ class CardOrdersListArchive extends GetView<OrderArchiveController> {
   @override
   Widget build(BuildContext context) {
     return Card(
+      color: AppColor.primaryColor3,
       elevation: 4,
       margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       shape: RoundedRectangleBorder(
@@ -88,15 +89,18 @@ class CardOrdersListArchive extends GetView<OrderArchiveController> {
             /// ===== Footer =====
             Row(
               children: [
-                Text(
-                  "Total: ${listdata.ordersTotalprice} \$",
-                  style: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                    color: AppColor.primaryColor,
+                Expanded(
+                  child: Text(
+                    "Total: ${listdata.ordersTotalprice} RYE",
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: AppColor.primaryColor,
+                    ),
                   ),
                 ),
-                const Spacer(),
+                const SizedBox(width: 2),
+
 
                 OutlinedButton(
                   onPressed: () {
@@ -107,7 +111,7 @@ class CardOrdersListArchive extends GetView<OrderArchiveController> {
                   child: const Text("Details"),
                 ),
 
-                const SizedBox(width: 8),
+                const SizedBox(width: 5),
                 if(listdata.ordersRating == 0)
                   OutlinedButton(
                     style: ButtonStyle(

@@ -1,5 +1,5 @@
 class OrdersDetailsModel {
-  int? itemsprice;
+  double? itemsprice;
   int? countitems;
   int? cartId;
   int? cartUsersid;
@@ -14,7 +14,7 @@ class OrdersDetailsModel {
   String? itmesImage;
   int? itmesCount;
   int? itmesActive;
-  int? itmesPrice;
+  double? itmesPrice;
   int? itmesDiscount;
   String? itmesDate;
   int? itmesCat;
@@ -69,7 +69,7 @@ class OrdersDetailsModel {
         this.firebaseUid});
 
   OrdersDetailsModel.fromJson(Map<String, dynamic> json) {
-    itemsprice = json['itemsprice'];
+    itemsprice = (json['itemsprice'] as num?)?.toDouble();
     countitems = json['countitems'];
     cartId = json['cart_id'];
     cartUsersid = json['cart_usersid'];
@@ -84,7 +84,7 @@ class OrdersDetailsModel {
     itmesImage = json['itmes_image'];
     itmesCount = json['itmes_count'];
     itmesActive = json['itmes_active'];
-    itmesPrice = json['itmes_price'];
+    itmesPrice = (json['itmes_price'] as num?)?.toDouble();
     itmesDiscount = json['itmes_discount'];
     itmesDate = json['itmes_date'];
     itmesCat = json['itmes_cat'];

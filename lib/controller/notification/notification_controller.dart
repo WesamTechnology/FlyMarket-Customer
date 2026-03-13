@@ -15,6 +15,7 @@ class NotificationController extends GetxController {
 
 
   getData() async {
+    data.clear();
     statusRequest = StatusRequest.loding;
     var response = await notificationData.getData(myServices.sharedPreferences.getString("id")!);
     print("=============================== Controller $response ");

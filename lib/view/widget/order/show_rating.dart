@@ -45,8 +45,8 @@ showRatingDialog(BuildContext context,String ordersId) {
       ),
       child: ClipOval(
         child: Image.asset(
-          AppImageAsset.splash2,
-          fit: BoxFit.cover,
+          AppImageAsset.deliveryImage2,
+          fit: BoxFit.contain,
         ),
       ),
     ),

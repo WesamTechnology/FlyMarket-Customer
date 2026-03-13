@@ -6,10 +6,11 @@ class ItemsData {
 
   ItemsData(this.crud);
 
-  getData(String category_id, String supermarket_id) async {
+  getData(String category_id, String supermarket_id,String userId) async {
     var respons = await crud.postData(AppLink.items, {
       "category_id": category_id.toString(),
       "supermarket_id": supermarket_id.toString(),
+      "usersid": userId.toString(),
     });
     return respons.fold((l) => l, (r) => r);
   }
