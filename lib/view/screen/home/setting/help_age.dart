@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/constant/color.dart';
+import '../../../../core/functions/translate_database.dart';
+
 
 class HelpPage extends StatelessWidget {
   const HelpPage({super.key});
@@ -10,8 +12,8 @@ class HelpPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text(
-          'Help & Support',
+        title:  Text(
+          translateDatabase("المساعدة والدعم", "Help & Support"),
           style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
         ),
         backgroundColor: AppColor.primaryColor,
@@ -22,9 +24,8 @@ class HelpPage extends StatelessWidget {
         ),
       ),
       body: SingleChildScrollView(
-        child: Column(
+        child:Column(
           children: [
-            // قسم الترحيب العلوي
             Container(
               width: double.infinity,
               padding: EdgeInsets.symmetric(vertical: 30.h, horizontal: 20.w),
@@ -37,7 +38,7 @@ class HelpPage extends StatelessWidget {
                   Icon(Icons.support_agent_rounded, size: 60.r, color: AppColor.primaryColor),
                   SizedBox(height: 15.h),
                   Text(
-                    'How can we help you?',
+                    translateDatabase("كيف يمكننا مساعدتك؟", "How can we help you?"),
                     style: TextStyle(
                       fontSize: 22.sp,
                       fontWeight: FontWeight.bold,
@@ -46,7 +47,7 @@ class HelpPage extends StatelessWidget {
                   ),
                   SizedBox(height: 8.h),
                   Text(
-                    'Our team is here to support you 24/7',
+                    translateDatabase("فريقنا هنا لدعمك على مدار الساعة", "Our team is here to support you 24/7"),
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 14.sp,
@@ -59,29 +60,28 @@ class HelpPage extends StatelessWidget {
 
             SizedBox(height: 25.h),
 
-            // قائمة خيارات الدعم
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.w),
               child: Column(
                 children: [
                   _helpTile(
                     Icons.chat_bubble_outline_rounded,
-                    'Live Chat Support',
-                    'Chat with our experts right now',
-                    'Start Chat',
+                    translateDatabase("دعم الدردشة المباشرة", "Live Chat Support"),
+                    translateDatabase("تحدث مع خبرائنا الآن", "Chat with our experts right now"),
+                    translateDatabase("ابدأ الدردشة", "Start Chat"),
                     Colors.blue,
                   ),
                   _helpTile(
                     Icons.alternate_email_rounded,
-                    'Email Support',
-                    'Response time: within 24 hours',
+                    translateDatabase("الدعم عبر البريد الإلكتروني", "Email Support"),
+                    translateDatabase("وقت الرد: خلال 24 ساعة", "Response time: within 24 hours"),
                     'support@flymarket.com',
                     Colors.orange,
                   ),
                   _helpTile(
                     Icons.phone_in_talk_rounded,
-                    'Call Center',
-                    'Sunday - Thursday (9AM - 6PM)',
+                    translateDatabase("مركز الاتصال", "Call Center"),
+                    translateDatabase("الأحد - الخميس (9 صباحًا - 6 مساءً)", "Sunday - Thursday (9AM - 6PM)"),
                     '+967 775 904 988',
                     Colors.green,
                   ),
@@ -91,7 +91,6 @@ class HelpPage extends StatelessWidget {
 
             SizedBox(height: 20.h),
 
-            // قسم إضافي للمعلومات
             Container(
               margin: EdgeInsets.all(16.w),
               padding: EdgeInsets.all(20.r),
@@ -106,7 +105,7 @@ class HelpPage extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Frequently Asked Questions',
+                          translateDatabase("الأسئلة الشائعة", "Frequently Asked Questions"),
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 16.sp,
@@ -115,7 +114,7 @@ class HelpPage extends StatelessWidget {
                         ),
                         SizedBox(height: 5.h),
                         Text(
-                          'Find quick answers to common issues',
+                          translateDatabase("اعثر على إجابات سريعة للمشاكل الشائعة", "Find quick answers to common issues"),
                           style: TextStyle(color: Colors.white70, fontSize: 12.sp),
                         ),
                       ],

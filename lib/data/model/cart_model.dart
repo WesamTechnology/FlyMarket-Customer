@@ -27,6 +27,8 @@ class CartModel {
   String? supermarketPhone;
   String? supermarketImage;
   String? supermarketLocation;
+  double? supermarketLat;
+  double? supermarketLong;
   String? supermarketTimeOpen;
   int? roleId;
   int? status;
@@ -62,6 +64,8 @@ class CartModel {
         this.supermarketPhone,
         this.supermarketImage,
         this.supermarketLocation,
+        this.supermarketLat,
+        this.supermarketLong,
         this.supermarketTimeOpen,
         this.roleId,
         this.status,
@@ -97,6 +101,8 @@ class CartModel {
     supermarketPhone = json['supermarket_phone'];
     supermarketImage = json['supermarket_image'];
     supermarketLocation = json['supermarket_location'];
+    supermarketLat = (json['supermarket_lat'] as num?)?.toDouble();
+    supermarketLong = (json['supermarket_long'] as num?)?.toDouble();
     supermarketTimeOpen = json['supermarket_time_open'];
     roleId = json['role_id'];
     status = json['status'];
@@ -134,6 +140,8 @@ class CartModel {
     data['supermarket_phone'] = this.supermarketPhone;
     data['supermarket_image'] = this.supermarketImage;
     data['supermarket_location'] = this.supermarketLocation;
+    data['supermarket_lat'] = this.supermarketLat;
+    data['supermarket_long'] = this.supermarketLong;
     data['supermarket_time_open'] = this.supermarketTimeOpen;
     data['role_id'] = this.roleId;
     data['status'] = this.status;

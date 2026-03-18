@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flymarket_customer/core/constant/color.dart';
 
 
 class CustomTitle extends StatelessWidget {
@@ -12,7 +13,7 @@ class CustomTitle extends StatelessWidget {
       children: [
         Text(
           title,
-          style: TextStyle(color: Colors.black, fontSize: 20.sp),
+          style: TextStyle(color: AppColor.primaryColor, fontSize: 20.sp,fontWeight: FontWeight.bold),
         ),
         SizedBox(height: 10.h),
         Divider(color: Colors.grey[400],),

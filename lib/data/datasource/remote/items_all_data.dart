@@ -1,19 +1,17 @@
-
 import '../../../core/class/crud.dart';
 import '../../../link_api.dart';
 
 class ItemsAllData {
-
   Crud crud;
 
   ItemsAllData(this.crud);
 
-  getData(String id)async{
+  getData(String id, String usersid) async {
+    var respons = await crud.postData(AppLink.itemsAll, {
+      "id": id.toString(),
+      "usersid": usersid,
 
-    var respons= await crud.postData(AppLink.itemsAll, {"id":id.toString()});
-    return respons.fold((l)=> l, (r)=> r);
-
-
+    });
+    return respons.fold((l) => l, (r) => r);
   }
-
 }

@@ -23,10 +23,6 @@ class CustomGridview extends GetView<HomeShopControllerImp> {
       itemCount: controller.supermarket.length, // عدد العناصر
       padding: const EdgeInsets.all(5).r,
       itemBuilder: (context, index) {
-        print(
-          "============ Length = ${controller.supermarket
-              .length}=========================",
-        );
         return Container(
           decoration: BoxDecoration(
             color: Color(0xffe7fae7),
@@ -84,14 +80,20 @@ class Supermarket extends GetView<HomeShopControllerImp> {
                   .r),
               child: "${supermarketModel
                   .supermarketImage}" != "default.png" && "${supermarketModel
-                  .supermarketImage}" != "empty"  ? Image.network(
+                  .supermarketImage}" != "empty" && "${supermarketModel
+                  .supermarketImage}" != "null"   ? Image.network(
                 "${AppLink.imageSupermarket}/${supermarketModel
                     .supermarketImage}",
                 fit: BoxFit.fill,
                 width: double.infinity,
+                errorBuilder: (context, error, stackTrace) => Image.asset(
+                  AppImageAsset.splash2,
+                  fit: BoxFit.fill,
+                  width: double.infinity,
+                )
 
               ) :Image.asset(
-                "assets/images/bakery.png",
+                "assets/images/splash2.png",
                 fit: BoxFit.fill,
                 width: double.infinity,
 

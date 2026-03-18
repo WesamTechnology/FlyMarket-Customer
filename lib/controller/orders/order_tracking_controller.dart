@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../../core/class/statuserequest.dart';
+import '../../core/functions/get_duration_osrm.dart';
 import '../../core/functions/get_osrm_route.dart';
 import '../../core/services/services.dart';
 import '../../data/model/orders/order_pending_model.dart';
@@ -26,6 +27,10 @@ class OrderTrackingController extends GetxController {
   double? destLong;
   double? currentLat;
   double? currentLong;
+
+  int? etaMinutes;
+
+  Timer? etaTimer;
 
   getCurrentLocation() async {
     //if (orderPendingModel.addressId == null) return;
@@ -73,7 +78,7 @@ class OrderTrackingController extends GetxController {
     FirebaseFirestore.instance
         .collection("delivery")
         .doc(orderPendingModel.ordersId.toString()).snapshots().listen(
-        (event){
+        (event)async{
           if(event.exists){
             currentLat = event.data()!['lat'];
             currentLong = event.data()!['long'];
@@ -83,7 +88,15 @@ class OrderTrackingController extends GetxController {
             print(currentLong);
             print("================================================");
             updateMarkerDelivery(currentLat!, currentLong!);
-            initPolyLine();
+            await initPolyLine();
+            await calculateETA();
+            if (etaTimer == null) {
+              etaTimer = Timer.periodic(Duration(seconds: 5), (timer) async {
+                await initPolyLine();
+                await calculateETA();
+
+              });
+            }
           }
         }
     );
@@ -98,9 +111,39 @@ class OrderTrackingController extends GetxController {
 
       ),
     );
+    gmc?.animateCamera(
+      CameraUpdate.newLatLng(
+        LatLng(newLat, newLong),
+      ),
+    );
     update();
   }
 
+
+  Future<void> calculateETA() async {
+    if (currentLat == null || currentLong == null) return;
+
+    double seconds = await getDurationOSRM(
+      startLat: currentLat!,
+      startLng: currentLong!,
+      endLat: orderPendingModel.addressLat!,
+      endLng: orderPendingModel.addressLong!,
+    );
+
+    int minutes = (seconds / 60).ceil();
+
+    // 🔥 وقت تجهيز
+    minutes += 5;
+
+    // 🔥 لو قريب جداً
+    if (minutes <= 2) {
+      etaMinutes = 0; // 0 = وصل
+    } else {
+      etaMinutes = minutes;
+    }
+
+    update();
+  }
 
   @override
   void onInit() {
@@ -117,7 +160,7 @@ class OrderTrackingController extends GetxController {
   void onClose() {
      // إيقاف الاستماع للموقع
     gmc = null; // تفريغ متحكم الخريطة
-
+    etaTimer?.cancel();
     super.onClose();
   }
 }

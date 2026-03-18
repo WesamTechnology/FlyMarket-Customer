@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import '../../../controller/orders/order_archive_controller.dart';
 import '../../../controller/orders/order_pending_controller.dart';
 import '../../../core/class/handlingdataview.dart';
+import '../../../core/functions/translate_database.dart';
 import '../../widget/order/orderslistcardarchive.dart';
 
 class OrderArchiveView extends StatelessWidget {
@@ -20,7 +21,7 @@ class OrderArchiveView extends StatelessWidget {
         backgroundColor: Colors.white,
         centerTitle: true,
         title: Text(
-          "Orders Archive",
+          translateDatabase("أرشيف الطلبات", "Orders Archive"),
           style: TextStyle(
             color: AppColor.primaryColor,
             fontWeight: FontWeight.bold

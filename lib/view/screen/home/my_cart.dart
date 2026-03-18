@@ -22,7 +22,7 @@ class MyCart extends StatelessWidget {
             (controller) => BottomNavgationBarCart(
           price: "${controller.priceOrder}",
           discount: "${controller.disCountCoupon}%",
-          shipping: "0",
+          // shipping: "0",
           totalprice: "${controller.getTotalPrice()}",
           controllercoupon: controller.controllercoupon!,
           onApplyCoupon: (){controller.checkCoupon();},

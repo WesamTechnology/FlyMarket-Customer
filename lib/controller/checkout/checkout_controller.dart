@@ -3,11 +3,14 @@ import 'package:get/get.dart';
 
 import '../../core/class/statuserequest.dart';
 import '../../core/constant/routes.dart';
+import '../../core/functions/get_distance_osrm.dart';
 import '../../core/functions/handling_data_controller.dart';
+import '../../core/functions/translate_database.dart';
 import '../../core/services/services.dart';
 import '../../data/datasource/remote/address/address_data.dart';
 import '../../data/datasource/remote/checkout/checkout_data.dart';
 import '../../data/model/address/address_view_model.dart';
+import '../../data/model/cart_model.dart';
 
 class CheckoutController extends GetxController {
   String? paymentChoos;
@@ -19,6 +22,9 @@ class CheckoutController extends GetxController {
   CheckoutData checkoutData = Get.put(CheckoutData(Get.find()));
   MyServices myServices = Get.find();
   List<AddressViewModel> listDataAddress = [];
+  late List<CartModel> cartList;
+  double deliveryPrice = 0.0;
+  bool isLoadingPrice = false;
 
   late String couponId;
   late String priceOrder;
@@ -30,13 +36,20 @@ class CheckoutController extends GetxController {
     update();
   }
 
-  chooseDeliveryMethod(String value) {
+  chooseDeliveryMethod(String value)async  {
     deliveryChoos = value;
+    if (value == "0" && addressChoos != "0") {
+      await calculatePriceLive();
+    }
+    if (value == "1") {
+      deliveryPrice = 0;
+    }
     update();
   }
 
-  chooseAddress(String value) {
+  chooseAddress(String value)async {
     addressChoos = value;
+    await calculatePriceLive();
     update();
   }
 
@@ -64,10 +77,30 @@ class CheckoutController extends GetxController {
     update();
   }
 
+
   checkout() async {
-    if(paymentChoos == null) return Get.snackbar("تنبية", "الرجاء اختيار وسيلة الدفع");
-    if(deliveryChoos == null) return Get.snackbar("تنبية", "الرجاء اختيار التوصيل");
-    if(listDataAddress.isEmpty) return Get.snackbar("تنبية", "الرجاء اختيار موقع التوصيل");
+    if (paymentChoos == null) return Get.snackbar(
+        translateDatabase("تنبيه", "Alert"),
+        translateDatabase("الرجاء اختيار وسيلة الدفع", "Please choose a payment method"),
+      );
+
+    if (deliveryChoos == null) return Get.snackbar(
+        translateDatabase("تنبيه", "Alert"),
+        translateDatabase("الرجاء اختيار التوصيل", "Please choose delivery type"),
+      );
+
+    if (listDataAddress.isEmpty) return Get.snackbar(
+        translateDatabase("تنبيه", "Alert"),
+        translateDatabase("الرجاء اختيار موقع التوصيل", "Please choose delivery location"),
+      );
+    // 🔥 خذ العنوان المختار مش أول واحد
+    final selectedAddress = listDataAddress.firstWhere(
+          (e) => e.addressId.toString() == addressChoos,
+    );
+
+    if (deliveryChoos == "0" && deliveryPrice == 0) {
+      return Get.snackbar("تنبيه", "انتظر حساب سعر التوصيل");
+    }
     statusRequest = StatusRequest.loding;
     update();
 
@@ -76,7 +109,7 @@ class CheckoutController extends GetxController {
       "addressid": addressChoos.toString(),
       "supermarketid": supermarketId.toString(),
       "orderstype": deliveryChoos.toString(),
-      "pricedelivery": "10",
+      "pricedelivery": deliveryPrice.toStringAsFixed(0),
       "ordersprice": priceOrder.toString(),
       "couponid":  couponId.toString(),
       "paymentmethod": paymentChoos.toString(),
@@ -88,24 +121,110 @@ class CheckoutController extends GetxController {
     statusRequest = handlingData(response);
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {
-        if(paymentChoos == null) return Get.snackbar("تنبية", "الرجاء اختيار وسيلة الدفع");
-        if(deliveryChoos == null) return Get.snackbar("تنبية", "الرجاء اختيار التوصيل");
-        if(listDataAddress.isEmpty) return Get.snackbar("تنبية", "الرجاء اختيار موقع التوصيل");
+        if (paymentChoos == null) return Get.snackbar(
+          translateDatabase("تنبيه", "Alert"),
+          translateDatabase("الرجاء اختيار وسيلة الدفع", "Please choose a payment method"),
+        );
 
+        if (deliveryChoos == null) return Get.snackbar(
+          translateDatabase("تنبيه", "Alert"),
+          translateDatabase("الرجاء اختيار التوصيل", "Please choose delivery type"),
+        );
+
+        if (listDataAddress.isEmpty) return Get.snackbar(
+          translateDatabase("تنبيه", "Alert"),
+          translateDatabase("الرجاء اختيار موقع التوصيل", "Please choose delivery location"),
+        );
         Get.offAllNamed(AppRoute.homepage);
-        Get.snackbar("نجح", "يمكنك الان الطلب الى هاذا الموقع");
+        //Get.snackbar("نجح", "يمكنك الان الطلب الى هاذا الموقع");
 
         Get.snackbar(
-            "نجح",
-            "تم العملية بنجاح"
+          translateDatabase("نجح", "Success"),
+          translateDatabase("تمت العملية بنجاح", "Operation completed successfully"),
         );
       } else {
         statusRequest = StatusRequest.none;
-        Get.snackbar("خطأ", "الرجاءالمحاولة مره اخرى");
+        Get.snackbar(
+          translateDatabase("خطأ", "Error"),
+          translateDatabase("الرجاء المحاولة مرة أخرى", "Please try again"),
+        );
       }
     } else {
       print("================== خطأ في الادرس ===================");
     }
+    update();
+  }
+
+  Future<double> calculateDeliveryPrice({
+    required double userLat,
+    required double userLng,
+    required List<Map<String, double>> supermarkets,
+  }) async {
+
+    double maxDistance = 0;
+
+    for (var market in supermarkets) {
+      double distance = await getDistanceOSRM(
+        startLat: market['lat']!,
+        startLng: market['lng']!,
+        endLat: userLat,
+        endLng: userLng,
+      );
+
+      if (distance > maxDistance) {
+        maxDistance = distance;
+      }
+    }
+
+// تحويل إلى كم
+    double km = maxDistance / 1000;
+
+// السعر
+    double price = km * 85;
+    price = (price / 5).ceil() * 5;
+
+    return price;
+  }
+  List<Map<String, double>> getSupermarketsLocations() {
+    final unique = <int, Map<String, double>>{};
+
+    for (var item in cartList) {
+      if (item.supermarketId != null &&
+          item.supermarketLat != null &&
+          item.supermarketLong != null) {
+
+        unique[item.supermarketId!] = {
+          "lat": item.supermarketLat!,
+          "lng": item.supermarketLong!,
+        };
+      }
+    }
+
+    return unique.values.toList();
+  }
+
+  Future<void> calculatePriceLive() async {
+    if (addressChoos == "0") return;
+
+    isLoadingPrice = true;
+    update();
+
+    final selectedAddress = listDataAddress.firstWhere(
+          (e) => e.addressId.toString() == addressChoos,
+    );
+
+    double price = await calculateDeliveryPrice(
+      userLat: selectedAddress.addressLat!,
+      userLng: selectedAddress.addressLong!,
+      supermarkets: getSupermarketsLocations(),
+    );
+
+    // حد أدنى
+    if (price < 250) price = 250;
+
+    deliveryPrice = price;
+
+    isLoadingPrice = false;
     update();
   }
 
@@ -116,6 +235,7 @@ class CheckoutController extends GetxController {
     priceOrder = Get.arguments['priceorder'];
     coupondiscount = Get.arguments['discountcoupon'].toString();
     supermarketId = Get.arguments["supermarketid"];
+    cartList = Get.arguments['cartList'];
     getShippingAddress();
     super.onInit();
   }

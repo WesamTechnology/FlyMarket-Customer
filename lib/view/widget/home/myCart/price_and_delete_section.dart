@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 import '../../../../core/constant/color.dart';
+import '../../../../core/functions/translate_database.dart';
 
 
 class PriceAndDeleteSection extends StatelessWidget {
@@ -20,11 +22,11 @@ class PriceAndDeleteSection extends StatelessWidget {
         ),
         SizedBox(height: 23.h,),
         Padding(
-          padding:  EdgeInsets.symmetric(horizontal: 15.w),
+          padding:  EdgeInsets.only(left: Get.locale!.languageCode == "ar" ? 10.w : 0, right: Get.locale!.languageCode == "ar" ?0 : 10.w),
           child: Text(
-            "$price RYE",
+            translateDatabase("$price ريال", "$price RYE"),
             style: TextStyle(
-              color: Colors.black,
+              color: AppColor.primaryColor,
               fontSize: 14.sp,
             ),
           ),

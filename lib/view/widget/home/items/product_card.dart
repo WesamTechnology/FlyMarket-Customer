@@ -117,31 +117,28 @@ class ProductCard extends GetView<ItemsControllerImp> {
                             ),
                           ),
                           if( itemsModel.itmesDiscount !=0)
-                          Positioned(
-                            child: Row(
-                              children: [
-                                Text(
-                                  "${itemsModel.itmesPrice}",
-                                  style: TextStyle(
-                                    fontSize: 13.sp,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.green[700],
-                                    decoration: TextDecoration.lineThrough, // ✅ خط في الوسط
-                                    decorationThickness: 2,
+                            Positioned(
+                              top: 0,
+                              left: 0,
+                              child: Container(
+                                padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 3.h),
+                                decoration: BoxDecoration(
+                                  color: Colors.red,
+                                  borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(12.r),
+                                    bottomRight: Radius.circular(12.r),
                                   ),
                                 ),
-                                SizedBox(width: 4.w),
-                                Text(
-                                  "%${itemsModel.itmesDiscount}",
+                                child: Text(
+                                  "${itemsModel.itmesDiscount}%",
                                   style: TextStyle(
-                                    fontSize: 10.sp,
+                                    color: Colors.white,
+                                    fontSize: 9.sp,
                                     fontWeight: FontWeight.bold,
-                                    color: Colors.red[700],
                                   ),
                                 ),
-                              ],
+                              ),
                             ),
-                          ),
                         ],
                       ),
                     ),

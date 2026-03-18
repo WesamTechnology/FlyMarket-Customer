@@ -12,6 +12,7 @@ import 'package:get/get.dart';
 
 import '../../../../controller/home/categories_all_controller.dart';
 import '../../../../core/constant/imgaeasset.dart';
+import '../../../../core/functions/translate_database.dart';
 import '../../../screen/home/CategoryDetailPages/dairy_eggs.dart';
 
 class CustomGridviewCategories extends GetView<CategoriesAllControllerImp> {
@@ -181,7 +182,7 @@ class CategoriesAll extends GetView<CategoriesAllControllerImp> {
             Padding(
               padding: const EdgeInsets.only(bottom: 12).r,
               child: Text(
-                "${categoriesAllModel.categoriesName}",
+                translateDatabase("${categoriesAllModel.categoriesNameAr}", "${categoriesAllModel.categoriesName}"),
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 13.sp,

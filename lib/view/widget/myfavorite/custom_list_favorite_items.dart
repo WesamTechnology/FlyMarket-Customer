@@ -102,7 +102,7 @@ class CustomListFavoriteItems extends GetView<MyFavoriteController> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "${itemsModel.itemspricedisount} RYE",
+                        translateDatabase("${itemsModel.itemspricedisount} ريال", "${itemsModel.itemspricedisount} RYE"),
                         style: const TextStyle(
                           color: AppColor.primaryColor,
                           fontSize: 18,

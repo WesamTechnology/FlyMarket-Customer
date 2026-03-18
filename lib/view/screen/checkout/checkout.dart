@@ -5,6 +5,7 @@ import '../../../core/class/handlingdataview.dart';
 import '../../../core/constant/color.dart';
 import '../../../core/constant/imgaeasset.dart';
 import '../../../core/constant/routes.dart';
+import '../../../core/functions/translate_database.dart';
 import '../../widget/checkout/carddeliveerytype.dart';
 import '../../widget/checkout/cardpaymentmethod.dart';
 import '../../widget/checkout/cardshippingaddress.dart';
@@ -18,7 +19,7 @@ class Checkout extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Checkout",
+          translateDatabase("إتمام الطلب", "Checkout"),
           style: TextStyle(
             color: AppColor.primaryColor,
             fontWeight: FontWeight.bold,
@@ -35,11 +36,14 @@ class Checkout extends StatelessWidget {
             borderRadius: BorderRadius.circular(10),
           ),
           onPressed: () {
-            print("======================== checkout supermarketId = ${controller.supermarketId} ");
-            print("======================== checkout couponId = ${controller.couponId} ");
+            // print("======================== checkout supermarketId = ${controller.supermarketId} ");
+            // print("======================== checkout couponId = ${controller.couponId} ");
             controller.checkout();
           },
-          child: Text("Checkout"),
+          child: Text(
+            translateDatabase("إتمام الطلب", "Checkout"),
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
         ),
       ),
       body: GetBuilder<CheckoutController>(
@@ -52,7 +56,10 @@ class Checkout extends StatelessWidget {
                 children: [
                   SizedBox(height: 10),
                   Text(
-                    "Choose Payment Method",
+                    translateDatabase(
+                      "اختر طريقة الدفع",
+                      "Choose Payment Method",
+                    ),
                     style: TextStyle(
                       color: AppColor.primaryColor,
                       fontWeight: FontWeight.bold,
@@ -64,7 +71,10 @@ class Checkout extends StatelessWidget {
                     onTap: () {
                       controller.choosePaymentMethod("0"); // 0 = > cash
                     },
-                    title: "Cash On Delivery",
+                    title: translateDatabase(
+                      "الدفع عند الاستلام",
+                      "Cash On Delivery",
+                    ),
                     isActive: controller.paymentChoos == "0" ? true : false,
                   ),
                   SizedBox(height: 10),
@@ -72,12 +82,15 @@ class Checkout extends StatelessWidget {
                     onTap: () {
                       controller.choosePaymentMethod("1"); // 1 => card
                     },
-                    title: "Payment Card",
+                    title: translateDatabase("بطاقة الدفع", "Payment Card"),
                     isActive: controller.paymentChoos == "1" ? true : false,
                   ),
                   SizedBox(height: 30),
                   Text(
-                    "Choose Delivery Type",
+                    translateDatabase(
+                      "اختر نوع التوصيل",
+                      "Choose Delivery Type",
+                    ),
                     style: TextStyle(
                       color: AppColor.primaryColor,
                       fontWeight: FontWeight.bold,
@@ -92,7 +105,7 @@ class Checkout extends StatelessWidget {
                           controller.chooseDeliveryMethod("0"); // 0 => delivery
                         },
                         imagename: AppImageAsset.deliveryImage2,
-                        title: "Delivery",
+                        title: translateDatabase("توصيل", "Delivery"),
                         active: controller.deliveryChoos == "0" ? true : false,
                       ),
                       SizedBox(width: 20),
@@ -101,7 +114,7 @@ class Checkout extends StatelessWidget {
                           controller.chooseDeliveryMethod("1"); // 1 => pick
                         },
                         imagename: AppImageAsset.drivethruImage,
-                        title: "Pick Up",
+                        title: translateDatabase("استلام", "Pick Up"),
                         active: controller.deliveryChoos == "1" ? true : false,
                       ),
                     ],
@@ -112,7 +125,7 @@ class Checkout extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "Shipping Address",
+                          translateDatabase("عنوان الشحن", "Shipping Address"),
                           style: TextStyle(
                             color: AppColor.primaryColor,
                             fontWeight: FontWeight.bold,
@@ -127,7 +140,10 @@ class Checkout extends StatelessWidget {
                             },
                             child: Center(
                               child: Text(
-                                "Please Add Shipping Address \n Click Here",
+                                translateDatabase(
+                                  "يرجى إضافة عنوان الشحن \n اضغط هنا",
+                                  "Please Add Shipping Address \n Click Here",
+                                ),
                                 style: TextStyle(
                                   color: Colors.red,
                                   fontWeight: FontWeight.bold,
@@ -144,26 +160,49 @@ class Checkout extends StatelessWidget {
                             return CardShppingAddressCheckout(
                               onTap: () {
                                 controller.chooseAddress(
-                                  controller
-                                      .listDataAddress[index]
-                                      .addressId!.toString(),
+                                  controller.listDataAddress[index].addressId!
+                                      .toString(),
                                 );
                               },
-                              title:
-                              controller
+                              title: controller
                                   .listDataAddress[index]
                                   .addressName!,
                               body:
-                              "${controller.listDataAddress[index].addressCity!} ${controller.listDataAddress[index].addressStreet!}",
+                                  "${controller.listDataAddress[index].addressCity!} ${controller.listDataAddress[index].addressStreet!}",
                               isactive:
-                              controller.addressChoos ==
-                                  controller
-                                      .listDataAddress[index]
-                                      .addressId!.toString()
+                                  controller.addressChoos ==
+                                      controller
+                                          .listDataAddress[index]
+                                          .addressId!
+                                          .toString()
                                   ? true
                                   : false,
                             );
                           },
+                        ),
+                        Container(
+                          padding: EdgeInsets.all(15),
+                          decoration: BoxDecoration(
+                            color: Colors.grey.shade100,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                "سعر التوصيل",
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                              Text(
+                                "${controller.deliveryPrice.toStringAsFixed(0)} ريال",
+                                style: TextStyle(
+                                  color: AppColor.primaryColor,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ],
                     ),

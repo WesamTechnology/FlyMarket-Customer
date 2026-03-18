@@ -4,6 +4,7 @@ import 'package:flymarket_customer/view/widget/home/categories/custom_Search.dar
 import 'package:get/get.dart';
 
 import '../../../../controller/home/categories_controller.dart';
+import '../../../../core/functions/translate_database.dart';
 
 class InfoSection extends StatelessWidget {
   const InfoSection({
@@ -43,7 +44,7 @@ class InfoSection extends StatelessWidget {
           const CustomSearch(),
           SizedBox(height: 15.h),
           Text(
-            "Available Products",
+            translateDatabase("المنتجات المتاحة", "Available Products"),
             style: TextStyle(
               fontSize: 18.sp,
               fontWeight: FontWeight.bold,

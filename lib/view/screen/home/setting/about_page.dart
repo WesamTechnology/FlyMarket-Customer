@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/constant/color.dart';
+import '../../../../core/functions/translate_database.dart';
+
 
 class AboutPage extends StatelessWidget {
   const AboutPage({super.key});
@@ -10,8 +12,8 @@ class AboutPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColor.backgroundcolor,
       appBar: AppBar(
-        title: const Text(
-          'About FlyMarket',
+        title:  Text(
+          translateDatabase("حول FlyMarket", "About FlyMarket"),
           style: TextStyle(fontWeight: FontWeight.bold, color: AppColor.fourthColor),
         ),
         backgroundColor: Colors.white,
@@ -75,9 +77,12 @@ class AboutPage extends StatelessWidget {
                 children: [
                   // بطاقة الوصف
                   _buildSectionCard(
-                    title: 'Our Vision',
+                    title: translateDatabase("رؤيتنا", "Our Vision"),
                     child: Text(
-                      'FlyMarket is a smart supermarket delivery app that revolutionizes your shopping experience. Browse nearby markets, compare prices in real-time, and place orders directly from your phone with our intuitive interface.',
+                      translateDatabase(
+                        "FlyMarket هو تطبيق ذكي لتوصيل السوبرماركت يغيّر تجربة التسوق الخاصة بك. تصفّح الأسواق القريبة، قارن الأسعار في الوقت الفعلي، واطلب مباشرة من هاتفك عبر واجهة سهلة الاستخدام.",
+                        "FlyMarket is a smart supermarket delivery app that revolutionizes your shopping experience. Browse nearby markets, compare prices in real-time, and place orders directly from your phone with our intuitive interface.",
+                      ),
                       style: TextStyle(
                         fontSize: 15.sp,
                         height: 1.6,
@@ -90,22 +95,21 @@ class AboutPage extends StatelessWidget {
 
                   // بطاقة المميزات
                   _buildSectionCard(
-                    title: 'Key Features',
+                    title: translateDatabase("الميزات الرئيسية", "Key Features"),
                     child: Column(
                       children: [
-                        _buildFeatureItem(Icons.store_rounded, 'Browse Local Markets'),
-                        _buildFeatureItem(Icons.compare_arrows_rounded, 'Price Comparison'),
-                        _buildFeatureItem(Icons.shopping_bag_rounded, 'Easy Ordering'),
-                        _buildFeatureItem(Icons.local_shipping_rounded, 'Fast Delivery'),
+                        _buildFeatureItem(Icons.store_rounded, translateDatabase("تصفح الأسواق المحلية", "Browse Local Markets")),
+                        _buildFeatureItem(Icons.compare_arrows_rounded, translateDatabase("مقارنة الأسعار", "Price Comparison")),
+                        _buildFeatureItem(Icons.shopping_bag_rounded, translateDatabase("طلب سهل", "Easy Ordering")),
+                        _buildFeatureItem(Icons.local_shipping_rounded, translateDatabase("توصيل سريع", "Fast Delivery")),
                       ],
                     ),
                   ),
 
                   SizedBox(height: 20.h),
 
-                  // بطاقة التواصل
                   _buildSectionCard(
-                    title: 'Contact Us',
+                    title: translateDatabase("تواصل معنا", "Contact Us"),
                     child: Column(
                       children: [
                         _buildContactItem(
@@ -133,7 +137,7 @@ class AboutPage extends StatelessWidget {
 
                   Center(
                     child: Text(
-                      '© 2024 FlyMarket Team. All rights reserved.',
+                      translateDatabase("© 2026 فريق FlyMarket. جميع الحقوق محفوظة.", "© 2026 FlyMarket Team. All rights reserved."),
                       style: TextStyle(fontSize: 12.sp, color: Colors.grey[400]),
                     ),
                   ),

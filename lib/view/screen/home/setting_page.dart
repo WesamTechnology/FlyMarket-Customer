@@ -17,6 +17,8 @@ import 'package:flymarket_customer/view/widget/home/setting/custom_list_setting.
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
+import '../../../core/functions/translate_database.dart';
+
 class SettingPage extends StatelessWidget {
   const SettingPage({super.key});
 
@@ -27,7 +29,7 @@ class SettingPage extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            CustomTitle(title: "Setting"),
+            CustomTitle(title: translateDatabase("الإعدادات", "Setting"),),
             const SizedBox(height: 10),
             CustomListInfoSetting(),
             Divider(
@@ -42,7 +44,7 @@ class SettingPage extends StatelessWidget {
                 child: Column(
                   children: [
                     CustomListSetting(
-                      title: "Order",
+                      title: translateDatabase("الطلبات", "Order"),
                       iconLeading: Icons.shopping_bag_outlined,
                       iconTrailing: Icons.arrow_forward_ios_outlined,
                       onTap: (){
@@ -50,7 +52,7 @@ class SettingPage extends StatelessWidget {
                       },
                     ),
                     CustomListSetting(
-                      title: "Order Archive",
+                      title: translateDatabase("أرشيف الطلبات", "Order Archive"),
                       iconLeading: Icons.shopping_bag_sharp,
                       iconTrailing: Icons.arrow_forward_ios_outlined,
                       onTap: (){
@@ -59,7 +61,7 @@ class SettingPage extends StatelessWidget {
                     ),
 
                     CustomListSetting(
-                      title: "My Address",
+                      title: translateDatabase("عناويني", "My Address"),
                       iconLeading: Icons.location_on_outlined,
                       iconTrailing: Icons.arrow_forward_ios_outlined,
                       onTap: (){
@@ -67,7 +69,7 @@ class SettingPage extends StatelessWidget {
                       },
                     ),
                     CustomListSetting(
-                      title: "Payment Methods",
+                      title: translateDatabase("طرق الدفع", "Payment Methods"),
                       iconLeading: Icons.payment_outlined,
                       iconTrailing: Icons.arrow_forward_ios_outlined,
                       onTap: (){
@@ -75,7 +77,7 @@ class SettingPage extends StatelessWidget {
                       },
                     ),
                     CustomListSetting(
-                      title: "Notifications",
+                      title: translateDatabase("الإشعارات", "Notifications"),
                       iconLeading: Icons.notifications_active_outlined,
                       iconTrailing: Icons.arrow_forward_ios_outlined,
                       onTap: (){
@@ -83,7 +85,7 @@ class SettingPage extends StatelessWidget {
                       },
                     ),
                     CustomListSetting(
-                      title: "Help",
+                      title: translateDatabase("المساعدة", "Help"),
                       iconLeading: Icons.help_outline,
                       iconTrailing: Icons.arrow_forward_ios_outlined,
                       onTap: (){
@@ -91,7 +93,7 @@ class SettingPage extends StatelessWidget {
                       },
                     ),
                     CustomListSetting(
-                      title: "Languages",
+                      title: translateDatabase("اللغات", "Languages"),
                       iconLeading: Icons.language_outlined,
                       iconTrailing: Icons.arrow_forward_ios_outlined,
                       onTap: (){
@@ -99,7 +101,7 @@ class SettingPage extends StatelessWidget {
                       },
                     ),
                     CustomListSetting(
-                      title: "About",
+                      title: translateDatabase("حول التطبيق", "About"),
                       iconLeading: Icons.info_outline,
                       iconTrailing: Icons.arrow_forward_ios_outlined,
                       onTap: (){
@@ -116,7 +118,7 @@ class SettingPage extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            "Log Out",
+                            translateDatabase("تسجيل الخروج", "Log Out"),
                             style: TextStyle(
                               fontSize: 15.sp,
                               fontWeight: FontWeight.bold,

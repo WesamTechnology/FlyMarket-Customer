@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 
 import '../../../controller/favorite/my_favorite_controller.dart';
 import '../../../core/class/handlingdataview.dart';
+import '../../../core/functions/translate_database.dart';
 import '../../../data/model/itemsmodel.dart';
 import '../../widget/myfavorite/custom_list_favorite_items.dart';
 
@@ -18,33 +19,38 @@ class Favorites extends StatelessWidget {
     Get.put(MyFavoriteController());
     return Scaffold(
       backgroundColor: Colors.white,
+      appBar: AppBar(
+        title:CustomTitle(title: translateDatabase("المفضلة", "Favorites"),) ,
+      ),
       body: SafeArea(
-        child: Column(
-          children: [
-            CustomTitle(title: "Favorites"),
-            SizedBox(height: 10),
-            GetBuilder<MyFavoriteController>(
-              builder: (controller) {
-                return HandlingDataView(
-                  statusRequest: controller.statusRequest,
-                  widget: GridView.builder(
-                    shrinkWrap: true,
-                    physics: NeverScrollableScrollPhysics(),
-                    itemCount: controller.data.length,
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      childAspectRatio: 0.8,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+
+              SizedBox(height: 10),
+              GetBuilder<MyFavoriteController>(
+                builder: (controller) {
+                  return HandlingDataView(
+                    statusRequest: controller.statusRequest,
+                    widget: GridView.builder(
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
+                      itemCount: controller.data.length,
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        childAspectRatio: 0.8,
+                      ),
+                      itemBuilder: (context, index) {
+                        return CustomListFavoriteItems(
+                          itemsModel: controller.data[index],
+                        );
+                      },
                     ),
-                    itemBuilder: (context, index) {
-                      return CustomListFavoriteItems(
-                        itemsModel: controller.data[index],
-                      );
-                    },
-                  ),
-                );
-              },
-            ),
-          ],
+                  );
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );

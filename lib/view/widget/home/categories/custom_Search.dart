@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/constant/color.dart';
+import '../../../../core/functions/translate_database.dart';
 
 class CustomSearch extends StatelessWidget {
   const CustomSearch({super.key, this.myControlle, this.onChanged, this.onPressedSearch});
@@ -21,7 +22,7 @@ class CustomSearch extends StatelessWidget {
             onPressed: onPressedSearch,
             icon: Icon(Icons.search),
           ),
-          hintText: "Search",
+          hintText: translateDatabase("بحث", "Search"),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(20).r,
             borderSide: BorderSide(color: AppColor.primaryColor),

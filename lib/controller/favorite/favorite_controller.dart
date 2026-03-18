@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 
 import '../../core/class/statuserequest.dart';
 import '../../core/functions/handling_data_controller.dart';
+import '../../core/functions/translate_database.dart';
 import '../../core/services/services.dart';
 import '../../data/datasource/remote/favorite_data.dart';
 
@@ -46,8 +47,11 @@ class FavoriteController extends GetxController {
     statusRequest = handlingData(response);
     if(StatusRequest.success == statusRequest){
       if(response['status'] == "success"){
-        Get.rawSnackbar( title: "اشعار" , messageText: Text("تم اضافه المنتج الى المفضله"));
-        //data.addAll(response['data']);
+        Get.snackbar(
+          translateDatabase("إشعار", "Notification"),
+          translateDatabase("تم إضافة المنتج إلى المفضلة", "Item added to favorites"),
+          snackPosition: SnackPosition.TOP,
+        );        //data.addAll(response['data']);
       }else{
       statusRequest = StatusRequest.failure;
       }
@@ -64,7 +68,11 @@ class FavoriteController extends GetxController {
     statusRequest = handlingData(response);
     if(StatusRequest.success == statusRequest){
       if(response['status'] == "success"){
-        Get.rawSnackbar( title: "اشعار" , messageText: Text("تم حذف المنتج من المفضله"));
+        Get.snackbar(
+          translateDatabase("إشعار", "Notification"),
+          translateDatabase("تم حذف المنتج من المفضلة", "Item removed from favorites"),
+          snackPosition: SnackPosition.TOP,
+        );
         //data.addAll(response['data']);
       }else{
         statusRequest = StatusRequest.failure;

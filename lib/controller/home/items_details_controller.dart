@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 
 import '../../core/class/statuserequest.dart';
 import '../../core/functions/handling_data_controller.dart';
+import '../../core/functions/translate_database.dart';
 import '../../core/services/services.dart';
 import '../../data/datasource/remote/cart_data.dart';
 import 'package:flutter/material.dart';
@@ -49,8 +50,8 @@ class ItemsDetailsControllerImp extends ItemsDetailsController {
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {
         Get.rawSnackbar(
-          title: "اشعار",
-          messageText: Text("تم اضافه المنتج الى السله"),
+          title: translateDatabase("إشعار", "Notification"),
+          messageText: Text(translateDatabase("تم إضافة المنتج إلى السلة", "Item added to cart"),),
         );
         //data.addAll(response['data']);
       } else {
@@ -73,7 +74,7 @@ class ItemsDetailsControllerImp extends ItemsDetailsController {
       if (response['status'] == "success") {
         Get.rawSnackbar(
           title: "اشعار",
-          messageText: Text("تم حذف المنتج من السله"),
+          messageText: Text(translateDatabase("تم حذف المنتج من السلة", "Item removed from cart"),),
         );
         //data.addAll(response['data']);
       } else {

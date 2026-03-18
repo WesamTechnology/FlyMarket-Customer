@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import '../../../controller/orders/order_pending_controller.dart';
 import '../../../core/class/handlingdataview.dart';
 import '../../../core/constant/color.dart';
+import '../../../core/functions/translate_database.dart';
 import '../../widget/order/orderslistcard.dart';
 
 class OrderPending extends StatelessWidget {
@@ -19,7 +20,7 @@ class OrderPending extends StatelessWidget {
           backgroundColor: Colors.white,
           centerTitle: true,
           title: Text(
-            "Orders Pending",
+            translateDatabase("الطلبات قيد الانتظار", "Orders Pending"),
             style: TextStyle(
                 color: AppColor.primaryColor,
                 fontWeight: FontWeight.bold

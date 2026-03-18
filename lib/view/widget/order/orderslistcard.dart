@@ -7,6 +7,7 @@ import 'package:jiffy/jiffy.dart';
 import '../../../controller/orders/order_pending_controller.dart';
 import '../../../core/constant/color.dart';
 import '../../../core/constant/routes.dart';
+import '../../../core/functions/translate_database.dart';
 import '../../../data/model/orders/order_pending_model.dart';
 class CardOrdersList extends GetView<OrderPendingController> {
   final OrderPendingModel listdata;
@@ -31,7 +32,7 @@ class CardOrdersList extends GetView<OrderPendingController> {
             Row(
               children: [
                 Text(
-                  "Order #${listdata.ordersId}",
+                  translateDatabase("الطلب #${listdata.ordersId}", "Order #${listdata.ordersId}"),
                   style: const TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
@@ -56,29 +57,29 @@ class CardOrdersList extends GetView<OrderPendingController> {
 
             _buildInfoRow(
               icon: Icons.local_shipping,
-              title: "Order Type",
+              title: translateDatabase("نوع الطلب", "Order Type"),
               value: controller.printOrderType(
                   listdata.ordersType!.toString()),
             ),
             _buildInfoRow(
               icon: Icons.attach_money,
-              title: "Order Price",
-              value: "${listdata.ordersPrice} \$",
+              title: translateDatabase("سعر الطلب", "Order Price"),
+              value:translateDatabase("${listdata.ordersPrice} ريال", "${listdata.ordersPrice} RYE"),
             ),
             _buildInfoRow(
               icon: Icons.delivery_dining,
-              title: "Delivery",
-              value: "${listdata.ordersPricedelivery} \$",
+              title: translateDatabase("التوصيل", "Delivery"),
+              value: translateDatabase("${listdata.ordersPricedelivery} ريال", "${listdata.ordersPricedelivery} RYE"),
             ),
             _buildInfoRow(
               icon: Icons.payment,
-              title: "Payment",
+              title: translateDatabase("الدفع", "Payment"),
               value: controller.printPaymentMethod(
                   listdata.ordersPaymentmethod!.toString()),
             ),
             _buildInfoRow(
                 icon: Icons.watch_later_outlined,
-                title: "Data Time",
+                title: translateDatabase("التاريخ والوقت", "Date Time"),
                 value: "${Jiffy.parse(listdata.ordersDatetime!)
                     .add(hours: 3)
                     .fromNow()}"
@@ -91,7 +92,7 @@ class CardOrdersList extends GetView<OrderPendingController> {
               children: [
                 Expanded(
                   child: Text(
-                    "Total: ${listdata.ordersPrice} RYE",
+                    translateDatabase("الإجمالي: ${listdata.ordersTotalprice} ريال", "Total: ${listdata.ordersPrice} RYE"),
                     style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
@@ -107,7 +108,7 @@ class CardOrdersList extends GetView<OrderPendingController> {
                     Get.toNamed(AppRoute.ordersdetails,
                         arguments: {"ordersmodel": listdata});
                   },
-                  child: const Text("Details"),
+                  child:  Text(translateDatabase("التفاصيل", "Details"),),
                 ),
 
                 const SizedBox(width: 5),
@@ -120,7 +121,7 @@ class CardOrdersList extends GetView<OrderPendingController> {
                     onPressed: () {
                       controller.deleteOrder(listdata.ordersId!.toString());
                     },
-                    child: const Text("Delete",style: TextStyle(color: Colors.white),),
+                    child:  Text(translateDatabase("حذف", "Delete"),style: TextStyle(color: Colors.white),),
                   ),
                 if (listdata.ordersStatus == 3)
                   ElevatedButton(
@@ -131,7 +132,7 @@ class CardOrdersList extends GetView<OrderPendingController> {
                       Get.toNamed(AppRoute.ordersTracking,
                           arguments: {"ordersmodel": listdata});
                     },
-                    child: const Text("Tracking",style: TextStyle(color: Colors.white),),
+                    child:  Text(translateDatabase("تتبع", "Tracking"),style: TextStyle(color: Colors.white),),
                   ),
               ],
             ),

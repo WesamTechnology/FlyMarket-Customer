@@ -4,13 +4,14 @@ import 'package:get/get.dart';
 import '../../../controller/cart/cart_controller.dart';
 import '../../../core/constant/color.dart';
 import '../../../core/constant/routes.dart';
+import '../../../core/functions/translate_database.dart';
 import 'custom_button_cart.dart';
 import 'custom_button_coupon.dart';
 
 class BottomNavgationBarCart extends GetView<CartController> {
   final String price;
   final String discount;
-  final String shipping;
+  // final String shipping;
   final String totalprice;
   final TextEditingController controllercoupon;
   final void Function()? onApplyCoupon;
@@ -19,7 +20,7 @@ class BottomNavgationBarCart extends GetView<CartController> {
     Key? key,
     required this.price,
     required this.discount,
-    required this.shipping,
+    // required this.shipping,
     required this.totalprice,
     required this.controllercoupon,
     this.onApplyCoupon,
@@ -48,7 +49,10 @@ class BottomNavgationBarCart extends GetView<CartController> {
                                 vertical: 8,
                                 horizontal: 10,
                               ),
-                              hintText: "Coupon Code",
+                              hintText: translateDatabase(
+                                "كود الكوبون",
+                                "Coupon Code",
+                              ),
                               border: OutlineInputBorder(),
                             ),
                           ),
@@ -57,7 +61,7 @@ class BottomNavgationBarCart extends GetView<CartController> {
                         Expanded(
                           flex: 1,
                           child: CustomButtonCoupon(
-                            textbutton: "apply",
+                            textbutton: translateDatabase("تطبيق", "Apply"),
                             onPressed: onApplyCoupon,
                           ),
                         ),
@@ -66,7 +70,10 @@ class BottomNavgationBarCart extends GetView<CartController> {
                   )
                 : Container(
                     child: Text(
-                      "Coupon Code ${controller.couponname!}",
+                      translateDatabase(
+                        "كود الكوبون ${controller.couponname!}",
+                        "Coupon Code ${controller.couponname!}",
+                      ),
                       style: TextStyle(
                         color: AppColor.primaryColor,
                         fontWeight: FontWeight.bold,
@@ -88,11 +95,11 @@ class BottomNavgationBarCart extends GetView<CartController> {
                   children: [
                     Container(
                       padding: EdgeInsets.symmetric(horizontal: 20),
-                      child: Text("price", style: TextStyle(fontSize: 16)),
+                      child: Text(translateDatabase("السعر", "Price"), style: TextStyle(fontSize: 16)),
                     ),
                     Container(
                       padding: EdgeInsets.symmetric(horizontal: 20),
-                      child: Text("$price \$", style: TextStyle(fontSize: 16)),
+                      child: Text(translateDatabase("$price ريال", "$price RYE"), style: TextStyle(fontSize: 16)),
                     ),
                   ],
                 ),
@@ -101,7 +108,7 @@ class BottomNavgationBarCart extends GetView<CartController> {
                   children: [
                     Container(
                       padding: EdgeInsets.symmetric(horizontal: 20),
-                      child: Text("discount", style: TextStyle(fontSize: 16)),
+                      child: Text(translateDatabase("الخصم", "Discount"), style: TextStyle(fontSize: 16)),
                     ),
                     Container(
                       padding: EdgeInsets.symmetric(horizontal: 20),
@@ -109,19 +116,19 @@ class BottomNavgationBarCart extends GetView<CartController> {
                     ),
                   ],
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Container(
-                      padding: EdgeInsets.symmetric(horizontal: 20),
-                      child: Text("shipping", style: TextStyle(fontSize: 16)),
-                    ),
-                    Container(
-                      padding: EdgeInsets.symmetric(horizontal: 20),
-                      child: Text("$shipping ", style: TextStyle(fontSize: 16)),
-                    ),
-                  ],
-                ),
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //   children: [
+                //     // Container(
+                //     //   padding: EdgeInsets.symmetric(horizontal: 20),
+                //     //   child: Text(translateDatabase("الشحن", "Shipping"), style: TextStyle(fontSize: 16)),
+                //     // ),
+                //     Container(
+                //       padding: EdgeInsets.symmetric(horizontal: 20),
+                //       child: Text("$shipping ", style: TextStyle(fontSize: 16)),
+                //     ),
+                //   ],
+                // ),
                 Divider(),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -129,7 +136,7 @@ class BottomNavgationBarCart extends GetView<CartController> {
                     Container(
                       padding: EdgeInsets.symmetric(horizontal: 20),
                       child: Text(
-                        "Total Price",
+                        translateDatabase("السعر الإجمالي", "Total Price"),
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
@@ -140,7 +147,7 @@ class BottomNavgationBarCart extends GetView<CartController> {
                     Container(
                       padding: EdgeInsets.symmetric(horizontal: 20),
                       child: Text(
-                        "$totalprice \$",
+                        translateDatabase("$totalprice ريال", "$totalprice RYE"),
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
@@ -155,10 +162,10 @@ class BottomNavgationBarCart extends GetView<CartController> {
           ),
           SizedBox(height: 10),
           CustomButtonCart(
-            textbutton: "Place Order",
+            textbutton: translateDatabase("تأكيد الطلب", "Place Order"),
             onPressed: () {
               controller.goToCheckout();
-             // Get.toNamed(AppRoute.checkout);
+              // Get.toNamed(AppRoute.checkout);
             },
           ),
         ],

@@ -8,6 +8,8 @@ import 'package:flymarket_customer/view/widget/home/categories/custom_gridview_c
 import 'package:flymarket_customer/view/widget/home/home_page/custom_gridview.dart';
 import 'package:get/get.dart';
 
+import '../../../core/functions/translate_database.dart';
+
 class Categories extends StatelessWidget {
   const Categories({super.key});
 
@@ -22,7 +24,7 @@ class Categories extends StatelessWidget {
           children: [
             SizedBox(height: 50),
             Text(
-              "Categories",
+              translateDatabase("الأقسام", "Categories"),
               style: TextStyle(
                 fontSize: 22.sp,
                 fontWeight: FontWeight.bold,

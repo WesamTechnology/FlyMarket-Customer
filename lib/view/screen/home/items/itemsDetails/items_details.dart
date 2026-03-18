@@ -29,8 +29,8 @@ class ItemsDetails extends StatelessWidget {
           onPressed: () => Navigator.pop(context),
         ),
         centerTitle: true,
-        title: const Text(
-          "Items Detail",
+        title:  Text(
+          translateDatabase("تفاصيل المنتج", "Items Detail"),
           style: TextStyle(
             fontSize: 20,
             color: Colors.black87,
@@ -264,8 +264,8 @@ class ItemsDetails extends StatelessWidget {
                           Get.find<CartController>().refreshPage();
                           Get.toNamed(AppRoute.myCart);
                         },
-                        child: const Text(
-                          "Go To Cart",
+                        child:  Text(
+                          translateDatabase("الانتقال إلى السلة", "Go To Cart"),
                           style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.w600,

@@ -4,6 +4,7 @@ import 'package:flymarket_customer/core/class/handlingdataview.dart';
 import 'package:get/get.dart';
 
 import '../../../../controller/cart/cart_controller.dart';
+import '../../../../core/functions/translate_database.dart';
 import 'cart_item_widget.dart';
 
 class CustomListViewCart extends GetView<CartController> {
@@ -19,8 +20,8 @@ class CustomListViewCart extends GetView<CartController> {
             itemCount: controller.data.length,
             itemBuilder: (context, index) {
               return CartItemWidget(
-                name: controller.data[index].itmesName!,
-                description: controller.data[index].itmesDesc!,
+                name: translateDatabase("${controller.data[index].itmesNameAr!}", "${controller.data[index].itmesName!}"),
+                description: translateDatabase("${controller.data[index].itmesDescAr!}", "${controller.data[index].itmesDesc!}"),
                 image: controller.data[index].itmesImage!,
                 price: controller.data[index].itemsprice.toString(),
                 count: controller.data[index].countitems.toString(),

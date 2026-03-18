@@ -7,6 +7,7 @@ import 'package:flymarket_customer/core/functions/translate_database.dart';
 import 'package:flymarket_customer/data/model/itemsmodel.dart';
 import 'package:flymarket_customer/link_api.dart';
 import 'package:get/get.dart';
+import '../../../../controller/favorite/favorite_controller.dart';
 import '../../../../controller/home/items_all_controller.dart';
 import '../../../../data/model/product_model.dart';
 
@@ -71,42 +72,66 @@ class ProductAllCard extends GetView<ItemsAllControllerImp> {
                           color: Colors.white.withOpacity(0.9),
                           shape: BoxShape.circle,
                         ),
-                        child: IconButton(
-                          padding: EdgeInsets.zero,
-                          constraints: BoxConstraints.tight(Size(32.w, 32.w)),
-                          icon: Icon(
-                            Icons.favorite_border_outlined,
-                            size: 18.sp,
-                            color: AppColor.primaryColor,
-                          ),
-                          onPressed: () {},
+                        child:GetBuilder<FavoriteController>(
+                          builder: (controllerFav) {
+                            final fav = controllerFav.isFavorite[itemsModel.itmesId] ?? 0;
+
+                            return IconButton(
+                              onPressed: () {
+                                if (fav == 1) {
+                                  controllerFav.setFavorite(
+                                    itemsModel.itmesId!,
+                                    0,
+                                  );
+                                  controllerFav.removeFavorite(
+                                      itemsModel.itmesId!,
+                                      itemsModel.itmesSuper
+                                  );
+                                } else {
+                                  controllerFav.setFavorite(
+                                    itemsModel.itmesId!,
+                                    1,
+                                  );
+                                  controllerFav.addFavorite(
+                                      itemsModel.itmesId!,
+                                      itemsModel.itmesSuper
+                                  );
+                                }
+                              },
+                              icon: fav == 1
+                                  ? Icon(
+                                Icons.favorite,
+                                color: Colors.red,
+                              )
+                                  : Icon(Icons.favorite_border_outlined),
+                            );
+                          },
                         ),
                       ),
                     ),
                    if( itemsModel.itmesDiscount !=0)
-                    Positioned(child:  Row(
-                      children: [
-                        Text(
-                          "${itemsModel.itmesPrice}",
-                          style: TextStyle(
-                            fontSize: 13.sp,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.green[700],
-                            decoration: TextDecoration.lineThrough, // ✅ خط في الوسط
-                            decorationThickness: 2,
-                          ),
-                        ),
-                        SizedBox(width: 4.w),
-                        Text(
-                          "%${itemsModel.itmesDiscount}",
-                          style: TextStyle(
-                            fontSize: 10.sp,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.red[700],
-                          ),
-                        ),
-                      ],
-                    ),)
+                     Positioned(
+                       top: 0,
+                       left: 0,
+                       child: Container(
+                         padding: EdgeInsets.symmetric(horizontal: 6.w, vertical: 2.h),
+                         decoration: BoxDecoration(
+                           color: Colors.red,
+                           borderRadius: BorderRadius.only(
+                             topLeft: Radius.circular(12.r),
+                             bottomRight: Radius.circular(12.r),
+                           ),
+                         ),
+                         child: Text(
+                           "${itemsModel.itmesDiscount}%",
+                           style: TextStyle(
+                             color: Colors.white,
+                             fontSize: 9.sp,
+                             fontWeight: FontWeight.bold,
+                           ),
+                         ),
+                       ),
+                     ),
                   ],
                 ),
               ),
@@ -135,48 +160,20 @@ class ProductAllCard extends GetView<ItemsAllControllerImp> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
-                            translateDatabase(
-                              "${itemsModel.itemspricedisount} ريال يمني",
-                              "${itemsModel.itemspricedisount} RYE",
-                            ),
-                            style: TextStyle(
-                              fontSize: 14.sp,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.green[700],
+                          Expanded(
+                            child: Text(
+                              translateDatabase(
+                                "${itemsModel.itemspricedisount} ريال يمني",
+                                "${itemsModel.itemspricedisount} RYE",
+                              ),
+                              style: TextStyle(
+                                fontSize: 14.sp,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.green[700],
+                              ),
                             ),
                           ),
-                          ElevatedButton(
-                            onPressed: () {},
-                            style: ElevatedButton.styleFrom(
-                              padding: EdgeInsets.symmetric(
-                                horizontal: 10.w,
-                                vertical: 6.h,
-                              ),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10.r),
-                              ),
-                              elevation: 0,
-                              backgroundColor: Colors.green[600],
-                            ),
-                            child: Row(
-                              children: [
-                                Icon(
-                                  Icons.add_shopping_cart,
-                                  size: 14.sp,
-                                  color: Colors.white,
-                                ),
-                                SizedBox(width: 4.w),
-                                Text(
-                                  "Add",
-                                  style: TextStyle(
-                                    fontSize: 12.sp,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
+
                         ],
                       ),
                     ],

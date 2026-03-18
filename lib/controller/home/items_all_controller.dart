@@ -1,4 +1,4 @@
-
+import 'package:flymarket_customer/core/services/services.dart';
 import 'package:flymarket_customer/data/datasource/remote/items_all_data.dart';
 import 'package:get/get.dart';
 
@@ -6,30 +6,30 @@ import '../../core/class/statuserequest.dart';
 import '../../core/constant/routes.dart';
 import '../../core/functions/handling_data_controller.dart';
 import '../../data/model/itemsmodel.dart';
-
+import '../favorite/favorite_controller.dart';
 
 abstract class ItemsAllController extends GetxController {
   initialData();
-  changCat(int val,String catVal);
+
+  changCat(int val, String catVal);
+
   getItems(String categoryId);
+
   goItemsAllDetails(ItemsModel itemsModel);
 }
 
 class ItemsAllControllerImp extends ItemsAllController {
-
   List supermarket = [];
   List categoriesAll = [];
   List itemsAll = [];
   String? categoriesAllId;
   int? selecteCatAll;
-
+  MyServices myServices = Get.find();
   ItemsAllData itemsData = ItemsAllData(Get.find());
 
   List data = [];
 
-  late StatusRequest statusRequest ;
-
-
+  late StatusRequest statusRequest;
 
   @override
   void onInit() {
@@ -43,13 +43,10 @@ class ItemsAllControllerImp extends ItemsAllController {
     selecteCatAll = Get.arguments["selecteCatAll"];
     categoriesAllId = Get.arguments["categoriesAllId"];
     getItems(categoriesAllId!);
-
   }
 
-
-
   @override
-  changCat(val,catVal) {
+  changCat(val, catVal) {
     selecteCatAll = val;
     categoriesAllId = catVal;
     getItems(categoriesAllId!);
@@ -60,12 +57,19 @@ class ItemsAllControllerImp extends ItemsAllController {
   getItems(categoryId) async {
     itemsAll.clear();
     statusRequest = StatusRequest.loding;
-    var response = await itemsData.getData(categoryId);
+    var response = await itemsData.getData(
+      categoryId,
+      myServices.sharedPreferences.getString("id")!,
+
+    );
     statusRequest = handlingData(response);
-    if(StatusRequest.success == statusRequest){
-      if(response['status'] == "success"){
+    if (StatusRequest.success == statusRequest) {
+      if (response['status'] == "success") {
         itemsAll.addAll(response['data']);
-      }else{
+        FavoriteController fav = Get.put(FavoriteController());
+        //fav.initFavorites(data);
+        fav.initFavorites(itemsAll);
+      } else {
         statusRequest = StatusRequest.failure;
       }
     }
@@ -74,9 +78,6 @@ class ItemsAllControllerImp extends ItemsAllController {
 
   @override
   goItemsAllDetails(itemsModel) {
-    Get.toNamed(AppRoute.itemsDetails,arguments: {
-      "itemsmodel": itemsModel,
-    });
+    Get.toNamed(AppRoute.itemsDetails, arguments: {"itemsmodel": itemsModel});
   }
-
 }

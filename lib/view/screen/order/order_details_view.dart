@@ -6,6 +6,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import '../../../controller/orders/order_details_controller.dart';
 import '../../../core/class/handlingdataview.dart';
 import '../../../core/constant/color.dart';
+import '../../../core/functions/translate_database.dart';
 
 class OrderDetailsView extends StatelessWidget {
   const OrderDetailsView({super.key});
@@ -13,12 +14,12 @@ class OrderDetailsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     OrderDetailsController controllerpag = Get.put(OrderDetailsController());
-    print(
-      "========================================= controllerpag.listData.length",
-    );
-    print(controllerpag.listData.length);
+    // print(
+    //   "========================================= controllerpag.listData.length",
+    // );
+    // print(controllerpag.listData.length);
     return Scaffold(
-      appBar: AppBar(title: Text("Order Details", style: TextStyle(color: AppColor.primaryColor,fontWeight: FontWeight.bold)),centerTitle: true,),
+      appBar: AppBar(title: Text(translateDatabase("تفاصيل الطلب", "Order Details"), style: TextStyle(color: AppColor.primaryColor,fontWeight: FontWeight.bold)),centerTitle: true,),
       body: Container(
         padding: EdgeInsets.all(10),
         child: GetBuilder<OrderDetailsController>(
@@ -60,7 +61,7 @@ class OrderDetailsView extends StatelessWidget {
                                   Padding(
                                     padding: const EdgeInsets.symmetric(vertical: 14),
                                     child: Text(
-                                      "Item",
+                                      translateDatabase("المنتج", "Item"),
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
                                         fontWeight: FontWeight.bold,
@@ -72,7 +73,7 @@ class OrderDetailsView extends StatelessWidget {
                                   Padding(
                                     padding: const EdgeInsets.symmetric(vertical: 14),
                                     child: Text(
-                                      "QTY",
+                                      translateDatabase("الكمية", "QTY"),
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
                                         fontWeight: FontWeight.bold,
@@ -84,7 +85,7 @@ class OrderDetailsView extends StatelessWidget {
                                   Padding(
                                     padding: const EdgeInsets.symmetric(vertical: 14),
                                     child: Text(
-                                      "SuperMarket",
+                                      translateDatabase("السوبرماركت", "SuperMarket"),
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
                                         fontWeight: FontWeight.bold,
@@ -96,7 +97,7 @@ class OrderDetailsView extends StatelessWidget {
                                   Padding(
                                     padding: const EdgeInsets.symmetric(vertical: 14),
                                     child: Text(
-                                      "Price",
+                                      translateDatabase("السعر", "Price"),
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
                                         fontWeight: FontWeight.bold,
@@ -123,7 +124,7 @@ class OrderDetailsView extends StatelessWidget {
                                     Padding(
                                       padding: const EdgeInsets.symmetric(vertical: 12),
                                       child: Text(
-                                        item.itmesName ?? "",
+                                      translateDatabase(item.itmesNameAr!, item.itmesName!)?? "",
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
                                           fontWeight: FontWeight.w600,
@@ -144,7 +145,7 @@ class OrderDetailsView extends StatelessWidget {
                                     Padding(
                                       padding: const EdgeInsets.symmetric(vertical: 12),
                                       child: Text(
-                                        "${item.supermarketName}",
+                                        translateDatabase("${item.supermarketNameAr}", "${item.supermarketName}"),
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
                                           fontWeight: FontWeight.w500,
@@ -154,7 +155,7 @@ class OrderDetailsView extends StatelessWidget {
                                     Padding(
                                       padding: const EdgeInsets.symmetric(vertical: 12),
                                       child: Text(
-                                        "${item.itemsprice} RYE",
+                                        translateDatabase("${item.itemsprice} ريال", "${item.itemsprice} RYE"),
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
                                           fontWeight: FontWeight.bold,
@@ -184,7 +185,7 @@ class OrderDetailsView extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              "Total Price",
+                              translateDatabase("السعر الإجمالي", "Total Price"),
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 16,
@@ -192,7 +193,7 @@ class OrderDetailsView extends StatelessWidget {
                               ),
                             ),
                             Text(
-                              "${controller.orderPendingModel.ordersTotalprice} RYE",
+                              translateDatabase("${controller.orderPendingModel.ordersTotalprice} ريال", "${controller.orderPendingModel.ordersTotalprice} RYE"),
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 18,
@@ -210,7 +211,7 @@ class OrderDetailsView extends StatelessWidget {
 
                     /// ================= TITLE =================
                     Text(
-                      "Delivery Address",
+                      translateDatabase("عنوان التوصيل", "Delivery Address"),
                       style: TextStyle(
                         fontSize: 17,
                         fontWeight: FontWeight.bold,

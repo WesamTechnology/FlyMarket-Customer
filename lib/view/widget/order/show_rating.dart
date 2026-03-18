@@ -6,22 +6,24 @@ import 'package:rating_dialog/rating_dialog.dart';
 import '../../../controller/orders/order_archive_controller.dart';
 import '../../../core/constant/color.dart';
 import '../../../core/constant/imgaeasset.dart';
+import '../../../core/functions/translate_database.dart';
 
 showRatingDialog(BuildContext context,String ordersId) {
   showDialog(
+
     context: context,
     barrierDismissible: true, // set to false if you want to force a rating
     builder: (context) => RatingDialog(
     initialRating: 1.0,
 
     title: Text(
-      'Rating Dialog',
+      translateDatabase("نافذة التقييم", "Rating Dialog"),
       textAlign: TextAlign.center,
       style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
     ),
 
     message: Text(
-      'Tap a star to set your rating. Add more description here if you want.',
+      translateDatabase("اضغط على نجمة لتحديد تقييمك. يمكنك إضافة وصف إضافي هنا إذا أردت.", "Tap a star to set your rating. Add more description here if you want."),
       textAlign: TextAlign.center,
       style: const TextStyle(fontSize: 15),
     ),
@@ -50,8 +52,8 @@ showRatingDialog(BuildContext context,String ordersId) {
         ),
       ),
     ),
-    submitButtonText: 'Submit',
-    commentHint: 'Set your custom comment hint',
+    submitButtonText: translateDatabase("إرسال", "Submit"),
+    commentHint: translateDatabase("اكتب تعليقك هنا", "Set your custom comment hint"),
     onCancelled: () => print('cancelled'),
     submitButtonTextStyle: TextStyle(color: AppColor.primaryColor),
     onSubmitted: (response) {
