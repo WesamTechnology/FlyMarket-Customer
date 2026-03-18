@@ -116,46 +116,51 @@ class ItemsDetails extends StatelessWidget {
                             "${controller.itemsModel.itmesName}",
                           ),
                           style: TextStyle(
-                            fontSize: 26,
+                            fontSize: 24,
                             fontWeight: FontWeight.bold,
                             color: Color(0xFF181725),
                           ),
                         ),
-                        GetBuilder<FavoriteController>(
-                          builder: (controllerFav) {
-                            final fav = controllerFav.isFavorite[controller.itemsModel.itmesId] ?? 0;
+                        SizedBox(width: 10.w,),
+                        Expanded(
+                          child: Container(
 
-                            return IconButton(
-                              onPressed: () {
-                                if (fav == 1) {
-                                  controllerFav.setFavorite(
-                                    controller.itemsModel.itmesId!,
-                                    0,
-                                  );
-                                  controllerFav.removeFavorite(
-                                      controller.itemsModel.itmesId!,
-                                      controller. itemsModel.itmesSuper
-                                  );
-                                } else {
-                                  controllerFav.setFavorite(
-                                    controller.itemsModel.itmesId!,
-                                    1,
-                                  );
-                                  controllerFav.addFavorite(
-                                      controller. itemsModel.itmesId!,
-                                      controller. itemsModel.itmesSuper
-                                  );
-                                }
-                              },
-                              icon: fav == 1
-                                  ? Icon(
-                                Icons.favorite,
-                                color: Colors.red,
-                              )
-                                  : Icon(Icons.favorite_border_outlined),
-                            );
-                          },
-                        ),
+                            padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 6.h),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(12),
+                              gradient: LinearGradient(
+                                colors: [
+                                  Colors.green.withOpacity(0.7),
+                                  Colors.green.withOpacity(0.2),
+                                ],
+                                begin: Alignment.bottomCenter,
+                                end: Alignment.topCenter,
+                              ),
+                            ),
+                            child: Center(
+                              child: Text(
+                                translateDatabase(
+                                  controller.itemsModel.supermarketNameAr!,
+                                  controller.itemsModel.supermarketName!,
+                                ),
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 14.sp,
+                                  fontWeight: FontWeight.bold,
+                                  shadows: [
+                                    Shadow(
+                                      color: Colors.black.withOpacity(0.9),
+                                      blurRadius: 8,
+                                      offset: Offset(0, 2),
+                                    ),
+                                  ],
+                                ),
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ),
+                          ),
+                        )
                       ],
                     ),
                   ),

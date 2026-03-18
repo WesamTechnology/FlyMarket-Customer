@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flymarket_customer/controller/home/categories_controller.dart';
+import 'package:flymarket_customer/core/constant/color.dart';
 import 'package:flymarket_customer/core/functions/translate_database.dart';
 import 'package:flymarket_customer/data/model/categories_model.dart';
 import 'package:flymarket_customer/link_api.dart';
@@ -26,16 +27,68 @@ class SupermarketDetailsPage extends StatelessWidget {
     Get.put(CategoriesControllerImp());
     return Scaffold(
       backgroundColor: const Color(0xFFF6F7FB),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {
-          Get.find<CartController>().refreshPage();
-          Get.toNamed(AppRoute.myCart);},
-        label: Text(
-          translateDatabase("السلة", "Cart"),
-          style: TextStyle(fontSize: 14.sp),
-        ),
-        icon: Icon(Icons.shopping_cart_outlined, size: 20.sp),
-      ),
+      floatingActionButton: Builder(builder: (context){
+        print("FAB CONTROLLER: ${Get.find<CartController>().hashCode}");
+        return FloatingActionButton.extended(
+          onPressed: () {
+            Get.find<CartController>().refreshPage();
+            Get.toNamed(AppRoute.myCart);
+          },
+          backgroundColor: AppColor.primaryColor, // 👈 لون أنيق
+          elevation: 8, // 👈 ظل جميل
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(30), // 👈 حواف ناعمة
+          ),
+          label: Row(
+            children: [
+              Text(
+                translateDatabase("السلة", "Cart"),
+                style: TextStyle(
+                  fontSize: 14.sp,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+              SizedBox(width: 6.w),
+
+              /// 🔴 دائرة العدد (اختياري)
+              GetBuilder<CartController>(
+                builder: (controller) {
+                  if (controller.totalCountItems == 0) return SizedBox();
+
+                  return Container(
+                    padding: EdgeInsets.all(5),
+                    decoration: BoxDecoration(
+                      color: Colors.red,
+                      shape: BoxShape.circle,
+                    ),
+                    child: Text(
+                      "${controller.totalCountItems}",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 10.sp,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  );
+                },
+              )
+            ],
+          ),
+          icon: Container(
+            padding: EdgeInsets.all(6),
+            decoration: BoxDecoration(
+              color: Colors.white.withOpacity(0.2),
+              shape: BoxShape.circle,
+            ),
+            child: Icon(
+              Icons.shopping_cart_rounded,
+              size: 20.sp,
+              color: Colors.white,
+            ),
+          ),
+        );
+      }),
       body: SafeArea(
         child: CustomScrollView(
           physics: const BouncingScrollPhysics(),

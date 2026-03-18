@@ -14,7 +14,8 @@ class MyCart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(CartController());
+    // Get.put(CartController());
+    final controller = Get.find<CartController>();
     return Scaffold(
       backgroundColor: Colors.white,
       bottomNavigationBar: GetBuilder<CartController>(

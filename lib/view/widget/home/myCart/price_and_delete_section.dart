@@ -16,10 +16,11 @@ class PriceAndDeleteSection extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
-        IconButton(
-          onPressed: () {},
-          icon: Icon(Icons.close, color: AppColor.grey),
-        ),
+        // IconButton(
+        //   onPressed: () {},
+        //   icon: Icon(Icons.close, color: AppColor.grey),
+        // ),
+        Text(""),
         SizedBox(height: 23.h,),
         Padding(
           padding:  EdgeInsets.only(left: Get.locale!.languageCode == "ar" ? 10.w : 0, right: Get.locale!.languageCode == "ar" ?0 : 10.w),

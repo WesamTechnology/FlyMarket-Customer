@@ -10,7 +10,8 @@ class HomeBinding extends Bindings {
   void dependencies() {
     Get.lazyPut(() => HomeShopControllerImp());
     Get.lazyPut(() => CategoriesAllControllerImp());
-    Get.lazyPut(() => CartController());
+    Get.put(CartController(), permanent: true);
+  //  Get.lazyPut(() => CartController());
     Get.lazyPut(() => MyFavoriteController());
   }
 }

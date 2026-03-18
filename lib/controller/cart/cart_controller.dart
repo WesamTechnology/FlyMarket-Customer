@@ -29,6 +29,7 @@ class CartController extends GetxController {
   late StatusRequest statusRequest;
 
   add(itemsID, superid) async {
+    print("ADD CONTROLLER: ${this.hashCode}");
     statusRequest = StatusRequest.loding;
     update();
     var response = await cartData.addCart(
@@ -39,15 +40,18 @@ class CartController extends GetxController {
     statusRequest = handlingData(response);
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {
+        await view();
         Get.rawSnackbar(
           title: translateDatabase("إشعار", "Notification"),
           messageText: Text(translateDatabase("تم إضافة المنتج إلى السلة", "Item added to cart"),),
         );
+
         //data.addAll(response['data']);
       } else {
         statusRequest = StatusRequest.failure;
       }
     }
+
     update();
   }
 
@@ -72,6 +76,7 @@ class CartController extends GetxController {
       }
     }
     update();
+
   }
 
   getCountItems(itemsID,superid) async {

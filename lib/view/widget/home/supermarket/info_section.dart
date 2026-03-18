@@ -22,13 +22,7 @@ class InfoSection extends StatelessWidget {
         children: [
           Row(
             children: [
-              Icon(Icons.star, color: Colors.amber, size: 18.sp),
-              SizedBox(width: 5.w),
-              Text(
-                5.2.toStringAsFixed(1),
-                style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w500),
-              ),
-              SizedBox(width: 15.w),
+             
               Icon(Icons.location_on, color: Colors.red, size: 18.sp),
               SizedBox(width: 5.w),
               Expanded(
@@ -41,7 +35,7 @@ class InfoSection extends StatelessWidget {
             ],
           ),
           SizedBox(height: 15.h),
-          const CustomSearch(),
+         // const CustomSearch(),
           SizedBox(height: 15.h),
           Text(
             translateDatabase("المنتجات المتاحة", "Available Products"),

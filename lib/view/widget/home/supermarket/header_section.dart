@@ -34,8 +34,8 @@ class HeaderSection extends StatelessWidget {
             borderRadius: BorderRadius.circular(12),
             gradient: LinearGradient(
               colors: [
-                Colors.black.withOpacity(0.7),
-                Colors.black.withOpacity(0.2),
+                Colors.green.withOpacity(0.7),
+                Colors.green.withOpacity(0.2),
               ],
               begin: Alignment.bottomCenter,
               end: Alignment.topCenter,

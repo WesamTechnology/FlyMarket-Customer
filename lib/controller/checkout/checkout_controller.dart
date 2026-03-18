@@ -11,6 +11,7 @@ import '../../data/datasource/remote/address/address_data.dart';
 import '../../data/datasource/remote/checkout/checkout_data.dart';
 import '../../data/model/address/address_view_model.dart';
 import '../../data/model/cart_model.dart';
+import '../cart/cart_controller.dart';
 
 class CheckoutController extends GetxController {
   String? paymentChoos;
@@ -93,10 +94,10 @@ class CheckoutController extends GetxController {
         translateDatabase("تنبيه", "Alert"),
         translateDatabase("الرجاء اختيار موقع التوصيل", "Please choose delivery location"),
       );
-    // 🔥 خذ العنوان المختار مش أول واحد
-    final selectedAddress = listDataAddress.firstWhere(
-          (e) => e.addressId.toString() == addressChoos,
-    );
+    // // 🔥 خذ العنوان المختار مش أول واحد
+    // final selectedAddress = listDataAddress.firstWhere(
+    //       (e) => e.addressId.toString() == addressChoos,
+    // );
 
     if (deliveryChoos == "0" && deliveryPrice == 0) {
       return Get.snackbar("تنبيه", "انتظر حساب سعر التوصيل");
@@ -135,7 +136,12 @@ class CheckoutController extends GetxController {
           translateDatabase("تنبيه", "Alert"),
           translateDatabase("الرجاء اختيار موقع التوصيل", "Please choose delivery location"),
         );
+        final cartController = Get.find<CartController>(); // 👈 هنا
+
+        cartController.resetVarCart();   // 👈 يمسح القيم
+        cartController.update();
         Get.offAllNamed(AppRoute.homepage);
+       // cartList.clear();
         //Get.snackbar("نجح", "يمكنك الان الطلب الى هاذا الموقع");
 
         Get.snackbar(

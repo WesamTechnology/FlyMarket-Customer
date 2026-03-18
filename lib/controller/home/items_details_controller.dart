@@ -9,6 +9,8 @@ import '../../core/services/services.dart';
 import '../../data/datasource/remote/cart_data.dart';
 import 'package:flutter/material.dart';
 
+import '../cart/cart_controller.dart';
+
 abstract class ItemsDetailsController extends GetxController {
   initialData();
 }
@@ -107,16 +109,32 @@ class ItemsDetailsControllerImp extends ItemsDetailsController {
 
 
 
-  add(){
-    addItems(itemsModel.itmesId,itemsModel.itmesSuper);
+  add()async{
+    final cartController = Get.find<CartController>();
+    statusRequest = StatusRequest.loding;
+    update();
+    await cartController.add(
+      itemsModel.itmesId,
+      itemsModel.itmesSuper,
+    );
+    // addItems(itemsModel.itmesId,itemsModel.itmesSuper);
     count++;
+    statusRequest = StatusRequest.success;
     update();
   }
 
-  delete(){
+  delete()async{
     if(count > 0){
-      deleteItems(itemsModel.itmesId,itemsModel.itmesSuper);
+      final cartController = Get.find<CartController>();
+      statusRequest = StatusRequest.loding;
+      update();
+      await cartController.delete(
+        itemsModel.itmesId,
+        itemsModel.itmesSuper,
+      );
+      // deleteItems(itemsModel.itmesId,itemsModel.itmesSuper);
       count--;
+      statusRequest = StatusRequest.success;
       update();
     }
   }

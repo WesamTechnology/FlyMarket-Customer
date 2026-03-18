@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flymarket_customer/core/services/services.dart';
 import 'package:flymarket_customer/data/datasource/remote/items_all_data.dart';
 import 'package:get/get.dart';
@@ -27,6 +28,10 @@ class ItemsAllControllerImp extends ItemsAllController {
   MyServices myServices = Get.find();
   ItemsAllData itemsData = ItemsAllData(Get.find());
 
+  List<ItemsModel> listData = [];
+  TextEditingController? search;
+  bool isSearch = false;
+
   List data = [];
 
   late StatusRequest statusRequest;
@@ -42,6 +47,7 @@ class ItemsAllControllerImp extends ItemsAllController {
     categoriesAll = Get.arguments["categoriesAll"];
     selecteCatAll = Get.arguments["selecteCatAll"];
     categoriesAllId = Get.arguments["categoriesAllId"];
+    search = TextEditingController();
     getItems(categoriesAllId!);
   }
 
@@ -74,6 +80,44 @@ class ItemsAllControllerImp extends ItemsAllController {
       }
     }
     update();
+  }
+
+  searchData() async {
+    statusRequest = StatusRequest.loding;
+    var response = await itemsData.searchData(search!.text);
+    print("=============================== Controller $response ");
+    statusRequest = handlingData(response);
+    if (StatusRequest.success == statusRequest) {
+      if (response['status'] == "success") {
+        listData.clear();
+
+        List responseListData = response['data'];
+        listData.addAll(responseListData.map((e) => ItemsModel.fromJson(e)));
+      } else {
+        statusRequest = StatusRequest.failure;
+      }
+    } else {
+      print("88888888888888888888888");
+    }
+    update();
+  }
+
+  checkSearch(val) {
+    if (val.isEmpty) {
+      isSearch = false;
+      listData.clear();
+      update();
+    } else {
+      isSearch = true;
+      searchData();
+    }
+  }
+
+  onSearchItem() {
+    if (search!.text.trim().isEmpty) return;
+
+    isSearch = true;
+    searchData();
   }
 
   @override

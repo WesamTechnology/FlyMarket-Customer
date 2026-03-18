@@ -14,4 +14,14 @@ class ItemsAllData {
     });
     return respons.fold((l) => l, (r) => r);
   }
+
+
+  searchData(String search) async {
+    var respons = await crud.postData(AppLink.searchAll, {
+      "search": search,
+    });
+    return respons.fold((l) => l, (r) => r);
+  }
+
+
 }

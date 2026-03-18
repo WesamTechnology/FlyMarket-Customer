@@ -14,6 +14,16 @@ class ItemsModel {
   int? itmesCatAll;
   int? itmesSuper;
   double? itemspricedisount;
+  int? supermarketId;
+  String? supermarketName;
+  String? supermarketEmail;
+  String? supermarketNameAr;
+  String? supermarketPhone;
+  String? supermarketImage;
+  String? supermarketLocation;
+  double? supermarketLat;
+  double? supermarketLong;
+  String? supermarketTimeOpen;
   int? favorite;
 
   ItemsModel(
@@ -32,6 +42,16 @@ class ItemsModel {
         this.itmesCatAll,
         this.itmesSuper,
         this.itemspricedisount,
+        this.supermarketId,
+        this.supermarketName,
+        this.supermarketEmail,
+        this.supermarketNameAr,
+        this.supermarketPhone,
+        this.supermarketImage,
+        this.supermarketLocation,
+        this.supermarketLat,
+        this.supermarketLong,
+        this.supermarketTimeOpen,
         this.favorite,
       });
 
@@ -51,6 +71,16 @@ class ItemsModel {
     itmesCatAll = json['itmes_cat_all'];
     itmesSuper = json['itmes_super'];
     itemspricedisount = (json['itemspricedisount'] as num?)?.toDouble();
+    supermarketId = json['supermarket_id'];
+    supermarketName = json['supermarket_name'];
+    supermarketEmail = json['supermarket_email'];
+    supermarketNameAr = json['supermarket_name_ar'];
+    supermarketPhone = json['supermarket_phone'];
+    supermarketImage = json['supermarket_image'];
+    supermarketLocation = json['supermarket_location'];
+    supermarketLat = (json['supermarket_lat'] as num?)?.toDouble();
+    supermarketLong = (json['supermarket_long'] as num?)?.toDouble();
+    supermarketTimeOpen = json['supermarket_time_open'];
     favorite = json['favorite'];
   }
 
@@ -71,6 +101,16 @@ class ItemsModel {
     data['itmes_cat_all'] = this.itmesCatAll;
     data['itmes_super'] = this.itmesSuper;
     data['itemspricedisount'] = this.itemspricedisount;
+    data['supermarket_id'] = this.supermarketId;
+    data['supermarket_name'] = this.supermarketName;
+    data['supermarket_email'] = this.supermarketEmail;
+    data['supermarket_name_ar'] = this.supermarketNameAr;
+    data['supermarket_phone'] = this.supermarketPhone;
+    data['supermarket_image'] = this.supermarketImage;
+    data['supermarket_location'] = this.supermarketLocation;
+    data['supermarket_lat'] = this.supermarketLat;
+    data['supermarket_long'] = this.supermarketLong;
+    data['supermarket_time_open'] = this.supermarketTimeOpen;
     data['favorite'] = this.favorite;
     return data;
   }

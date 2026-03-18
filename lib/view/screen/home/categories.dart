@@ -28,11 +28,11 @@ class Categories extends StatelessWidget {
               style: TextStyle(
                 fontSize: 22.sp,
                 fontWeight: FontWeight.bold,
-                color: AppColor.black,
+                color: AppColor.primaryColor,
               ),
             ),
             SizedBox(height: 17.h),
-            CustomSearch(),
+            //CustomSearch(),
             SizedBox(height: 17.h),
             GetBuilder<CategoriesAllControllerImp>(
               builder: (controller) => CustomGridviewCategories(),

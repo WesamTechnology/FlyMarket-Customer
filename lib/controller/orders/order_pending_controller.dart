@@ -60,6 +60,7 @@ class OrderPendingController extends GetxController {
       if (response['status'] == "success") {
         List resonseData = response['data'];
         listdata.addAll(resonseData.map((e) => OrderPendingModel.fromJson(e)));
+        listdata.sort((a, b) => b.ordersId!.compareTo(a.ordersId!));
       } else {
         statusRequest = StatusRequest.failure;
       }
