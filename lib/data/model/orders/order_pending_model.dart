@@ -8,6 +8,8 @@ class OrderPendingModel {
   double? ordersPrice;
   double? ordersTotalprice;
   int? ordersCoupon;
+  String? ordersImagePay;
+  int? ordersImagePayStatus;
   int? ordersRating;
   String? ordersNoteRating;
   String? ordersDatetime;
@@ -43,6 +45,8 @@ class OrderPendingModel {
         this.ordersPrice,
         this.ordersTotalprice,
         this.ordersCoupon,
+        this.ordersImagePay,
+        this.ordersImagePayStatus,
         this.ordersRating,
         this.ordersNoteRating,
         this.ordersDatetime,
@@ -78,6 +82,8 @@ class OrderPendingModel {
     ordersPrice = (json['orders_price'] as num?)?.toDouble();
     ordersTotalprice = (json['orders_totalprice'] as num?)?.toDouble();
     ordersCoupon = json['orders_coupon'];
+    ordersImagePay = json['orders_image_pay'];
+    ordersImagePayStatus = json['orders_image_pay_status'];
     ordersRating = json['orders_rating'];
     ordersNoteRating = json['orders_noterating'];
     ordersDatetime = json['orders_datetime'];
@@ -115,6 +121,8 @@ class OrderPendingModel {
     data['orders_price'] = this.ordersPrice;
     data['orders_totalprice'] = this.ordersTotalprice;
     data['orders_coupon'] = this.ordersCoupon;
+    data['orders_image_pay'] = this.ordersImagePay;
+    data['orders_image_pay_status'] = this.ordersImagePayStatus;
     data['orders_rating'] = this.ordersRating;
     data['orders_noterating'] = this.ordersNoteRating;
     data['orders_datetime'] = this.ordersDatetime;

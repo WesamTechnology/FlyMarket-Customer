@@ -1,4 +1,5 @@
 
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../core/class/statuserequest.dart';
@@ -7,6 +8,8 @@ import '../../core/functions/translate_database.dart';
 import '../../core/services/services.dart';
 import '../../data/datasource/remote/orders/order_pending_data.dart';
 import '../../data/model/orders/order_pending_model.dart';
+import 'dart:io';
+import 'package:image_picker/image_picker.dart';
 
 class OrderPendingController extends GetxController {
 
@@ -85,6 +88,95 @@ class OrderPendingController extends GetxController {
     }
     update();
   }
+
+
+  chooseImageAndUpload(String orderId) async {
+    final ImagePicker picker = ImagePicker();
+
+    Get.bottomSheet(
+      Container(
+        padding: const EdgeInsets.all(20),
+        height: 180,
+        decoration: BoxDecoration(
+          color: Get.theme.scaffoldBackgroundColor,
+          borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+        ),
+        child: Column(
+          children: [
+            Text("اختر طريقة رفع الصورة", style: TextStyle(fontSize: 16)),
+
+            SizedBox(height: 20),
+
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+
+                /// 📸 كاميرا
+                ElevatedButton.icon(
+                  onPressed: () async {
+                    Get.back();
+                    await _pickAndUpload(orderId, ImageSource.camera);
+                  },
+                  icon: Icon(Icons.camera_alt),
+                  label: Text("كاميرا"),
+                ),
+
+                /// 🖼️ معرض
+                ElevatedButton.icon(
+                  onPressed: () async {
+                    Get.back();
+                    await _pickAndUpload(orderId, ImageSource.gallery);
+                  },
+                  icon: Icon(Icons.image),
+                  label: Text("المعرض"),
+                ),
+              ],
+            )
+          ],
+        ),
+      ),
+    );
+    print("UPLOAD STARTED 🔥");
+
+  }
+
+  _pickAndUpload(String orderId, ImageSource source) async {
+    final ImagePicker picker = ImagePicker();
+
+    final XFile? image = await picker.pickImage(
+      source: source,
+      imageQuality: 70,
+    );
+
+    if (image == null) return;
+
+    File file = File(image.path);
+
+    statusRequest = StatusRequest.loding;
+    update();
+
+    var response = await orderPendingData.uploadPaymentImage(orderId, file);
+
+    print("UPLOAD RESPONSE: $response");
+
+    if (response.toString().contains("success")) {
+      Get.snackbar("نجاح", "تم إرسال صورة الدفع");
+      refrehOrder();
+    } else {
+      Get.snackbar("خطأ", "فشل رفع الصورة");
+    }
+
+    if (StatusRequest.success == statusRequest) {
+      Get.snackbar("نجاح", "تم إرسال صورة الدفع");
+      refrehOrder();
+    } else {
+      Get.snackbar("خطأ", "فشل رفع الصورة");
+    }
+    print("RESPONSE: $response");
+
+    update();
+  }
+
 
 
   refrehOrder(){

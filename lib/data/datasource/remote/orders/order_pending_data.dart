@@ -1,6 +1,8 @@
 
 import '../../../../core/class/crud.dart';
 import '../../../../link_api.dart';
+import 'dart:io';
+import 'package:http/http.dart' as http;
 
 class OrderPendingData {
 
@@ -22,6 +24,27 @@ class OrderPendingData {
     return respons.fold((l)=> l, (r)=> r);
 
 
+  }
+
+  uploadPaymentImage(String orderId, File file) async {
+    var uri = Uri.parse(AppLink.uploadPayment);
+
+    var request = http.MultipartRequest("POST", uri);
+
+    request.fields['orderid'] = orderId;
+
+    request.files.add(
+      await http.MultipartFile.fromPath("file", file.path),
+    );
+
+    var response = await request.send();
+
+    if (response.statusCode == 200) {
+      var responseBody = await response.stream.bytesToString();
+      return responseBody;
+    } else {
+      return {"status": "fail"};
+    }
   }
 
 }

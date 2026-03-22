@@ -76,7 +76,7 @@ class AppLink{
   static String ordersDetails = "$server/orders/details.php";
   static String ordersDelete = "$server/orders/delete.php";
   static String ordersArchive = "$server/orders/archive.php";
-
+  static String uploadPayment = "$server/orders/upload_payment.php";
 
   // ==================== Notification ===============================
 

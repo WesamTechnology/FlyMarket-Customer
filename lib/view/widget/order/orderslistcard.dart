@@ -123,7 +123,37 @@ class CardOrdersList extends GetView<OrderPendingController> {
                     },
                     child:  Text(translateDatabase("حذف", "Delete"),style: TextStyle(color: Colors.white),),
                   ),
-                if (listdata.ordersStatus == 3)
+                // if (listdata.ordersStatus == 3)
+                //   ElevatedButton(
+                //     style: ElevatedButton.styleFrom(
+                //       backgroundColor: AppColor.primaryColor,
+                //     ),
+                //     onPressed: () {
+                //       Get.toNamed(AppRoute.ordersTracking,
+                //           arguments: {"ordersmodel": listdata});
+                //     },
+                //     child:  Text(translateDatabase("تتبع", "Tracking"),style: TextStyle(color: Colors.white),),
+                //   ),
+
+
+                if (listdata.ordersStatus == 3 && listdata.ordersImagePayStatus == 0)
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.orange,
+                    ),
+                    onPressed: () {
+                      controller.chooseImageAndUpload(listdata.ordersId.toString());
+                    },
+                    child: Text("إرسال صورة الدفع", style: TextStyle(color: Colors.white)),
+                  ),
+
+                if (listdata.ordersStatus == 3 && listdata.ordersImagePayStatus == 1)
+                  ElevatedButton(
+                    onPressed: () {},
+                    child: Text("بانتظار التأكيد"),
+                  ),
+
+                if (listdata.ordersStatus == 3 && listdata.ordersImagePayStatus == 2)
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       backgroundColor: AppColor.primaryColor,
@@ -132,8 +162,9 @@ class CardOrdersList extends GetView<OrderPendingController> {
                       Get.toNamed(AppRoute.ordersTracking,
                           arguments: {"ordersmodel": listdata});
                     },
-                    child:  Text(translateDatabase("تتبع", "Tracking"),style: TextStyle(color: Colors.white),),
+                    child: Text("تتبع", style: TextStyle(color: Colors.white)),
                   ),
+
               ],
             ),
           ],
