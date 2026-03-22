@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flymarket_customer/core/constant/color.dart';
 import 'package:flymarket_customer/view/screen/home/my_cart.dart';
@@ -15,6 +16,7 @@ import '../../../controller/cart/cart_controller.dart';
 import '../../../controller/favorite/my_favorite_controller.dart';
 import '../../../controller/home/categories_all_controller.dart';
 import '../../../controller/home/home_shop_controller.dart';
+import '../../../core/functions/alertexitapp.dart';
 
 
 class HomePage extends StatefulWidget {
@@ -118,32 +120,43 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
               });
             }
         )),
-        body: TabBarView(
-        physics: NeverScrollableScrollPhysics
-        (), // swipe navigation handling is not supported
-    // controller: _tabController,
-    controller: _motionTabBarController,
-    children: <Widget>[
-    // const Center(
-    //   child: Study(),
-    // ),
-    const Center(
-    child: Shop(),
-    ),
-    const Center(
-    child: Categories(),
-    ),
-    const Center(
-    child: MyCart(),
-    ),
-    const Center(
-    child: Favorites(),
-    ),
-    const Center(
-    child: SettingPage(),
-    ),
-    ],
-    ),
+        body: PopScope(
+            canPop: false,
+            onPopInvokedWithResult: (didPop, result) async {
+              if (didPop) return;
+
+              bool shouldExit = await alertExitApp();
+              if (shouldExit) {
+                SystemNavigator.pop(); // ✅ خروج فعلي من التطبيق
+              }
+            },
+            child: TabBarView(
+              physics: NeverScrollableScrollPhysics
+                (), // swipe navigation handling is not supported
+              // controller: _tabController,
+              controller: _motionTabBarController,
+              children: <Widget>[
+                // const Center(
+                //   child: Study(),
+                // ),
+                const Center(
+                  child: Shop(),
+                ),
+                const Center(
+                  child: Categories(),
+                ),
+                const Center(
+                  child: MyCart(),
+                ),
+                const Center(
+                  child: Favorites(),
+                ),
+                const Center(
+                  child: SettingPage(),
+                ),
+              ],
+            ),
+        ),
     );
   }
 }

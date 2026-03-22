@@ -16,6 +16,7 @@ class SupermarketMapView extends StatelessWidget {
     final controller = Get.find<HomeShopControllerImp>();
 
     return GetBuilder<HomeShopControllerImp>(
+      id: "map",
       builder: (controller) {
         return Scaffold(
           appBar: AppBar(
@@ -26,6 +27,9 @@ class SupermarketMapView extends StatelessWidget {
             children: [
               // 🗺️ الخريطة
               GoogleMap(
+                myLocationEnabled: false, // لأنك تستخدم ماركر خاص
+                myLocationButtonEnabled: false,
+                zoomControlsEnabled: false,
                 initialCameraPosition: CameraPosition(
                   target: LatLng(
                     controller.userLat ?? 15.3,
@@ -34,7 +38,6 @@ class SupermarketMapView extends StatelessWidget {
                   zoom: 13,
                 ),
                 markers: controller.markers.toSet(),
-                circles: controller.circles.toSet(),
                 onMapCreated: (mapController) {
                   controller.gmc = mapController;
                 },
@@ -123,7 +126,7 @@ class SupermarketMapView extends StatelessWidget {
             style: ElevatedButton.styleFrom(
               backgroundColor: AppColor.primaryColor,
             ),
-            child: Text("دخول", style: TextStyle(color: Colors.white)),
+            child: Text(translateDatabase("دخول", "Open"), style: TextStyle(color: Colors.white)),
           ),
         ],
       ),

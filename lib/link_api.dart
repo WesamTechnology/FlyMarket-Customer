@@ -12,6 +12,7 @@ class AppLink{
   static String imageCategories = "$imageStatic/categories";
   static String imageItems = "$imageStatic/items";
   static String banners = "$imageStatic/banners";
+  static String imagePay = "$imageStatic/pay";
 
 
 

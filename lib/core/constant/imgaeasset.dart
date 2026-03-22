@@ -22,6 +22,8 @@ class AppImageAsset {
   static const String pepper_red = "$rootImages/pepper_red.png";
   static const String spriteCan = "$rootImages/sprite_can.png";
   static const String me = "$rootImages/me.png";
+  static const String circleMap = "$rootImages/circle_map.png";
+  static const String circleMap5 = "$rootImages/circle_map5.png";
 
 
   // ======================= lottie =====================

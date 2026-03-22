@@ -1,5 +1,7 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_compass/flutter_compass.dart';
+import 'package:flymarket_customer/core/constant/imgaeasset.dart';
 import 'package:flymarket_customer/data/model/supermarket_model.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
@@ -48,6 +50,9 @@ class HomeShopControllerImp extends HomeShopController {
 
   Map? selectedMarket;
 
+  BitmapDescriptor? userIcon;
+  double userRotation = 0;
+
   StatusRequest statusRequest = StatusRequest.loding;
 
   @override
@@ -66,7 +71,12 @@ class HomeShopControllerImp extends HomeShopController {
   }
 
   void init() async {
+    userIcon = await BitmapDescriptor.asset(
+      const ImageConfiguration(size: Size(80, 85)),
+      AppImageAsset.circleMap5,
+    );
     await initialData();
+    listenToCompass();
     FirebaseMessaging.instance.subscribeToTopic("users");
     FirebaseMessaging.instance.subscribeToTopic("users${id}");
     print("==============USER ID = $id");
@@ -154,22 +164,38 @@ class HomeShopControllerImp extends HomeShopController {
 
   void generateMarkers() {
     markers.clear();
-    // 🔵 موقع المستخدم كدائرة
-    if (userLat != null && userLng != null) {
-      circles.removeWhere((c) => c.circleId.value == "user_circle");
 
-      circles.add(
-        Circle(
-          circleId: CircleId("user_circle"),
-          center: LatLng(userLat!, userLng!),
-          radius: 50,
-          // حجم الدائرة (متر)
-          fillColor: Colors.blue.withValues(alpha: 0.8),
-          strokeColor: Colors.blue,
-          strokeWidth: 2,
+
+    if (userLat != null && userLng != null && userIcon != null) {
+      markers.add(
+        Marker(
+          markerId: MarkerId("user_location"),
+          position: LatLng(userLat!, userLng!),
+          icon: userIcon!,
+          anchor: Offset(0.5, 0.5), // يخليه في النص
+          flat: true, // مهم للاتجاه
+          rotation: userRotation, // بنعدلها لاحقاً
         ),
       );
     }
+
+
+    // 🔵 موقع المستخدم كدائرة
+    // if (userLat != null && userLng != null) {
+    //   // circles.removeWhere((c) => c.circleId.value == "user_circle");
+    //   //
+    //   // circles.add(
+    //   //   Circle(
+    //   //     circleId: CircleId("user_circle"),
+    //   //     center: LatLng(userLat!, userLng!),
+    //   //     radius: 50,
+    //   //     // حجم الدائرة (متر)
+    //   //     fillColor: Colors.blue.withValues(alpha: 0.8),
+    //   //     strokeColor: Colors.blue,
+    //   //     strokeWidth: 2,
+    //   //   ),
+    //   // );
+    // }
 
     for (var market in supermarket) {
       if (market['supermarket_lat'] != null &&
@@ -222,6 +248,59 @@ class HomeShopControllerImp extends HomeShopController {
         LatLng(nearest['supermarket_lat'], nearest['supermarket_long']),
       ),
     );
+  }
+
+  DateTime lastUpdate = DateTime.now();
+
+  void listenToCompass() {
+    FlutterCompass.events?.listen((event) {
+      if (event.heading != null) {
+        if (DateTime.now().difference(lastUpdate).inMilliseconds > 150) {
+          lastUpdate = DateTime.now();
+          updateUserRotation(event.heading!);
+        }
+      }
+    });
+  }
+
+
+  // void listenToCompass() {
+  //   FlutterCompass.events?.listen((event) {
+  //     double? heading = event.heading;
+  //
+  //     if (heading != null) {
+  //       updateUserRotation(heading);
+  //     }
+  //   });
+  // }
+
+
+
+  // void updateUserRotation(double rotation) {
+  //   userRotation = rotation;
+  //   generateMarkers();
+  // }
+
+  void updateUserRotation(double rotation) {
+    if ((rotation - userRotation).abs() < 5) return;
+    userRotation = rotation;
+
+    markers.removeWhere((m) => m.markerId.value == "user_location");
+
+    if (userLat != null && userLng != null && userIcon != null) {
+      markers.add(
+        Marker(
+          markerId: MarkerId("user_location"),
+          position: LatLng(userLat!, userLng!),
+          icon: userIcon!,
+          anchor: Offset(0.5, 0.5),
+          flat: true,
+          rotation: userRotation,
+        ),
+      );
+    }
+
+    update(["map"]);// تحديث خفيف
   }
 
   @override

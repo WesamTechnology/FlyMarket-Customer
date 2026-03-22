@@ -28,7 +28,7 @@ class Shop extends StatelessWidget {
               ).r,
               child: Column(
                 children: [
-                  SizedBox(height: 40.h),
+                  SizedBox(height: 30.h),
                   Text(
                     "FlyMarket",
                     style: TextStyle(color: AppColor.primaryColor, fontSize: 19.sp,fontWeight: FontWeight.bold),
@@ -65,7 +65,7 @@ class Shop extends StatelessWidget {
                               Icon(Icons.map, color: Colors.white, size: 18),
                               SizedBox(width: 5),
                               Text(
-                                "الخريطة",
+                                translateDatabase("الخريطة", "Map"),
                                 style: TextStyle(color: Colors.white),
                               ),
                             ],
