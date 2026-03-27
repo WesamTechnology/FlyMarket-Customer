@@ -66,6 +66,10 @@ class ItemsDetails extends StatelessWidget {
                                 "${AppLink.imageItems}/${controller.itemsModel.itmesImage}",
                             height: 200.h,
                             fit: BoxFit.contain,
+                            placeholder: (context, url) =>
+                                const Center(child: CircularProgressIndicator()),
+                            errorWidget: (context, url, error) =>
+                                const Icon(Icons.error),
                           ),
                         ),
                       ),

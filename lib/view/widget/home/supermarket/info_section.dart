@@ -8,9 +8,7 @@ import '../../../../core/constant/color.dart';
 import '../../../../core/functions/translate_database.dart';
 
 class InfoSection extends StatelessWidget {
-  const InfoSection({
-    super.key,
-  });
+  const InfoSection({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -59,26 +57,57 @@ class InfoSection extends StatelessWidget {
               // 📍 الموقع
               Expanded(
                 flex: 1,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
+                child: Column(
                   children: [
-                    Icon(
-                      Icons.location_on,
-                      color: Colors.red,
-                      size: 16.sp,
-                    ),
-                    SizedBox(width: 4.w),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Icon(Icons.location_on, color: Colors.red, size: 16.sp),
+                        SizedBox(width: 4.w),
 
-                    Flexible(
-                      child: Text(
-                        controller.supermarketModel.supermarketLocation ?? "",
-                        style: TextStyle(
-                          fontSize: 13.sp,
-                          color: Colors.grey[600],
+                        Flexible(
+                          child: Text(
+                            controller.supermarketModel.supermarketLocation ??
+                                "",
+                            style: TextStyle(
+                              fontSize: 13.sp,
+                              color: Colors.grey[600],
+                            ),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            textAlign: TextAlign.end,
+                          ),
                         ),
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        textAlign: TextAlign.end,
+                      ],
+                    ),
+                    SizedBox(height: 15.h),
+
+                    GestureDetector(
+                      onTap: () {
+                        controller.openMap();
+                      },
+                      child: Container(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 12,
+                          vertical: 8,
+                        ),
+                        decoration: BoxDecoration(
+                          color: AppColor.primaryColor,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(Icons.map, color: Colors.white, size: 18),
+                            SizedBox(width: 5),
+                            Flexible(
+                              child: Text(
+                                translateDatabase("الخريطة", "Map"),
+                                style: TextStyle(color: Colors.white),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ],
@@ -86,8 +115,8 @@ class InfoSection extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(height: 15.h),
-         // const CustomSearch(),
+
+          // const CustomSearch(),
           SizedBox(height: 15.h),
 
           Text(
@@ -98,7 +127,6 @@ class InfoSection extends StatelessWidget {
               color: Colors.black87,
             ),
           ),
-
         ],
       ),
     );

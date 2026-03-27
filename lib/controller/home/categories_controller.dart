@@ -7,6 +7,7 @@ import '../../core/functions/handling_data_controller.dart';
 import '../../data/datasource/remote/items_data.dart';
 import '../../data/model/itemsmodel.dart';
 import '../../data/model/supermarket_model.dart';
+import '../../view/screen/home/SupermarketDetails/supermarket_location_view.dart';
 
 abstract class CategoriesController extends GetxController {
   initialData();
@@ -68,6 +69,12 @@ class CategoriesControllerImp extends CategoriesController {
       }
     }
     update();
+  }
+
+  void openMap() {
+    Get.to(() => SupermarketLocationView(
+      supermarketModel: supermarketModel,
+    ));
   }
 
   @override
