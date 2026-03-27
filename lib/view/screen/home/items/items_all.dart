@@ -24,59 +24,56 @@ class ItemsAll extends StatelessWidget {
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(7.0).r,
-        child:GetBuilder<ItemsAllControllerImp>(
-            builder: (controller) {
-              return
-                SingleChildScrollView(
-          child: Column(
-            children: [
-              SizedBox(height: 60.h),
-              CustomSearch(
-                myControlle: controller.search,
-                onChanged: (val) {
-                  controller.checkSearch(val);
-                },
-                onPressedSearch: () {
-                  controller.onSearchItem();
-                },
-              ),
-              SizedBox(height: 10.h),
-              HandlingDataView(
+        child: GetBuilder<ItemsAllControllerImp>(
+          builder: (controller) {
+            return SingleChildScrollView(
+              child: Column(
+                children: [
+                  SizedBox(height: 60.h),
+                  CustomSearch(
+                    myControlle: controller.search,
+                    onChanged: (val) {
+                      controller.checkSearch(val);
+                    },
+                    onPressedSearch: () {
+                      controller.onSearchItem();
+                    },
+                  ),
+                  SizedBox(height: 10.h),
+                  HandlingDataView(
                     statusRequest: controller.statusRequest,
-                    widget:!controller.isSearch
+                    widget: !controller.isSearch
                         ? GridView.builder(
-                      itemCount: controller.itemsAll.length,
-                      shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        childAspectRatio: 0.9,
-                      ),
-                      itemBuilder: (BuildContext context, index) {
-                        print(
-                          "===========================lenth = ${controller.data.length}==================================",
-                        );
-                        return ProductAllCard(
-                          itemsModel: ItemsModel.fromJson(
-                            controller.itemsAll[index],
-                          ),
-                        );
-                      },
-                    ) : ListSearchAll(listSearchData: controller.listData),
-                  )
-
-            ],
-          ));
-            }
-
-        )
+                            itemCount: controller.itemsAll.length,
+                            shrinkWrap: true,
+                            physics: NeverScrollableScrollPhysics(),
+                            gridDelegate:
+                                SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 2,
+                                  childAspectRatio: 0.9,
+                                ),
+                            itemBuilder: (BuildContext context, index) {
+                              print(
+                                "===========================lenth = ${controller.data.length}==================================",
+                              );
+                              return ProductAllCard(
+                                itemsModel: ItemsModel.fromJson(
+                                  controller.itemsAll[index],
+                                ),
+                              );
+                            },
+                          )
+                        : ListSearchAll(listSearchData: controller.listData),
+                  ),
+                ],
+              ),
+            );
+          },
         ),
-      );
-
+      ),
+    );
   }
 }
-
-
 
 class ListSearchAll extends GetView<ItemsAllControllerImp> {
   const ListSearchAll({super.key, required this.listSearchData});
@@ -128,7 +125,8 @@ class ListSearchAll extends GetView<ItemsAllControllerImp> {
                           child: Hero(
                             tag: "${item.itmesId}_search",
                             child: CachedNetworkImage(
-                              imageUrl: "${AppLink.imageItems}/${item.itmesImage}",
+                              imageUrl:
+                                  "${AppLink.imageItems}/${item.itmesImage}",
                               fit: BoxFit.contain,
                               placeholder: (context, url) => Center(
                                 child: CircularProgressIndicator(
@@ -136,8 +134,10 @@ class ListSearchAll extends GetView<ItemsAllControllerImp> {
                                   color: AppColor.primaryColor.withOpacity(0.3),
                                 ),
                               ),
-                              errorWidget: (context, url, error) =>
-                              const Icon(Icons.image_not_supported_outlined, color: Colors.grey),
+                              errorWidget: (context, url, error) => const Icon(
+                                Icons.image_not_supported_outlined,
+                                color: Colors.grey,
+                              ),
                             ),
                           ),
                         ),
@@ -147,7 +147,10 @@ class ListSearchAll extends GetView<ItemsAllControllerImp> {
                           top: 0,
                           left: 0,
                           child: Container(
-                            padding: EdgeInsets.symmetric(horizontal: 6.w, vertical: 2.h),
+                            padding: EdgeInsets.symmetric(
+                              horizontal: 6.w,
+                              vertical: 2.h,
+                            ),
                             decoration: BoxDecoration(
                               color: Colors.red,
                               borderRadius: BorderRadius.only(
@@ -203,9 +206,13 @@ class ListSearchAll extends GetView<ItemsAllControllerImp> {
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                if (item.itmesDiscount != null && item.itmesDiscount! > 0)
+                                if (item.itmesDiscount != null &&
+                                    item.itmesDiscount! > 0)
                                   Text(
-                                    translateDatabase("${item.itmesPrice} ريال", "${item.itmesPrice} RYE"),
+                                    translateDatabase(
+                                      "${item.itmesPrice?.toStringAsFixed(2)} ريال",
+                                      "${item.itmesPrice?.toStringAsFixed(2)} RYE",
+                                    ),
                                     style: TextStyle(
                                       fontSize: 11.sp,
                                       color: Colors.grey,
@@ -213,7 +220,10 @@ class ListSearchAll extends GetView<ItemsAllControllerImp> {
                                     ),
                                   ),
                                 Text(
-                                  translateDatabase("${item.itemspricedisount} ريال", "${item.itemspricedisount} RYE"),
+                                  translateDatabase(
+                                    "${item.itemspricedisount?.toStringAsFixed(2)} ريال",
+                                    "${item.itemspricedisount?.toStringAsFixed(2)} RYE",
+                                  ),
                                   style: TextStyle(
                                     fontSize: 15.sp,
                                     fontWeight: FontWeight.bold,

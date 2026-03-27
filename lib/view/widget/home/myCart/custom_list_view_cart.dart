@@ -20,17 +20,29 @@ class CustomListViewCart extends GetView<CartController> {
             itemCount: controller.data.length,
             itemBuilder: (context, index) {
               return CartItemWidget(
-                name: translateDatabase("${controller.data[index].itmesNameAr!}", "${controller.data[index].itmesName!}"),
-                description: translateDatabase("${controller.data[index].itmesDescAr!}", "${controller.data[index].itmesDesc!}"),
+                name: translateDatabase(
+                  "${controller.data[index].itmesNameAr!}",
+                  "${controller.data[index].itmesName!}",
+                ),
+                description: translateDatabase(
+                  "${controller.data[index].itmesDescAr!}",
+                  "${controller.data[index].itmesDesc!}",
+                ),
                 image: controller.data[index].itmesImage!,
-                price: controller.data[index].itemsprice.toString(),
+                price: controller.data[index].itemsprice!.toStringAsFixed(2).toString(),
                 count: controller.data[index].countitems.toString(),
                 add: () async {
-                  await controller.add(controller.data[index].itmesId, controller.data[index].itmesSuper);
+                  await controller.add(
+                    controller.data[index].itmesId,
+                    controller.data[index].itmesSuper,
+                  );
                   controller.refreshPage();
                 },
                 delete: () async {
-                  await controller.delete(controller.data[index].itmesId, controller.data[index].itmesSuper);
+                  await controller.delete(
+                    controller.data[index].itmesId,
+                    controller.data[index].itmesSuper,
+                  );
                   controller.refreshPage();
                 },
               );

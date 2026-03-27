@@ -21,8 +21,8 @@ class MyCart extends StatelessWidget {
       bottomNavigationBar: GetBuilder<CartController>(
         builder:
             (controller) => BottomNavgationBarCart(
-          price: "${controller.priceOrder}",
-          discount: "${controller.disCountCoupon}%",
+          price: "${controller.priceOrder.toStringAsFixed(2)}",
+          discount: "${controller.disCountCoupon?.toStringAsFixed(2)}%",
           // shipping: "0",
           totalprice: "${controller.getTotalPrice()}",
           controllercoupon: controller.controllercoupon!,

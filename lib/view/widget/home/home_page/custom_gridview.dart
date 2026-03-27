@@ -18,7 +18,7 @@ class CustomGridview extends GetView<HomeShopControllerImp> {
         crossAxisCount: 2, // عدد الأعمدة
         crossAxisSpacing: 9.w,
         mainAxisSpacing: 9.h,
-        childAspectRatio: 0.7.h, // يتحكم بنسبة الطول إلى العرض
+        childAspectRatio: 0.75.h, // يتحكم بنسبة الطول إلى العرض
       ),
       itemCount: controller.supermarket.length, // عدد العناصر
       padding: const EdgeInsets.all(5).r,

@@ -100,8 +100,8 @@ class CardOrdersListArchive extends GetView<OrderArchiveController> {
                 Expanded(
                   child: Text(
                     translateDatabase(
-                      "الإجمالي: ${listdata.ordersTotalprice} ريال",
-                      "Total: ${listdata.ordersTotalprice} RYE",
+                      "الإجمالي: ${listdata.ordersTotalprice?.toStringAsFixed(2)} ريال",
+                      "Total: ${listdata.ordersTotalprice?.toStringAsFixed(2)} RYE",
                     ),
                     style: const TextStyle(
                       fontSize: 16,

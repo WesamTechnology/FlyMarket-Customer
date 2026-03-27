@@ -27,41 +27,6 @@ class HeaderSection extends StatelessWidget {
       foregroundColor: Colors.black,
       flexibleSpace: FlexibleSpaceBar(
         titlePadding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 8.h),
-        title: Container(
-
-          padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 6.h),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(12),
-            gradient: LinearGradient(
-              colors: [
-                Colors.green.withOpacity(0.7),
-                Colors.green.withOpacity(0.2),
-              ],
-              begin: Alignment.bottomCenter,
-              end: Alignment.topCenter,
-            ),
-          ),
-          child: Text(
-            translateDatabase(
-              controller.supermarketModel.supermarketNameAr!,
-              controller.supermarketModel.supermarketName!,
-            ),
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 16.sp,
-              fontWeight: FontWeight.bold,
-              shadows: [
-                Shadow(
-                  color: Colors.black.withOpacity(0.9),
-                  blurRadius: 8,
-                  offset: Offset(0, 2),
-                ),
-              ],
-            ),
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-          ),
-        ),
         background: "${controller.supermarketModel
             .supermarketImage}" != "default.png" && "${controller.supermarketModel
             .supermarketImage}" != "empty" && "${controller.supermarketModel

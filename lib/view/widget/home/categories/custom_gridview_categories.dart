@@ -176,6 +176,9 @@ class CategoriesAll extends GetView<CategoriesAllControllerImp> {
                 child: Image.network(
                   "${AppLink.imageCategories}/${categoriesAllModel.categoriesImage}",
                   fit: BoxFit.contain,
+                  errorBuilder: (context, error, stackTrace) => Image.asset(
+                    AppImageAsset.splash2,
+                    fit: BoxFit.fill),
                 ),
               ),
             ),

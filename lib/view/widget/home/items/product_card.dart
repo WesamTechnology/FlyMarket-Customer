@@ -170,8 +170,8 @@ class ProductCard extends GetView<ItemsControllerImp> {
                                 Expanded(
                                   child: Text(
                                     translateDatabase(
-                                      "${itemsModel.itemspricedisount} ريال يمني",
-                                      "${itemsModel.itemspricedisount} RYE",
+                                      "${itemsModel.itemspricedisount?.toStringAsFixed(2)} ريال يمني",
+                                      "${itemsModel.itemspricedisount?.toStringAsFixed(2)} RYE",
                                     ),
                                     style: TextStyle(
                                       fontSize: 14.sp,

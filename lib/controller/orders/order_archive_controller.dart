@@ -30,7 +30,7 @@ class OrderArchiveController extends GetxController {
     if (val == "0") {
       return translateDatabase("الدفع عند الاستلام", "Cash On Delivery");
     } else {
-      return translateDatabase("بطاقة الدفع", "Payment Card");
+      return translateDatabase("الدفع عبر محفظة جيب", "Payment via Jaib Wallet");
     }
   }
 

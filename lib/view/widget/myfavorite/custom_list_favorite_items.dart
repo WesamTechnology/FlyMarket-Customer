@@ -47,7 +47,8 @@ class CustomListFavoriteItems extends GetView<MyFavoriteController> {
                       child: Hero(
                         tag: "${itemsModel.itmesId}",
                         child: CachedNetworkImage(
-                          imageUrl: "${AppLink.imageItems}/${itemsModel.itmesImage!}",
+                          imageUrl:
+                              "${AppLink.imageItems}/${itemsModel.itmesImage!}",
                           fit: BoxFit.contain,
                           placeholder: (context, url) => Center(
                             child: CircularProgressIndicator(
@@ -55,7 +56,8 @@ class CustomListFavoriteItems extends GetView<MyFavoriteController> {
                               strokeWidth: 2,
                             ),
                           ),
-                          errorWidget: (context, url, error) => const Icon(Icons.error_outline),
+                          errorWidget: (context, url, error) =>
+                              const Icon(Icons.error_outline),
                         ),
                       ),
                     ),
@@ -102,7 +104,10 @@ class CustomListFavoriteItems extends GetView<MyFavoriteController> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        translateDatabase("${itemsModel.itemspricedisount} ريال", "${itemsModel.itemspricedisount} RYE"),
+                        translateDatabase(
+                          "${itemsModel.itemspricedisount?.toStringAsFixed(2)} ريال",
+                          "${itemsModel.itemspricedisount?.toStringAsFixed(2)} RYE",
+                        ),
                         style: const TextStyle(
                           color: AppColor.primaryColor,
                           fontSize: 18,
@@ -112,7 +117,7 @@ class CustomListFavoriteItems extends GetView<MyFavoriteController> {
                       ),
                       Container(
                         decoration: BoxDecoration(
-                          color: Colors.red[50] ,
+                          color: Colors.red[50],
                           shape: BoxShape.circle,
                         ),
                         child: IconButton(
@@ -142,7 +147,10 @@ class CustomListFavoriteItems extends GetView<MyFavoriteController> {
                 top: 0,
                 left: 0,
                 child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 10,
+                    vertical: 4,
+                  ),
                   decoration: const BoxDecoration(
                     color: Colors.red,
                     borderRadius: BorderRadius.only(
@@ -151,7 +159,7 @@ class CustomListFavoriteItems extends GetView<MyFavoriteController> {
                     ),
                   ),
                   child: Text(
-                    "- ${itemsModel.itmesDiscount}%",
+                    "- ${itemsModel.itmesDiscount?.toStringAsFixed(1)}%",
                     style: const TextStyle(
                       color: Colors.white,
                       fontSize: 12,

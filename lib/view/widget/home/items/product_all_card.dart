@@ -123,7 +123,7 @@ class ProductAllCard extends GetView<ItemsAllControllerImp> {
                            ),
                          ),
                          child: Text(
-                           "${itemsModel.itmesDiscount}%",
+                           "${itemsModel.itmesDiscount?.toStringAsFixed(1)}%",
                            style: TextStyle(
                              color: Colors.white,
                              fontSize: 9.sp,
@@ -163,8 +163,8 @@ class ProductAllCard extends GetView<ItemsAllControllerImp> {
                           Expanded(
                             child: Text(
                               translateDatabase(
-                                "${itemsModel.itemspricedisount} ريال يمني",
-                                "${itemsModel.itemspricedisount} RYE",
+                                "${itemsModel.itemspricedisount?.toStringAsFixed(2)} ريال يمني",
+                                "${itemsModel.itemspricedisount?.toStringAsFixed(2)} RYE",
                               ),
                               style: TextStyle(
                                 fontSize: 14.sp,

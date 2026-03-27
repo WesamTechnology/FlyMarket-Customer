@@ -82,7 +82,7 @@ class Checkout extends StatelessWidget {
                     onTap: () {
                       controller.choosePaymentMethod("1"); // 1 => card
                     },
-                    title: translateDatabase("بطاقة الدفع", "Payment Card"),
+                    title: translateDatabase("الدفع عبر محفظة جيب", "Payment via Jaib Wallet"),
                     isActive: controller.paymentChoos == "1" ? true : false,
                   ),
                   SizedBox(height: 30),

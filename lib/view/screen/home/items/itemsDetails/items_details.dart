@@ -29,7 +29,7 @@ class ItemsDetails extends StatelessWidget {
           onPressed: () => Navigator.pop(context),
         ),
         centerTitle: true,
-        title:  Text(
+        title: Text(
           translateDatabase("تفاصيل المنتج", "Items Detail"),
           style: TextStyle(
             fontSize: 20,
@@ -77,7 +77,7 @@ class ItemsDetails extends StatelessWidget {
                           child: Row(
                             children: [
                               Text(
-                                "${controller.itemsModel.itmesPrice}",
+                                "${controller.itemsModel.itmesPrice?.toStringAsFixed(2)}",
                                 style: TextStyle(
                                   fontSize: 17.sp,
                                   fontWeight: FontWeight.bold,
@@ -89,7 +89,7 @@ class ItemsDetails extends StatelessWidget {
                               ),
                               SizedBox(width: 8.w),
                               Text(
-                                "%${controller.itemsModel.itmesDiscount}",
+                                "%${controller.itemsModel.itmesDiscount?.toStringAsFixed(1)}",
                                 style: TextStyle(
                                   fontSize: 13.sp,
                                   fontWeight: FontWeight.bold,
@@ -107,60 +107,53 @@ class ItemsDetails extends StatelessWidget {
                   // ----------------------  اسم المنتج + الأيقونة  -------------------------
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          translateDatabase(
-                            "${controller.itemsModel.itmesNameAr}",
-                            "${controller.itemsModel.itmesName}",
-                          ),
-                          style: TextStyle(
-                            fontSize: 24,
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xFF181725),
-                          ),
-                        ),
-                        SizedBox(width: 10.w,),
-                        Expanded(
-                          child: Container(
-
-                            padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 6.h),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(12),
-                              gradient: LinearGradient(
-                                colors: [
-                                  Colors.green.withOpacity(0.7),
-                                  Colors.green.withOpacity(0.2),
-                                ],
-                                begin: Alignment.bottomCenter,
-                                end: Alignment.topCenter,
-                              ),
+                        Row(
+                          children: [
+                            Icon(
+                              Icons.storefront,
+                              size: 20.sp,
+                              color: AppColor.primaryColor,
                             ),
-                            child: Center(
+                            SizedBox(width: 6.w),
+
+                            Expanded(
                               child: Text(
                                 translateDatabase(
-                                  controller.itemsModel.supermarketNameAr!,
-                                  controller.itemsModel.supermarketName!,
+                                  controller.itemsModel.supermarketNameAr ?? "",
+                                  controller.itemsModel.supermarketName ?? "",
                                 ),
                                 style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 14.sp,
+                                  color: AppColor.primaryColor,
+                                  fontSize: 17.sp,
                                   fontWeight: FontWeight.bold,
-                                  shadows: [
-                                    Shadow(
-                                      color: Colors.black.withOpacity(0.9),
-                                      blurRadius: 8,
-                                      offset: Offset(0, 2),
-                                    ),
-                                  ],
                                 ),
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
                               ),
                             ),
+                          ],
+                        ),
+                        SizedBox(height: 8.h),
+                        // 🟢 اسم المنتج
+                        Text(
+                          translateDatabase(
+                            controller.itemsModel.itmesNameAr ?? "",
+                            controller.itemsModel.itmesName ?? "",
                           ),
-                        )
+                          style: TextStyle(
+                            fontSize: 22.sp,
+                            fontWeight: FontWeight.bold,
+                            color: const Color(0xFF181725),
+                            height: 1.3,
+                          ),
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+
+                        // 🏪 اسم المتجر
                       ],
                     ),
                   ),
@@ -237,8 +230,8 @@ class ItemsDetails extends StatelessWidget {
 
                         Text(
                           translateDatabase(
-                            "${controller.itemsModel.itemspricedisount} ريال يمني ",
-                            "${controller.itemsModel.itemspricedisount} RYE",
+                            "${controller.itemsModel.itemspricedisount?.toStringAsFixed(2)} ريال يمني ",
+                            "${controller.itemsModel.itemspricedisount?.toStringAsFixed(2)} RYE",
                           ),
                           style: TextStyle(
                             fontSize: 22,
@@ -269,7 +262,7 @@ class ItemsDetails extends StatelessWidget {
                           Get.find<CartController>().refreshPage();
                           Get.toNamed(AppRoute.myCart);
                         },
-                        child:  Text(
+                        child: Text(
                           translateDatabase("الانتقال إلى السلة", "Go To Cart"),
                           style: TextStyle(
                             fontSize: 18,

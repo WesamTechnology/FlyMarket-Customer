@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -19,7 +18,16 @@ class OrderDetailsView extends StatelessWidget {
     // );
     // print(controllerpag.listData.length);
     return Scaffold(
-      appBar: AppBar(title: Text(translateDatabase("تفاصيل الطلب", "Order Details"), style: TextStyle(color: AppColor.primaryColor,fontWeight: FontWeight.bold)),centerTitle: true,),
+      appBar: AppBar(
+        title: Text(
+          translateDatabase("تفاصيل الطلب", "Order Details"),
+          style: TextStyle(
+            color: AppColor.primaryColor,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        centerTitle: true,
+      ),
       body: Container(
         padding: EdgeInsets.all(10),
         child: GetBuilder<OrderDetailsController>(
@@ -51,7 +59,6 @@ class OrderDetailsView extends StatelessWidget {
                               3: FlexColumnWidth(2),
                             },
                             children: [
-
                               /// ================= HEADER =================
                               TableRow(
                                 decoration: BoxDecoration(
@@ -59,7 +66,9 @@ class OrderDetailsView extends StatelessWidget {
                                 ),
                                 children: [
                                   Padding(
-                                    padding: const EdgeInsets.symmetric(vertical: 14),
+                                    padding: const EdgeInsets.symmetric(
+                                      vertical: 14,
+                                    ),
                                     child: Text(
                                       translateDatabase("المنتج", "Item"),
                                       textAlign: TextAlign.center,
@@ -71,7 +80,9 @@ class OrderDetailsView extends StatelessWidget {
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsets.symmetric(vertical: 14),
+                                    padding: const EdgeInsets.symmetric(
+                                      vertical: 14,
+                                    ),
                                     child: Text(
                                       translateDatabase("الكمية", "QTY"),
                                       textAlign: TextAlign.center,
@@ -83,9 +94,14 @@ class OrderDetailsView extends StatelessWidget {
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsets.symmetric(vertical: 14),
+                                    padding: const EdgeInsets.symmetric(
+                                      vertical: 14,
+                                    ),
                                     child: Text(
-                                      translateDatabase("السوبرماركت", "SuperMarket"),
+                                      translateDatabase(
+                                        "السوبرماركت",
+                                        "SuperMarket",
+                                      ),
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
                                         fontWeight: FontWeight.bold,
@@ -95,7 +111,9 @@ class OrderDetailsView extends StatelessWidget {
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsets.symmetric(vertical: 14),
+                                    padding: const EdgeInsets.symmetric(
+                                      vertical: 14,
+                                    ),
                                     child: Text(
                                       translateDatabase("السعر", "Price"),
                                       textAlign: TextAlign.center,
@@ -106,12 +124,13 @@ class OrderDetailsView extends StatelessWidget {
                                       ),
                                     ),
                                   ),
-
                                 ],
                               ),
 
                               /// ================= DATA ROWS =================
-                              ...List.generate(controller.listData.length, (index) {
+                              ...List.generate(controller.listData.length, (
+                                index,
+                              ) {
                                 final item = controller.listData[index];
 
                                 return TableRow(
@@ -122,9 +141,15 @@ class OrderDetailsView extends StatelessWidget {
                                   ),
                                   children: [
                                     Padding(
-                                      padding: const EdgeInsets.symmetric(vertical: 12),
+                                      padding: const EdgeInsets.symmetric(
+                                        vertical: 12,
+                                      ),
                                       child: Text(
-                                      translateDatabase(item.itmesNameAr!, item.itmesName!)?? "",
+                                        translateDatabase(
+                                              item.itmesNameAr!,
+                                              item.itmesName!,
+                                            ) ??
+                                            "",
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
                                           fontWeight: FontWeight.w600,
@@ -133,7 +158,9 @@ class OrderDetailsView extends StatelessWidget {
                                       ),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsets.symmetric(vertical: 12),
+                                      padding: const EdgeInsets.symmetric(
+                                        vertical: 12,
+                                      ),
                                       child: Text(
                                         item.countitems.toString(),
                                         textAlign: TextAlign.center,
@@ -143,9 +170,14 @@ class OrderDetailsView extends StatelessWidget {
                                       ),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsets.symmetric(vertical: 12),
+                                      padding: const EdgeInsets.symmetric(
+                                        vertical: 12,
+                                      ),
                                       child: Text(
-                                        translateDatabase("${item.supermarketNameAr}", "${item.supermarketName}"),
+                                        translateDatabase(
+                                          "${item.supermarketNameAr}",
+                                          "${item.supermarketName}",
+                                        ),
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
                                           fontWeight: FontWeight.w500,
@@ -153,9 +185,14 @@ class OrderDetailsView extends StatelessWidget {
                                       ),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsets.symmetric(vertical: 12),
+                                      padding: const EdgeInsets.symmetric(
+                                        vertical: 12,
+                                      ),
                                       child: Text(
-                                        translateDatabase("${item.itemsprice} ريال", "${item.itemsprice} RYE"),
+                                        translateDatabase(
+                                          "${item.itemsprice?.toStringAsFixed(2)} ريال",
+                                          "${item.itemsprice?.toStringAsFixed(2)} RYE",
+                                        ),
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
                                           fontWeight: FontWeight.bold,
@@ -163,7 +200,6 @@ class OrderDetailsView extends StatelessWidget {
                                         ),
                                       ),
                                     ),
-
                                   ],
                                 );
                               }),
@@ -185,7 +221,10 @@ class OrderDetailsView extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              translateDatabase("السعر الإجمالي", "Total Price"),
+                              translateDatabase(
+                                "السعر الإجمالي",
+                                "Total Price",
+                              ),
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 16,
@@ -193,7 +232,10 @@ class OrderDetailsView extends StatelessWidget {
                               ),
                             ),
                             Text(
-                              translateDatabase("${controller.orderPendingModel.ordersTotalprice} ريال", "${controller.orderPendingModel.ordersTotalprice} RYE"),
+                              translateDatabase(
+                                "${controller.orderPendingModel.ordersTotalprice?.toStringAsFixed(2)} ريال",
+                                "${controller.orderPendingModel.ordersTotalprice?.toStringAsFixed(2)} RYE",
+                              ),
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 18,
@@ -208,7 +250,6 @@ class OrderDetailsView extends StatelessWidget {
                   const SizedBox(height: 25),
 
                   if (controller.orderPendingModel.addressId != null) ...[
-
                     /// ================= TITLE =================
                     Text(
                       translateDatabase("عنوان التوصيل", "Delivery Address"),
@@ -232,7 +273,6 @@ class OrderDetailsView extends StatelessWidget {
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-
                             /// Location Icon in Circle
                             Container(
                               padding: const EdgeInsets.all(10),
@@ -255,7 +295,8 @@ class OrderDetailsView extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    controller.orderPendingModel.addressName ?? "",
+                                    controller.orderPendingModel.addressName ??
+                                        "",
                                     style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 15,
@@ -299,7 +340,9 @@ class OrderDetailsView extends StatelessWidget {
                           markers: controller.marker.toSet(),
                           initialCameraPosition: controller.cameraPosition!,
                           onMapCreated: (GoogleMapController mapController) {
-                            controller.completerController!.complete(mapController);
+                            controller.completerController!.complete(
+                              mapController,
+                            );
                           },
                         ),
                       ),

@@ -205,8 +205,8 @@ class HomeShopControllerImp extends HomeShopController {
           Marker(
             markerId: MarkerId(market['supermarket_id'].toString()),
             position: LatLng(
-              market['supermarket_lat'],
-              market['supermarket_long'],
+              (market['supermarket_lat'] as num).toDouble(),
+              (market['supermarket_long'] as num).toDouble(),
             ),
             icon: BitmapDescriptor.defaultMarkerWithHue(
               isNearest ? BitmapDescriptor.hueGreen : BitmapDescriptor.hueRed,
@@ -245,7 +245,10 @@ class HomeShopControllerImp extends HomeShopController {
 
     gmc?.animateCamera(
       CameraUpdate.newLatLng(
-        LatLng(nearest['supermarket_lat'], nearest['supermarket_long']),
+          LatLng(
+            (nearest['supermarket_lat'] as num).toDouble(),
+            (nearest['supermarket_long'] as num).toDouble(),
+          )
       ),
     );
   }

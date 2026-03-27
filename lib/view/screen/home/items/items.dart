@@ -25,45 +25,46 @@ class Items extends StatelessWidget {
         padding: const EdgeInsets.all(7.0).r,
         child: GetBuilder<ItemsControllerImp>(
           builder: (controller) {
-            return  SingleChildScrollView(
+            return SingleChildScrollView(
               child: Column(
-                  children: [
-                    SizedBox(height: 60.h),
-                    CustomSearch(
-                      myControlle: controller.search,
-                      onChanged: (val) {
-                        controller.checkSearch(val);
-                      },
-                      onPressedSearch: () {
-                        controller.onSearchItem();
-                      },
-                    ),
-                    SizedBox(height: 10.h),
-                    HandlingDataView(
-                      statusRequest: controller.statusRequest,
-                      widget:!controller.isSearch
-                          ?
-                      GridView.builder(
-                      itemCount:controller.items.length,
-                      shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        childAspectRatio: 0.8,
-                      ),
-                      itemBuilder: (BuildContext context, index) {
-                        // print(
-                        //   "===========================lenth = ${controller.items.length}==================================",
-                        // );
-                        return ProductCard(
-                          itemsModel: ItemsModel.fromJson(
-                            controller.items[index],
-                          ),
-                        );
-                      },
-                    ): ListSearch(listSearchData: controller.listData),)
-                  ],
-
+                children: [
+                  SizedBox(height: 60.h),
+                  CustomSearch(
+                    myControlle: controller.search,
+                    onChanged: (val) {
+                      controller.checkSearch(val);
+                    },
+                    onPressedSearch: () {
+                      controller.onSearchItem();
+                    },
+                  ),
+                  SizedBox(height: 10.h),
+                  HandlingDataView(
+                    statusRequest: controller.statusRequest,
+                    widget: !controller.isSearch
+                        ? GridView.builder(
+                            itemCount: controller.items.length,
+                            shrinkWrap: true,
+                            physics: NeverScrollableScrollPhysics(),
+                            gridDelegate:
+                                SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 2,
+                                  childAspectRatio: 0.8,
+                                ),
+                            itemBuilder: (BuildContext context, index) {
+                              // print(
+                              //   "===========================lenth = ${controller.items.length}==================================",
+                              // );
+                              return ProductCard(
+                                itemsModel: ItemsModel.fromJson(
+                                  controller.items[index],
+                                ),
+                              );
+                            },
+                          )
+                        : ListSearch(listSearchData: controller.listData),
+                  ),
+                ],
               ),
             );
           },
@@ -72,7 +73,6 @@ class Items extends StatelessWidget {
     );
   }
 }
-
 
 class ListSearch extends GetView<ItemsControllerImp> {
   const ListSearch({super.key, required this.listSearchData});
@@ -124,7 +124,8 @@ class ListSearch extends GetView<ItemsControllerImp> {
                           child: Hero(
                             tag: "${item.itmesId}_search",
                             child: CachedNetworkImage(
-                              imageUrl: "${AppLink.imageItems}/${item.itmesImage}",
+                              imageUrl:
+                                  "${AppLink.imageItems}/${item.itmesImage}",
                               fit: BoxFit.contain,
                               placeholder: (context, url) => Center(
                                 child: CircularProgressIndicator(
@@ -132,8 +133,10 @@ class ListSearch extends GetView<ItemsControllerImp> {
                                   color: AppColor.primaryColor.withOpacity(0.3),
                                 ),
                               ),
-                              errorWidget: (context, url, error) =>
-                              const Icon(Icons.image_not_supported_outlined, color: Colors.grey),
+                              errorWidget: (context, url, error) => const Icon(
+                                Icons.image_not_supported_outlined,
+                                color: Colors.grey,
+                              ),
                             ),
                           ),
                         ),
@@ -143,7 +146,10 @@ class ListSearch extends GetView<ItemsControllerImp> {
                           top: 0,
                           left: 0,
                           child: Container(
-                            padding: EdgeInsets.symmetric(horizontal: 6.w, vertical: 2.h),
+                            padding: EdgeInsets.symmetric(
+                              horizontal: 6.w,
+                              vertical: 2.h,
+                            ),
                             decoration: BoxDecoration(
                               color: Colors.red,
                               borderRadius: BorderRadius.only(
@@ -199,9 +205,13 @@ class ListSearch extends GetView<ItemsControllerImp> {
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                if (item.itmesDiscount != null && item.itmesDiscount! > 0)
+                                if (item.itmesDiscount != null &&
+                                    item.itmesDiscount! > 0)
                                   Text(
-                                    translateDatabase("${item.itmesPrice} ريال", "${item.itmesPrice} RYE"),
+                                    translateDatabase(
+                                      "${item.itmesPrice?.toStringAsFixed(2)} ريال",
+                                      "${item.itmesPrice?.toStringAsFixed(2)} RYE",
+                                    ),
                                     style: TextStyle(
                                       fontSize: 11.sp,
                                       color: Colors.grey,
@@ -209,7 +219,10 @@ class ListSearch extends GetView<ItemsControllerImp> {
                                     ),
                                   ),
                                 Text(
-                                  translateDatabase("${item.itemspricedisount} ريال", "${item.itemspricedisount} RYE"),
+                                  translateDatabase(
+                                    "${item.itemspricedisount?.toStringAsFixed(2)} ريال",
+                                    "${item.itemspricedisount?.toStringAsFixed(2)} RYE",
+                                  ),
                                   style: TextStyle(
                                     fontSize: 15.sp,
                                     fontWeight: FontWeight.bold,

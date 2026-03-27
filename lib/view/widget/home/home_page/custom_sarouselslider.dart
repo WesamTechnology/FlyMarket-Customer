@@ -52,6 +52,9 @@ class ImageSliderPage extends GetView<HomeShopControllerImp> {
 
                   fit: BoxFit.fill,
                   width: double.infinity,
+                  errorBuilder: (context, error, stackTrace) => Image.asset(
+                    AppImageAsset.splash2,
+                    fit: BoxFit.fill),
                 ),
               );
             },

@@ -30,6 +30,8 @@ class OrderPendingModel {
   String? supermarketImage;
   String? supermarketLocation;
   String? supermarketTimeOpen;
+  String? deliveryName;
+  int? deliveryPayNumber;
   int? roleId;
   int? status;
   String? createdAt;
@@ -67,6 +69,8 @@ class OrderPendingModel {
         this.supermarketImage,
         this.supermarketLocation,
         this.supermarketTimeOpen,
+        this.deliveryName,
+        this.deliveryPayNumber,
         this.roleId,
         this.status,
         this.createdAt,
@@ -104,6 +108,8 @@ class OrderPendingModel {
     supermarketImage = json['supermarket_image'];
     supermarketLocation = json['supermarket_location'];
     supermarketTimeOpen = json['supermarket_time_open'];
+    deliveryName = json['driver_name'];
+    deliveryPayNumber = json['driver_pay_number'];
     roleId = json['role_id'];
     status = json['status'];
     createdAt = json['created_at'];
@@ -143,6 +149,8 @@ class OrderPendingModel {
     data['supermarket_image'] = this.supermarketImage;
     data['supermarket_location'] = this.supermarketLocation;
     data['supermarket_time_open'] = this.supermarketTimeOpen;
+    data['driver_name'] = this.deliveryName;
+    data['driver_pay_number'] = this.deliveryPayNumber;
     data['role_id'] = this.roleId;
     data['status'] = this.status;
     data['created_at'] = this.createdAt;

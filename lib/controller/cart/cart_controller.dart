@@ -183,8 +183,8 @@ class CartController extends GetxController {
     );
   }
 
-  double getTotalPrice() {
-    return (priceOrder - (priceOrder * disCountCoupon!) / 100);
+  String? getTotalPrice() {
+    return (priceOrder - (priceOrder * disCountCoupon!) / 100).toStringAsFixed(2);
   }
 
   @override

@@ -98,6 +98,8 @@ class MyFavoriteController extends GetxController {
       itmesCat: fav.itmesCat,
       itmesCatAll: fav.itmesCatAll,
       itmesSuper: fav.itmesSuper,
+      supermarketName: fav.supermarketName,
+      supermarketNameAr: fav.supermarketNameAr,
     );
 
     Get.toNamed(AppRoute.itemsDetails, arguments: {"itemsmodel": item});
