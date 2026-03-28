@@ -19,5 +19,12 @@ class LoginData {
     return response.fold((l) => l, (r) => r);
   }
 
+  getViewUser(String id) async {
+    var response = await crud.postData(AppLink.viewUser, {
+      "id" : id,
+    });
+    return response.fold((l) => l, (r) => r);
+  }
+
 
 }

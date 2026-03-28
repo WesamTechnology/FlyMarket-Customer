@@ -16,6 +16,7 @@ import 'package:motion_tab_bar/MotionTabBarController.dart';
 import '../../../controller/cart/cart_controller.dart';
 import '../../../controller/favorite/my_favorite_controller.dart';
 import '../../../controller/home/categories_all_controller.dart';
+import '../../../controller/home/home_controller.dart';
 import '../../../controller/home/home_shop_controller.dart';
 import '../../../core/functions/alertexitapp.dart';
 import '../../../core/functions/translate_database.dart';
@@ -32,6 +33,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   // TabController _tabController;
   MotionTabBarController? _motionTabBarController;
+  HomeController controller = Get.put(HomeController());
 
   @override
   void initState() {
@@ -54,81 +56,101 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     checkUserApproval();
   }
   void checkUserApproval() {
-    MyServices myServices = Get.find();
-
-    if (myServices.sharedPreferences.getString("approve") != "1") {
-      Future.delayed(Duration.zero, () {
-        //myServices.sharedPreferences.setString("step", "1");
+    ever(controller.deliveryStatus, (value) {
+      if (value != "1") {
         Get.dialog(
           PopScope(
-            canPop: false, // ❌ يمنع زر الرجوع
+            canPop: false,
             child: Dialog(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(20),
+              backgroundColor: Colors.transparent,
+              elevation: 0,
+              child: Container(
+                padding: EdgeInsets.all(20),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(25),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.15),
+                      blurRadius: 20,
+                      offset: Offset(0, 10),
+                    )
+                  ],
+                ),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
+                    // 🔴 أيقونة مع تصميم جميل
                     Container(
+                      padding: EdgeInsets.all(18),
                       decoration: BoxDecoration(
-                        color: Colors.red.withOpacity(0.1),
                         shape: BoxShape.circle,
+                        gradient: LinearGradient(
+                          colors: [
+                            Colors.red.shade400,
+                            Colors.deepOrange,
+                          ],
+                        ),
                       ),
-                      padding: EdgeInsets.all(15),
                       child: Icon(
-                        Icons.block,
-                        color: Colors.deepOrange,
+                        Icons.block_rounded,
+                        color: Colors.white,
                         size: 40,
-                      ),
-                    ),
-
-                    SizedBox(height: 15),
-
-                    Text(
-                      myServices.sharedPreferences.getString("approve") == "2"
-                          ? translateDatabase("لقد تم حظر حسابك", "Your account has been blocked")
-                          : translateDatabase("الحساب غير مفعل", "Account not activated"),
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-
-                    SizedBox(height: 10),
-
-                    Text(
-                      translateDatabase(
-                        "لا يمكنك استخدام التطبيق حالياً\nيرجى التواصل مع الإدارة",
-                        "You cannot use the app right now\nPlease contact support",
-                      ),
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Colors.grey[600],
-                        fontSize: 14,
                       ),
                     ),
 
                     SizedBox(height: 20),
 
+                    // 🧠 العنوان
+                    Text(
+                      value == "2"
+                          ? "تم حظر حسابك"
+                          : "الحساب غير مفعل",
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black87,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+
+                    SizedBox(height: 10),
+
+                    // ✍️ الوصف
+                    Text(
+                      "لا يمكنك استخدام التطبيق حالياً\nيرجى التواصل مع الإدارة",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: Colors.grey[600],
+                        height: 1.5,
+                      ),
+                    ),
+
+                    SizedBox(height: 25),
+
+                    // 🔘 زر احترافي
                     SizedBox(
                       width: double.infinity,
                       child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.red,
-                          padding: EdgeInsets.symmetric(vertical: 12),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                        ),
                         onPressed: () {
                           Get.offAllNamed(AppRoute.login);
                         },
+                        style: ElevatedButton.styleFrom(
+                          padding: EdgeInsets.symmetric(vertical: 14),
+                          backgroundColor: Colors.redAccent,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          elevation: 5,
+                        ),
                         child: Text(
-                          translateDatabase("حسناً", "OK"),
-                          style: TextStyle(color: Colors.white),
+                          "تسجيل الخروج",
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
                     ),
@@ -139,8 +161,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
           ),
           barrierDismissible: false,
         );
-      });
-    }
+      }
+    });
   }
 
   @override

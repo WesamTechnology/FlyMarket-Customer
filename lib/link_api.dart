@@ -20,6 +20,7 @@ class AppLink{
   static String signUp = "$server/signup.php";
   static String verify_and_register = "$server/verify_and_register.php";
   static String login = "$server/login.php";
+  static String viewUser = "$server/users/view_user.php";
   static String loginverfy = "$server/loginverfy.php";
   static String verfiyCodeSignUp = "$server/verfiycode.php";
 
