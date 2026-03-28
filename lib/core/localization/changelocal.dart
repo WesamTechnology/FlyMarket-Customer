@@ -45,6 +45,8 @@ class LocaleController extends GetxController{
 
   @override
   void onInit() {
+    myServices.sharedPreferences.setString(
+        "approve", "1");  // ملاحضه لازم اشيلها بعد تسجيل الدخول
     myServices.sharedPreferences.setString("id", "14"); // ملاحضه هاذا خطأ ينحذف سويته لتجربة
     requestPermissionNotification();
     fcmconfig();

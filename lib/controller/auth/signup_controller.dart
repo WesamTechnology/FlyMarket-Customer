@@ -131,6 +131,8 @@ class SignupController extends GetxController {
           "username", user['users_name']);
       myServices.sharedPreferences.setString(
           "phone", user['users_phone']);
+      myServices.sharedPreferences.setString(
+          "approve", user['users_approve']);
       myServices.sharedPreferences.setString("step", "2");
 
       Get.offAllNamed(AppRoute.homepage);

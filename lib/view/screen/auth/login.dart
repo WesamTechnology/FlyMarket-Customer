@@ -10,6 +10,7 @@ import 'package:intl_phone_field/intl_phone_field.dart';
 import '../../../controller/auth/login_controller.dart';
 import '../../../core/constant/color.dart';
 import '../../../core/functions/alertexitapp.dart';
+import '../../../core/functions/translate_database.dart';
 import '../../../core/functions/validinput.dart';
 import '../../widget/auth/custombuttonauth.dart';
 import '../../widget/auth/customtextbodyauth.dart';
@@ -112,7 +113,37 @@ class Login extends StatelessWidget {
                           //controller.login();
                         },
                       ),
-                    SizedBox(height: 35.h),
+                    SizedBox(height: 20.h),
+
+                    InkWell(
+                      onTap: () {
+                       controller.openWhatsApp();
+                      },
+                      borderRadius: BorderRadius.circular(15),
+                      child: Container(
+                        padding: EdgeInsets.symmetric(vertical: 12),
+                        decoration: BoxDecoration(
+                          color: AppColor.primaryColor, // لون واتساب
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(Icons.chat, color: Colors.white),
+                            SizedBox(width: 10),
+                            Text(
+                              translateDatabase("التواصل مع الدعم عبر واتساب", "Contact support via WhatsApp"),
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 14.sp,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 25.h),
                     TextSignUpOrSignIn(
                       textOne: "16".tr,
                       textTow: "17".tr,

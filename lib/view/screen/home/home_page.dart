@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flymarket_customer/core/constant/color.dart';
+import 'package:flymarket_customer/core/constant/routes.dart';
 import 'package:flymarket_customer/view/screen/home/my_cart.dart';
 import 'package:flymarket_customer/view/screen/home/categories.dart';
 import 'package:flymarket_customer/view/screen/home/favorites.dart';
@@ -17,6 +18,8 @@ import '../../../controller/favorite/my_favorite_controller.dart';
 import '../../../controller/home/categories_all_controller.dart';
 import '../../../controller/home/home_shop_controller.dart';
 import '../../../core/functions/alertexitapp.dart';
+import '../../../core/functions/translate_database.dart';
+import '../../../core/services/services.dart';
 
 
 class HomePage extends StatefulWidget {
@@ -47,6 +50,97 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
       length: 5,
       vsync: this,
     );
+
+    checkUserApproval();
+  }
+  void checkUserApproval() {
+    MyServices myServices = Get.find();
+
+    if (myServices.sharedPreferences.getString("approve") != "1") {
+      Future.delayed(Duration.zero, () {
+        //myServices.sharedPreferences.setString("step", "1");
+        Get.dialog(
+          PopScope(
+            canPop: false, // ❌ يمنع زر الرجوع
+            child: Dialog(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(20),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                        color: Colors.red.withOpacity(0.1),
+                        shape: BoxShape.circle,
+                      ),
+                      padding: EdgeInsets.all(15),
+                      child: Icon(
+                        Icons.block,
+                        color: Colors.deepOrange,
+                        size: 40,
+                      ),
+                    ),
+
+                    SizedBox(height: 15),
+
+                    Text(
+                      myServices.sharedPreferences.getString("approve") == "2"
+                          ? translateDatabase("لقد تم حظر حسابك", "Your account has been blocked")
+                          : translateDatabase("الحساب غير مفعل", "Account not activated"),
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+
+                    SizedBox(height: 10),
+
+                    Text(
+                      translateDatabase(
+                        "لا يمكنك استخدام التطبيق حالياً\nيرجى التواصل مع الإدارة",
+                        "You cannot use the app right now\nPlease contact support",
+                      ),
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.grey[600],
+                        fontSize: 14,
+                      ),
+                    ),
+
+                    SizedBox(height: 20),
+
+                    SizedBox(
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.red,
+                          padding: EdgeInsets.symmetric(vertical: 12),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                        ),
+                        onPressed: () {
+                          Get.offAllNamed(AppRoute.login);
+                        },
+                        child: Text(
+                          translateDatabase("حسناً", "OK"),
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+          barrierDismissible: false,
+        );
+      });
+    }
   }
 
   @override
@@ -59,7 +153,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-
+    MyServices myServices = Get.find();
     return Scaffold(
         bottomNavigationBar: Directionality(
             textDirection: TextDirection.ltr, child: MotionTabBar(

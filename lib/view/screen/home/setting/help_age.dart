@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../../../../core/constant/color.dart';
 import '../../../../core/functions/translate_database.dart';
+import 'faq_page.dart';
 
 
 class HelpPage extends StatelessWidget {
@@ -70,6 +72,12 @@ class HelpPage extends StatelessWidget {
                     translateDatabase("تحدث مع خبرائنا الآن", "Chat with our experts right now"),
                     translateDatabase("ابدأ الدردشة", "Start Chat"),
                     Colors.blue,
+                        () async {
+                      final url = Uri.parse("https://wa.me/967775904988"); // 👈 رقم الأدمن
+                      if (await canLaunchUrl(url)) {
+                        await launchUrl(url);
+                      }
+                    },
                   ),
                   _helpTile(
                     Icons.alternate_email_rounded,
@@ -77,13 +85,21 @@ class HelpPage extends StatelessWidget {
                     translateDatabase("وقت الرد: خلال 24 ساعة", "Response time: within 24 hours"),
                     'support@flymarket.com',
                     Colors.orange,
+                        () async {
+                      final url = Uri.parse("mailto:support@flymarket.com");
+                      await launchUrl(url);
+                    },
                   ),
                   _helpTile(
                     Icons.phone_in_talk_rounded,
                     translateDatabase("مركز الاتصال", "Call Center"),
                     translateDatabase("الأحد - الخميس (9 صباحًا - 6 مساءً)", "Sunday - Thursday (9AM - 6PM)"),
-                    '+967 775 904 988',
+                    translateDatabase('967775904988+', '+967775904988'),
                     Colors.green,
+                        () async {
+                      final url = Uri.parse("tel:+967775904988");
+                      await launchUrl(url);
+                    },
                   ),
                 ],
               ),
@@ -91,37 +107,45 @@ class HelpPage extends StatelessWidget {
 
             SizedBox(height: 20.h),
 
-            Container(
-              margin: EdgeInsets.all(16.w),
-              padding: EdgeInsets.all(20.r),
-              decoration: BoxDecoration(
-                color: AppColor.fourthColor,
-                borderRadius: BorderRadius.circular(20.r),
-              ),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          translateDatabase("الأسئلة الشائعة", "Frequently Asked Questions"),
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 16.sp,
-                            fontWeight: FontWeight.bold,
+            InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const FAQPage()),
+                );
+              },
+              child: Container(
+                margin: EdgeInsets.all(16.w),
+                padding: EdgeInsets.all(20.r),
+                decoration: BoxDecoration(
+                  color: AppColor.fourthColor,
+                  borderRadius: BorderRadius.circular(20.r),
+                ),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            translateDatabase("الأسئلة الشائعة", "Frequently Asked Questions"),
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 16.sp,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
-                        ),
-                        SizedBox(height: 5.h),
-                        Text(
-                          translateDatabase("اعثر على إجابات سريعة للمشاكل الشائعة", "Find quick answers to common issues"),
-                          style: TextStyle(color: Colors.white70, fontSize: 12.sp),
-                        ),
-                      ],
+                          SizedBox(height: 5.h),
+                          Text(
+                            translateDatabase("اعثر على إجابات سريعة للمشاكل الشائعة", "Find quick answers to common issues"),
+                            style: TextStyle(color: Colors.white70, fontSize: 12.sp),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                  Icon(Icons.arrow_forward_ios, color: Colors.white, size: 20.r),
-                ],
+                    Icon(Icons.arrow_forward_ios, color: Colors.white, size: 20.r),
+                  ],
+                ),
               ),
             ),
             SizedBox(height: 30.h),
@@ -131,7 +155,14 @@ class HelpPage extends StatelessWidget {
     );
   }
 
-  Widget _helpTile(IconData icon, String title, String description, String actionText, Color iconColor) {
+  Widget _helpTile(
+      IconData icon,
+      String title,
+      String description,
+      String actionText,
+      Color iconColor,
+      VoidCallback onTap, // 👈 أضف هذا
+      ) {
     return Container(
       margin: EdgeInsets.only(bottom: 16.h),
       decoration: BoxDecoration(
@@ -149,7 +180,7 @@ class HelpPage extends StatelessWidget {
         color: Colors.transparent,
         child: InkWell(
           borderRadius: BorderRadius.circular(18.r),
-          onTap: () {},
+          onTap: onTap, // 👈 هنا التفعيل
           child: Padding(
             padding: EdgeInsets.all(16.r),
             child: Row(
@@ -167,32 +198,27 @@ class HelpPage extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        title,
-                        style: TextStyle(
-                          fontSize: 16.sp,
-                          fontWeight: FontWeight.bold,
-                          color: AppColor.fourthColor,
-                        ),
-                      ),
+                      Text(title,
+                          style: TextStyle(
+                            fontSize: 16.sp,
+                            fontWeight: FontWeight.bold,
+                            color: AppColor.fourthColor,
+                          )),
                       SizedBox(height: 4.h),
-                      Text(
-                        description,
-                        style: TextStyle(fontSize: 12.sp, color: Colors.grey[600]),
-                      ),
+                      Text(description,
+                          style: TextStyle(fontSize: 12.sp, color: Colors.grey[600])),
                       SizedBox(height: 8.h),
-                      Text(
-                        actionText,
-                        style: TextStyle(
-                          fontSize: 13.sp,
-                          color: AppColor.primaryColor,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
+                      Text(actionText,
+                          style: TextStyle(
+                            fontSize: 13.sp,
+                            color: AppColor.primaryColor,
+                            fontWeight: FontWeight.w600,
+                          )),
                     ],
                   ),
                 ),
-                Icon(Icons.arrow_forward_ios_rounded, color: Colors.grey[300], size: 16.r),
+                Icon(Icons.arrow_forward_ios_rounded,
+                    color: Colors.grey[300], size: 16.r),
               ],
             ),
           ),

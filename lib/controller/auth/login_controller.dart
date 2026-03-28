@@ -1,10 +1,12 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../core/class/statuserequest.dart';
 import '../../core/constant/routes.dart';
 import '../../core/functions/handling_data_controller.dart';
+import '../../core/functions/translate_database.dart';
 import '../../core/services/services.dart';
 import '../../core/services/twilio_service.dart';
 import '../../data/datasource/remote/auth/login_data.dart';
@@ -111,6 +113,8 @@ class LoginController extends GetxController {
           "username", user['users_name']);
       myServices.sharedPreferences.setString(
           "phone", user['users_phone']);
+      myServices.sharedPreferences.setString(
+          "approve", user['users_approve']);
       String userId = myServices.sharedPreferences.getString("id")!;
       FirebaseMessaging.instance.subscribeToTopic("users");
       FirebaseMessaging.instance.subscribeToTopic("users${userId}");
@@ -125,6 +129,21 @@ class LoginController extends GetxController {
 
 
 }
+  void openWhatsApp() async {
+    final phone = "967775904988";
+    final message = Uri.encodeComponent("مرحبا، حسابي غير مفعل وأحتاج المساعدة");
+
+    final url = Uri.parse("https://wa.me/$phone?text=$message");
+
+    if (await canLaunchUrl(url)) {
+      await launchUrl(url, mode: LaunchMode.externalApplication);
+    } else {
+      Get.snackbar(
+        translateDatabase("خطأ", "Error"),
+        translateDatabase("لا يمكن فتح واتساب", "Unable to open WhatsApp"),
+      );
+    }
+  }
 
   // ---------------------------
   goToSignUP() {
