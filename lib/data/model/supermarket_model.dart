@@ -8,6 +8,7 @@ class SupermarketModel {
   double? supermarketLat;
   double? supermarketLong;
   String? supermarketTimeOpen;
+  int? status;
 
   SupermarketModel(
       {this.supermarketId,
@@ -18,7 +19,9 @@ class SupermarketModel {
         this.supermarketLocation,
         this.supermarketLat,
         this.supermarketLong,
-        this.supermarketTimeOpen});
+        this.supermarketTimeOpen,
+        this.status
+      });
 
   SupermarketModel.fromJson(Map<String, dynamic> json) {
     supermarketId = json['supermarket_id'];
@@ -30,6 +33,7 @@ class SupermarketModel {
     supermarketLat = (json['supermarket_lat'] as num?)?.toDouble();
     supermarketLong = (json['supermarket_long'] as num?)?.toDouble();
     supermarketTimeOpen = json['supermarket_time_open'];
+    status = json['status'];
   }
 
   Map<String, dynamic> toJson() {
@@ -43,6 +47,7 @@ class SupermarketModel {
     data['supermarket_lat'] = this.supermarketLat;
     data['supermarket_long'] = this.supermarketLong;
     data['supermarket_time_open'] = this.supermarketTimeOpen;
+    data['status'] = this.status;
     return data;
   }
 }

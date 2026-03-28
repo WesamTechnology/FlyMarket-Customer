@@ -18,7 +18,7 @@ class TwilioService {
   static  String authToken =
       dotenv.env['TWILIO_AUTH_TOKEN'] ?? ''; // ضع Auth Token هنا
   static  String serviceSid =
-      dotenv.env['TWILIO_service_SID'] ?? ''; // ضع Service SID هنا
+      dotenv.env['TWILIO_SERVICE_SID'] ?? ''; // ضع Service SID هنا
 
   // ---------------------------------------------------------------------------
   // الوظائف (Functions)

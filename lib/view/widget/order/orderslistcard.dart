@@ -159,7 +159,7 @@ class CardOrdersList extends GetView<OrderPendingController> {
                     ),
                     onPressed: () {
                       controller.chooseImageAndUpload(
-                        listdata.ordersId.toString(),
+                        listdata,
                       );
                     },
                     child: Text(

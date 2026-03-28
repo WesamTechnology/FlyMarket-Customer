@@ -5,11 +5,9 @@ import 'package:flymarket_customer/core/constant/routes.dart';
 import 'package:flymarket_customer/view/screen/address/view_address.dart';
 import 'package:flymarket_customer/view/screen/auth/language.dart';
 import 'package:flymarket_customer/view/screen/home/setting/about_page.dart';
-import 'package:flymarket_customer/view/screen/home/setting/delivery_address_page.dart';
 import 'package:flymarket_customer/view/screen/home/setting/help_age.dart';
-import 'package:flymarket_customer/view/screen/home/setting/notifications_page.dart';
-import 'package:flymarket_customer/view/screen/home/setting/order_page.dart';
-import 'package:flymarket_customer/view/screen/home/setting/payment_methods_page.dart';
+
+
 
 import 'package:flymarket_customer/view/widget/home/myCart/custom_title.dart';
 import 'package:flymarket_customer/view/widget/home/setting/custom_list_info_setting.dart';
@@ -66,14 +64,6 @@ class SettingPage extends StatelessWidget {
                       iconTrailing: Icons.arrow_forward_ios_outlined,
                       onTap: (){
                         Get.to(ViewAddress());
-                      },
-                    ),
-                    CustomListSetting(
-                      title: translateDatabase("طرق الدفع", "Payment Methods"),
-                      iconLeading: Icons.payment_outlined,
-                      iconTrailing: Icons.arrow_forward_ios_outlined,
-                      onTap: (){
-                        Get.to(PaymentMethodsPage());
                       },
                     ),
                     CustomListSetting(

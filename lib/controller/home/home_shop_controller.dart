@@ -101,7 +101,9 @@ class HomeShopControllerImp extends HomeShopController {
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {
         supermarket.clear();
-        supermarket.addAll(response['supermarket']['data']);
+        supermarket = response['supermarket']['data']
+            .where((market) => market['status'] == 1)
+            .toList();
         sortSupermarketsByDistance();
         generateMarkers();
         moveToNearest();

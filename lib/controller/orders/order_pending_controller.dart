@@ -1,4 +1,5 @@
 
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flymarket_customer/core/constant/color.dart';
 import 'package:get/get.dart';
@@ -91,9 +92,14 @@ class OrderPendingController extends GetxController {
   }
 
 
-  chooseImageAndUpload(String orderId) async {
+  chooseImageAndUpload(OrderPendingModel order) async {
     final ImagePicker picker = ImagePicker();
 
+    print("listdata =====================");
+    print(listdata);
+    print("listdata.first.deliveryName listdata.first.deliveryPayNumber =====================");
+    print(order.deliveryName);
+    print(order.deliveryPayNumber);
     Get.bottomSheet(
         Container(
           padding: const EdgeInsets.all(20),
@@ -143,7 +149,7 @@ class OrderPendingController extends GetxController {
                         const SizedBox(width: 8),
                         Expanded(
                           child: Text(
-                            "اسم المندوب: ${listdata.first.deliveryName}",
+                              "اسم المندوب: ${order.deliveryName ?? 'لا يوجد'}",
                             style: const TextStyle(fontWeight: FontWeight.w600),
                           ),
                         ),
@@ -159,7 +165,7 @@ class OrderPendingController extends GetxController {
                         const SizedBox(width: 8),
                         Expanded(
                           child: Text(
-                            "رقم المحفظة: ${listdata.first.deliveryPayNumber}",
+                            "رقم المحفظة: ${order.deliveryPayNumber ?? '-'}",
                             style: const TextStyle(fontWeight: FontWeight.w600),
                           ),
                         ),
@@ -192,40 +198,47 @@ class OrderPendingController extends GetxController {
                     child: ElevatedButton.icon(
                       style: ElevatedButton.styleFrom(
                         backgroundColor: AppColor.primaryColor,
-                        padding: const EdgeInsets.symmetric(vertical: 12),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
-                        ),
                       ),
                       onPressed: () async {
                         Get.back();
-                        await _pickAndUpload(orderId, ImageSource.camera);
+                        await _pickImageAndUpload(order.ordersId.toString(), ImageSource.camera);
                       },
-                      icon: const Icon(Icons.camera_alt, color: Colors.white),
-                      label: const Text("كاميرا",
-                          style: TextStyle(color: Colors.white)),
+                      icon: Icon(Icons.camera_alt, color: Colors.white),
+                      label: Text("كاميرا", style: TextStyle(color: Colors.white)),
                     ),
                   ),
 
-                  const SizedBox(width: 10),
+                  SizedBox(width: 8),
 
                   /// 🖼️ معرض
                   Expanded(
                     child: ElevatedButton.icon(
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.grey.shade700,
-                        padding: const EdgeInsets.symmetric(vertical: 12),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
-                        ),
                       ),
                       onPressed: () async {
                         Get.back();
-                        await _pickAndUpload(orderId, ImageSource.gallery);
+                        await _pickGalleryImage(order.ordersId.toString());
                       },
-                      icon: const Icon(Icons.image, color: Colors.white),
-                      label: const Text("المعرض",
-                          style: TextStyle(color: Colors.white)),
+                      icon: Icon(Icons.image, color: Colors.white),
+                      label: Text("المعرض", style: TextStyle(color: Colors.white)),
+                    ),
+                  ),
+
+                  SizedBox(width: 8),
+
+                  /// 📄 ملفات
+                  Expanded(
+                    child: ElevatedButton.icon(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.orange,
+                      ),
+                      onPressed: () async {
+                        Get.back();
+                        await _pickFileAndUpload(order.ordersId.toString());
+                      },
+                      icon: Icon(Icons.insert_drive_file, color: Colors.white),
+                      label: Text("ملفات", style: TextStyle(color: Colors.white)),
                     ),
                   ),
                 ],
@@ -240,7 +253,7 @@ class OrderPendingController extends GetxController {
 
   }
 
-  _pickAndUpload(String orderId, ImageSource source) async {
+  Future<void> _pickImageAndUpload(String orderId, ImageSource source) async {
     final ImagePicker picker = ImagePicker();
 
     final XFile? image = await picker.pickImage(
@@ -257,19 +270,93 @@ class OrderPendingController extends GetxController {
 
     var response = await orderPendingData.uploadPaymentImage(orderId, file);
 
-    print("UPLOAD RESPONSE: $response");
-
     if (response.toString().contains("success")) {
-      Get.snackbar("نجاح", "تم إرسال صورة الدفع");
+      Get.snackbar("نجاح", "تم إرسال الصورة");
       refrehOrder();
     } else {
       Get.snackbar("خطأ", "فشل رفع الصورة");
     }
 
-    print("RESPONSE: $response");
+    update();
+  }
+
+
+  Future<void> _pickFileAndUpload(String orderId) async {
+    FilePickerResult? result = await FilePicker.platform.pickFiles(
+      type: FileType.custom,
+      allowedExtensions: ['jpg', 'png', 'jpeg', 'pdf'],
+    );
+
+    if (result == null) return;
+
+    File file = File(result.files.single.path!);
+
+    statusRequest = StatusRequest.loding;
+    update();
+
+    var response = await orderPendingData.uploadPaymentImage(orderId, file);
+
+    if (response.toString().contains("success")) {
+      Get.snackbar("نجاح", "تم إرسال الملف");
+      refrehOrder();
+    } else {
+      Get.snackbar("خطأ", "فشل رفع الملف");
+    }
 
     update();
   }
+
+  Future<void> _pickGalleryImage(String orderId) async {
+    FilePickerResult? result = await FilePicker.platform.pickFiles(
+      type: FileType.image, // 🔥 مهم
+    );
+
+    if (result == null) return;
+
+    File file = File(result.files.single.path!);
+
+    statusRequest = StatusRequest.loding;
+    update();
+
+    var response = await orderPendingData.uploadPaymentImage(orderId, file);
+
+    if (response.toString().contains("success")) {
+      Get.snackbar("نجاح", "تم إرسال الصورة");
+      refrehOrder();
+    } else {
+      Get.snackbar("خطأ", "فشل رفع الصورة");
+    }
+
+    update();
+  }
+
+  //
+  // _pickAndUpload(String orderId) async {
+  //   FilePickerResult? result = await FilePicker.platform.pickFiles(
+  //     type: FileType.custom,
+  //     allowedExtensions: ['jpg', 'png', 'jpeg', 'pdf'],
+  //   );
+  //
+  //   if (result == null) return;
+  //
+  //   File file = File(result.files.single.path!);
+  //
+  //   statusRequest = StatusRequest.loding;
+  //   update();
+  //
+  //   var response = await orderPendingData.uploadPaymentImage(orderId, file);
+  //
+  //   print("UPLOAD RESPONSE: $response");
+  //
+  //   if (response.toString().contains("success")) {
+  //     Get.snackbar("نجاح", "تم إرسال الملف");
+  //     refrehOrder();
+  //   } else {
+  //     Get.snackbar("خطأ", "فشل رفع الملف");
+  //   }
+  //
+  //   update();
+  // }
 
 
 
