@@ -1,7 +1,9 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flymarket_customer/core/constant/color.dart';
 import 'package:flymarket_customer/core/constant/routes.dart';
+import 'package:flymarket_customer/core/services/services.dart';
 import 'package:flymarket_customer/view/screen/address/view_address.dart';
 import 'package:flymarket_customer/view/screen/auth/language.dart';
 import 'package:flymarket_customer/view/screen/home/setting/about_page.dart';
@@ -18,10 +20,12 @@ import 'package:get/get_core/src/get_main.dart';
 import '../../../core/functions/translate_database.dart';
 
 class SettingPage extends StatelessWidget {
-  const SettingPage({super.key});
+ const  SettingPage({super.key});
+
 
   @override
   Widget build(BuildContext context) {
+    MyServices myServices = Get.find();
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -103,7 +107,90 @@ class SettingPage extends StatelessWidget {
                         minimumSize: Size(double.infinity, 35.h),
                         backgroundColor: AppColor.primaryColor,
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        Get.dialog(
+                          Dialog(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(20),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Icon(
+                                    Icons.logout,
+                                    size: 60,
+                                    color: Colors.red,
+                                  ),
+                                  const SizedBox(height: 15),
+                                  Text(
+                                    "تسجيل الخروج",
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 10),
+                                  Text(
+                                    "هل أنت متأكد أنك تريد تسجيل الخروج؟",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      color: Colors.grey,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 20),
+
+                                  Row(
+                                    children: [
+                                      // زر إلغاء
+                                      Expanded(
+                                        child: OutlinedButton(
+                                          onPressed: () {
+                                            Get.back();
+                                          },
+                                          style: OutlinedButton.styleFrom(
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.circular(10),
+                                            ),
+                                          ),
+                                          child: Text("إلغاء"),
+                                        ),
+                                      ),
+
+                                      const SizedBox(width: 10),
+
+                                      // زر تأكيد
+                                      Expanded(
+                                        child: ElevatedButton(
+                                          onPressed: () {
+                                            String userId = myServices.sharedPreferences.getString("id")!;
+
+                                            FirebaseMessaging.instance.unsubscribeFromTopic("users");
+                                            FirebaseMessaging.instance.unsubscribeFromTopic("users$userId");
+
+                                            myServices.sharedPreferences.clear();
+
+                                            Get.offAllNamed(AppRoute.login);
+                                          },
+                                          style: ElevatedButton.styleFrom(
+                                            backgroundColor: Colors.red,
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.circular(10),
+                                            ),
+                                          ),
+                                          child: Text("تأكيد",style: TextStyle(color: Colors.white),),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        );
+                      },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [

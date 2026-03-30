@@ -16,13 +16,15 @@ class Language extends GetView<LocaleController> {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-           SizedBox(height: 130.h),
-          Center(
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            SizedBox(height: 130.h),
+            Center(
               child: Card(
                 elevation: 8,
                 shape: RoundedRectangleBorder(
@@ -48,23 +50,23 @@ class Language extends GetView<LocaleController> {
                           color: AppColor.black,
                         ),
                       ),
-                       SizedBox(height: 30.h),
+                      SizedBox(height: 30.h),
                       buildLanguageButton(
                         context:  context,
-                       text:  'English',
-                      color:   AppColor.primaryColor,
-                       icon:  Icons.flag,
-                      onPressed:   () {
-                           controller.changeLang("en");
-                           Get.offAllNamed(appRoute );
+                        text:  'English',
+                        color:   AppColor.primaryColor,
+                        icon:  Icons.flag,
+                        onPressed:   () {
+                          controller.changeLang("en");
+                          Get.offAllNamed(appRoute );
                         },
                       ),
-                       SizedBox(height: 16.h),
+                      SizedBox(height: 16.h),
                       buildLanguageButton(
-                       context:  context,
-                       text:  'العربية',
-                      color:   AppColor.primaryColor,
-                       icon:  Icons.translate,
+                        context:  context,
+                        text:  'العربية',
+                        color:   AppColor.primaryColor,
+                        icon:  Icons.translate,
                         onPressed:     () {
                           controller.changeLang("ar");
                           Get.offAllNamed(appRoute);
@@ -75,7 +77,8 @@ class Language extends GetView<LocaleController> {
                 ),
               ),
             ),
-        ],
+          ],
+        ),
       ),
     );
   }}
