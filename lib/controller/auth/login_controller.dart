@@ -149,6 +149,17 @@ class LoginController extends GetxController {
   goToSignUP() {
     Get.offAllNamed(AppRoute.signUp);
   }
+  goToHomePage(){
+    myServices.sharedPreferences.setString("step", "2");
+    myServices.sharedPreferences.setString(
+        "approve", "1");  // ملاحضه لازم اشيلها بعد تسجيل الدخول
+    myServices.sharedPreferences.setString("id", "14");
+    String userId = myServices.sharedPreferences.getString("id")!;
+    FirebaseMessaging.instance.subscribeToTopic("users");
+    FirebaseMessaging.instance.subscribeToTopic("users${userId}");
+    Get.offAllNamed(AppRoute.homepage);
+
+  }
 
   // ---------------------------
   @override

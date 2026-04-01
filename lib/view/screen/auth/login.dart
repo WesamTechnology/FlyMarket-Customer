@@ -28,6 +28,12 @@ class Login extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text("9".tr, style: TextStyle(color: AppColor.grey)),
+        actions:[ TextButton(
+          onPressed: () {
+            controller.goToHomePage();
+          },
+          child: Text("Go",style: TextStyle(color: Colors.white),),
+        ),],
         backgroundColor: AppColor.backgroundcolor,
         centerTitle: true,
       ),
@@ -43,7 +49,7 @@ class Login extends StatelessWidget {
         },
         child: Obx(() {
           if (!controller.isCodeSent.value) {
-            return  Container(
+            return Container(
               padding: EdgeInsets.symmetric(horizontal: 30),
               child: Form(
                 key: controller.formState,
@@ -117,7 +123,7 @@ class Login extends StatelessWidget {
 
                     InkWell(
                       onTap: () {
-                       controller.openWhatsApp();
+                        controller.openWhatsApp();
                       },
                       borderRadius: BorderRadius.circular(15),
                       child: Container(
@@ -132,7 +138,10 @@ class Login extends StatelessWidget {
                             Icon(Icons.chat, color: Colors.white),
                             SizedBox(width: 10),
                             Text(
-                              translateDatabase("التواصل مع الدعم عبر واتساب", "Contact support via WhatsApp"),
+                              translateDatabase(
+                                "التواصل مع الدعم عبر واتساب",
+                                "Contact support via WhatsApp",
+                              ),
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 14.sp,
@@ -158,10 +167,7 @@ class Login extends StatelessWidget {
           } else {
             // إذا تم إرسال الكود، نعرض حقل إدخال الكود
             return Padding(
-              padding: const EdgeInsets.symmetric(
-                vertical: 50,
-                horizontal: 20,
-              ),
+              padding: const EdgeInsets.symmetric(vertical: 50, horizontal: 20),
               child: Column(
                 children: [
                   Text(

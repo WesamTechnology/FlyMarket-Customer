@@ -45,7 +45,7 @@ class MyApp extends StatelessWidget {
         translations: MyTranslation(),
         initialBinding: Intialbinfing(),
         theme: controller.themeData,
-        initialRoute: AppRoute.splash,
+        initialRoute: AppRoute.homepage,
         getPages: routes,
       ); }
     );

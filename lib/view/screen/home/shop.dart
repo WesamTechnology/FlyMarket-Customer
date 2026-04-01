@@ -23,7 +23,7 @@ class Shop extends StatelessWidget {
             statusRequest: controller.statusRequest,
             widget: Padding(
               padding: const EdgeInsets.symmetric(
-                vertical: 7,
+                vertical: 4,
                 horizontal: 10,
               ).r,
               child: Column(
@@ -34,7 +34,7 @@ class Shop extends StatelessWidget {
                     style: TextStyle(color: AppColor.primaryColor, fontSize: 19.sp,fontWeight: FontWeight.bold),
                   ),
 
-                  SizedBox(height: 17.h),
+                  SizedBox(height: 11.h),
                   Expanded(child: ImageSliderPage()),
                   SizedBox(height: 17.h),
                   Row(
