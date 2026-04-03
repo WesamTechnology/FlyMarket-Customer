@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:flymarket_customer/core/class/statuserequest.dart';
 import 'package:lottie/lottie.dart';
@@ -9,51 +7,83 @@ import '../constant/imgaeasset.dart';
 class HandlingDataView extends StatelessWidget {
   final StatusRequest statusRequest;
   final Widget widget;
-  const HandlingDataView(
-      {Key? key, required this.statusRequest, required this.widget})
-      : super(key: key);
+
+  const HandlingDataView({
+    Key? key,
+    required this.statusRequest,
+    required this.widget,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return statusRequest == StatusRequest.loding
         ? Center(
-            child: Lottie.asset(AppImageAsset.loading, width: 250, height: 250))
+            child: Lottie.asset(AppImageAsset.loading, width: 250, height: 250),
+          )
         : statusRequest == StatusRequest.offlinefailure
-            ? Center(
-                child: Lottie.asset(AppImageAsset.offline,
-                    width: 250, height: 250))
-            : statusRequest == StatusRequest.serverfailure
-                ? Center(
-                    child: Lottie.asset(AppImageAsset.server,
-                        width: 250, height: 250))
-                : statusRequest == StatusRequest.failure
-                    ? Center(
-                        child: Lottie.asset(AppImageAsset.noData,
-                            width: 250, height: 250, repeat: true))
-                    : widget;
+        ? Center(
+            child: Lottie.asset(AppImageAsset.offline, width: 250, height: 250),
+          )
+        : statusRequest == StatusRequest.serverfailure
+        ? Center(
+            child: Lottie.asset(AppImageAsset.server, width: 250, height: 250),
+          )
+        : statusRequest == StatusRequest.failure
+        ? Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Lottie.asset(
+                  AppImageAsset.noData,
+                  width: 250,
+                  height: 250,
+                  repeat: true,
+                ),
+                SizedBox(height: 10),
+                Text(
+                  "لا يوجد بيانات حالياً",
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.grey[600],
+                  ),
+                ),
+                SizedBox(height: 5),
+                Text(
+                  "سيتم عرض البيانات هنا عند توفرها",
+                  style: TextStyle(fontSize: 13, color: Colors.grey[500]),
+                ),
+              ],
+            ),
+          )
+        : widget;
   }
 }
 
 class HandlingDataRequest extends StatelessWidget {
   final StatusRequest statusRequest;
   final Widget widget;
-  const HandlingDataRequest(
-      {Key? key, required this.statusRequest, required this.widget})
-      : super(key: key);
+
+  const HandlingDataRequest({
+    Key? key,
+    required this.statusRequest,
+    required this.widget,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return statusRequest == StatusRequest.loding
         ? Center(
-            child: Lottie.asset(AppImageAsset.loading, width: 250, height: 250))
+            child: Lottie.asset(AppImageAsset.loading, width: 250, height: 250),
+          )
         : statusRequest == StatusRequest.offlinefailure
-            ? Center(
-                child: Lottie.asset(AppImageAsset.offline,
-                    width: 250, height: 250))
-            : statusRequest == StatusRequest.serverfailure
-                ? Center(
-                    child: Lottie.asset(AppImageAsset.server,
-                        width: 250, height: 250))
-                : widget;
+        ? Center(
+            child: Lottie.asset(AppImageAsset.offline, width: 250, height: 250),
+          )
+        : statusRequest == StatusRequest.serverfailure
+        ? Center(
+            child: Lottie.asset(AppImageAsset.server, width: 250, height: 250),
+          )
+        : widget;
   }
 }

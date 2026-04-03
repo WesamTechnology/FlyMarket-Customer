@@ -19,6 +19,7 @@ class ItemsDetailsControllerImp extends ItemsDetailsController {
 
   late ItemsModel itemsModel ;
 
+  bool isLoading=false;
 
 
   CartData cartData = CartData(Get.find());
@@ -111,7 +112,7 @@ class ItemsDetailsControllerImp extends ItemsDetailsController {
 
   add()async{
     final cartController = Get.find<CartController>();
-    statusRequest = StatusRequest.loding;
+    isLoading =true;
     update();
     await cartController.add(
       itemsModel.itmesId,
@@ -119,14 +120,14 @@ class ItemsDetailsControllerImp extends ItemsDetailsController {
     );
     // addItems(itemsModel.itmesId,itemsModel.itmesSuper);
     count++;
-    statusRequest = StatusRequest.success;
+    isLoading = false ;
     update();
   }
 
   delete()async{
     if(count > 0){
       final cartController = Get.find<CartController>();
-      statusRequest = StatusRequest.loding;
+      isLoading =true;
       update();
       await cartController.delete(
         itemsModel.itmesId,
@@ -134,7 +135,7 @@ class ItemsDetailsControllerImp extends ItemsDetailsController {
       );
       // deleteItems(itemsModel.itmesId,itemsModel.itmesSuper);
       count--;
-      statusRequest = StatusRequest.success;
+      isLoading = false ;
       update();
     }
   }

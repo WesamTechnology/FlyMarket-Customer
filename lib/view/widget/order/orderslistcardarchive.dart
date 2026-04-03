@@ -49,7 +49,9 @@ class CardOrdersListArchive extends GetView<OrderArchiveController> {
                     ),
                     style: const TextStyle(color: Colors.white),
                   ),
-                  backgroundColor: AppColor.primaryColor,
+                  backgroundColor: controller.getOrderStatusColor(
+                    listdata.ordersStatus!.toString(),
+                  ),
                 ),
               ],
             ),

@@ -47,8 +47,27 @@ class OrderPendingController extends GetxController {
       return translateDatabase("جاهز", "Ready");
     } else if (val == "3") {
       return translateDatabase("في الطريق", "On The Way");
-    } else {
+
+    }  else if (val == "5") {
+      return translateDatabase("ملغي", "Cancelled");
+    }else {
       return translateDatabase("الأرشيف", "Archive");
+    }
+  }
+
+  Color getOrderStatusColor(String val) {
+    if (val == "0") {
+      return Colors.orange; // انتظار
+    } else if (val == "1") {
+      return Colors.blueAccent; // تجهيز
+    } else if (val == "2") {
+      return AppColor.primaryColor; // جاهز
+    } else if (val == "3") {
+      return Colors.purple; // في الطريق
+    } else if (val == "5") {
+      return Colors.red; // ملغي
+    } else {
+      return Colors.grey; // أرشيف
     }
   }
 

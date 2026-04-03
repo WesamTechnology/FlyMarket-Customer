@@ -198,7 +198,7 @@ class ItemsDetails extends StatelessWidget {
                             onPressed: () {
                               controller.delete();
                             },
-                            icon: Icon(Icons.remove, size: 22),
+                            icon: controller.isLoading ? CircularProgressIndicator(color: AppColor.primaryColor,) : Icon(Icons.remove, size: 22),
                           ),
                         ),
 
@@ -226,7 +226,7 @@ class ItemsDetails extends StatelessWidget {
                             onPressed: () {
                               controller.add();
                             },
-                            icon: Icon(Icons.add, size: 22),
+                            icon: controller.isLoading ? CircularProgressIndicator(color: AppColor.primaryColor,) : Icon(Icons.add, size: 22),
                           ),
                         ),
 

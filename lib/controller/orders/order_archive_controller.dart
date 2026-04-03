@@ -1,7 +1,9 @@
 
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../core/class/statuserequest.dart';
+import '../../core/constant/color.dart';
 import '../../core/functions/handling_data_controller.dart';
 import '../../core/functions/translate_database.dart';
 import '../../core/services/services.dart';
@@ -43,8 +45,26 @@ class OrderArchiveController extends GetxController {
       return translateDatabase("جاهز لاستلامه من المندوب", "Ready To Picked up by Delivery man");
     } else if (val == "3") {
       return translateDatabase("في الطريق", "On The Way");
+    }else if (val == "5") {
+      return translateDatabase("ملغي", "Cancelled");
     } else {
       return translateDatabase("الأرشيف", "Archive");
+    }
+  }
+
+  Color getOrderStatusColor(String val) {
+    if (val == "0") {
+      return Colors.orange; // انتظار
+    } else if (val == "1") {
+      return Colors.blueAccent; // تجهيز
+    } else if (val == "2") {
+      return AppColor.primaryColor; // جاهز
+    } else if (val == "3") {
+      return Colors.purple; // في الطريق
+    } else if (val == "5") {
+      return Colors.red; // ملغي
+    } else {
+      return AppColor.primaryColor; // أرشيف
     }
   }
 

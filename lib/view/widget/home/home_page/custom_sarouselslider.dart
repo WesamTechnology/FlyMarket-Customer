@@ -20,13 +20,13 @@ class ImageSliderPage extends GetView<HomeShopControllerImp> {
     return Center(
       child: CarouselSlider(
         options: CarouselOptions(
-          height: 150.0.h, // ارتفاع السلايدر
+          height: 140.0.h, // ارتفاع السلايدر
           autoPlay: true, // التشغيل التلقائي
           enlargeCenterPage: true,   // تكبير الصورة الحالية
           aspectRatio: 16 / 9,
           autoPlayInterval: Duration(seconds: 3),
           autoPlayAnimationDuration: Duration(milliseconds: 800),
-          viewportFraction: 0.72.w,     // نسبة عرض العنصر الواحد
+          viewportFraction: 0.75.w,      // نسبة عرض العنصر الواحد
         ),
         items: controller.banners.isEmpty ? imageList.map((item) {
           return Builder(
