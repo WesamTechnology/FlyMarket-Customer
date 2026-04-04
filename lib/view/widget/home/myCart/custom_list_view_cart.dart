@@ -35,6 +35,7 @@ class CustomListViewCart extends GetView<CartController> {
                   await controller.add(
                     controller.data[index].itmesId,
                     controller.data[index].itmesSuper,
+                    controller.data[index].itmesCount!,
                   );
                   controller.refreshPage();
                 },

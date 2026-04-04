@@ -28,8 +28,17 @@ class CartController extends GetxController {
 
   late StatusRequest statusRequest;
 
-  add(itemsID, superid) async {
+  Future<bool> add(itemsID, superid ,int itemsCount) async {
     print("ADD CONTROLLER: ${this.hashCode}");
+    // ❌ منع الإضافة إذا الكمية صفر
+
+    if (itemsCount <= 0) {
+      Get.snackbar(
+        translateDatabase("تنبيه", "Alert"),
+        translateDatabase("نفد المخزون", "Out of stock"),
+      );
+      return false;
+    }
     statusRequest = StatusRequest.loding;
     update();
     var response = await cartData.addCart(
@@ -39,12 +48,21 @@ class CartController extends GetxController {
     );
     statusRequest = handlingData(response);
     if (StatusRequest.success == statusRequest) {
+      if (response['status'] == "fail") {
+        if (response['message'] == "out_of_stock") {
+          Get.snackbar("تنبيه", "هذا المنتج نفد من المخزون");
+        } else if (response['message'] == "max_reached") {
+          Get.snackbar("تنبيه", "وصلت للحد الأقصى من الكمية");
+        }
+        return false; // 🔥 مهم
+      }
       if (response['status'] == "success") {
         await view();
         Get.rawSnackbar(
           title: translateDatabase("إشعار", "Notification"),
           messageText: Text(translateDatabase("تم إضافة المنتج إلى السلة", "Item added to cart"),),
         );
+        return true;
 
         //data.addAll(response['data']);
       } else {
@@ -52,7 +70,9 @@ class CartController extends GetxController {
       }
     }
 
+
     update();
+    return false;
   }
 
   delete(itemsID,superid) async {

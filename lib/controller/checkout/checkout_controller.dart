@@ -186,7 +186,7 @@ class CheckoutController extends GetxController {
     double km = maxDistance / 1000;
 
 // السعر
-    double price = km * 85;
+    double price = km * 90;
     price = (price / 5).ceil() * 5;
 
     return price;

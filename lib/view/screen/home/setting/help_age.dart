@@ -5,7 +5,6 @@ import '../../../../core/constant/color.dart';
 import '../../../../core/functions/translate_database.dart';
 import 'faq_page.dart';
 
-
 class HelpPage extends StatelessWidget {
   const HelpPage({super.key});
 
@@ -14,7 +13,7 @@ class HelpPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title:  Text(
+        title: Text(
           translateDatabase("المساعدة والدعم", "Help & Support"),
           style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
         ),
@@ -26,21 +25,30 @@ class HelpPage extends StatelessWidget {
         ),
       ),
       body: SingleChildScrollView(
-        child:Column(
+        child: Column(
           children: [
             Container(
               width: double.infinity,
               padding: EdgeInsets.symmetric(vertical: 30.h, horizontal: 20.w),
               decoration: BoxDecoration(
                 color: AppColor.primaryColor.withOpacity(0.05),
-                borderRadius: BorderRadius.vertical(bottom: Radius.circular(30.r)),
+                borderRadius: BorderRadius.vertical(
+                  bottom: Radius.circular(30.r),
+                ),
               ),
               child: Column(
                 children: [
-                  Icon(Icons.support_agent_rounded, size: 60.r, color: AppColor.primaryColor),
+                  Icon(
+                    Icons.support_agent_rounded,
+                    size: 60.r,
+                    color: AppColor.primaryColor,
+                  ),
                   SizedBox(height: 15.h),
                   Text(
-                    translateDatabase("كيف يمكننا مساعدتك؟", "How can we help you?"),
+                    translateDatabase(
+                      "كيف يمكننا مساعدتك؟",
+                      "How can we help you?",
+                    ),
                     style: TextStyle(
                       fontSize: 22.sp,
                       fontWeight: FontWeight.bold,
@@ -49,12 +57,12 @@ class HelpPage extends StatelessWidget {
                   ),
                   SizedBox(height: 8.h),
                   Text(
-                    translateDatabase("فريقنا هنا لدعمك على مدار الساعة", "Our team is here to support you 24/7"),
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 14.sp,
-                      color: Colors.grey[600],
+                    translateDatabase(
+                      "فريقنا هنا لدعمك على مدار الساعة",
+                      "Our team is here to support you 24/7",
                     ),
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 14.sp, color: Colors.grey[600]),
                   ),
                 ],
               ),
@@ -68,24 +76,53 @@ class HelpPage extends StatelessWidget {
                 children: [
                   _helpTile(
                     Icons.chat_bubble_outline_rounded,
-                    translateDatabase("دعم الدردشة المباشرة", "Live Chat Support"),
-                    translateDatabase("تحدث مع خبرائنا الآن", "Chat with our experts right now"),
+                    translateDatabase(
+                      "دعم الدردشة المباشرة",
+                      "Live Chat Support",
+                    ),
+                    translateDatabase(
+                      "تحدث مع خبرائنا الآن",
+                      "Chat with our experts right now",
+                    ),
                     translateDatabase("ابدأ الدردشة", "Start Chat"),
                     Colors.blue,
-                        () async {
-                      final url = Uri.parse("https://wa.me/967775904988"); // 👈 رقم الأدمن
+                    () async {
+                      final phone = "967775904988";
+                      final message = Uri.encodeComponent(
+                        "مرحبا،أحتاج المساعدة",
+                      );
+
+                      final url = Uri.parse(
+                        "whatsapp://send?phone=$phone&text=$message",
+                      );
+
                       if (await canLaunchUrl(url)) {
                         await launchUrl(url);
+                      } else {
+                        // fallback إذا ما اشتغل
+                        final webUrl = Uri.parse(
+                          "https://wa.me/$phone?text=$message",
+                        );
+                        await launchUrl(
+                          webUrl,
+                          mode: LaunchMode.externalApplication,
+                        );
                       }
                     },
                   ),
                   _helpTile(
                     Icons.alternate_email_rounded,
-                    translateDatabase("الدعم عبر البريد الإلكتروني", "Email Support"),
-                    translateDatabase("وقت الرد: خلال 24 ساعة", "Response time: within 24 hours"),
+                    translateDatabase(
+                      "الدعم عبر البريد الإلكتروني",
+                      "Email Support",
+                    ),
+                    translateDatabase(
+                      "وقت الرد: خلال 24 ساعة",
+                      "Response time: within 24 hours",
+                    ),
                     'support@flymarket.com',
                     Colors.orange,
-                        () async {
+                    () async {
                       final url = Uri.parse("mailto:support@flymarket.com");
                       await launchUrl(url);
                     },
@@ -93,10 +130,13 @@ class HelpPage extends StatelessWidget {
                   _helpTile(
                     Icons.phone_in_talk_rounded,
                     translateDatabase("مركز الاتصال", "Call Center"),
-                    translateDatabase("الأحد - الخميس (9 صباحًا - 6 مساءً)", "Sunday - Thursday (9AM - 6PM)"),
+                    translateDatabase(
+                      "الأحد - الخميس (9 صباحًا - 6 مساءً)",
+                      "Sunday - Thursday (9AM - 6PM)",
+                    ),
                     translateDatabase('967775904988+', '+967775904988'),
                     Colors.green,
-                        () async {
+                    () async {
                       final url = Uri.parse("tel:+967775904988");
                       await launchUrl(url);
                     },
@@ -128,7 +168,10 @@ class HelpPage extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            translateDatabase("الأسئلة الشائعة", "Frequently Asked Questions"),
+                            translateDatabase(
+                              "الأسئلة الشائعة",
+                              "Frequently Asked Questions",
+                            ),
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 16.sp,
@@ -137,13 +180,23 @@ class HelpPage extends StatelessWidget {
                           ),
                           SizedBox(height: 5.h),
                           Text(
-                            translateDatabase("اعثر على إجابات سريعة للمشاكل الشائعة", "Find quick answers to common issues"),
-                            style: TextStyle(color: Colors.white70, fontSize: 12.sp),
+                            translateDatabase(
+                              "اعثر على إجابات سريعة للمشاكل الشائعة",
+                              "Find quick answers to common issues",
+                            ),
+                            style: TextStyle(
+                              color: Colors.white70,
+                              fontSize: 12.sp,
+                            ),
                           ),
                         ],
                       ),
                     ),
-                    Icon(Icons.arrow_forward_ios, color: Colors.white, size: 20.r),
+                    Icon(
+                      Icons.arrow_forward_ios,
+                      color: Colors.white,
+                      size: 20.r,
+                    ),
                   ],
                 ),
               ),
@@ -156,13 +209,13 @@ class HelpPage extends StatelessWidget {
   }
 
   Widget _helpTile(
-      IconData icon,
-      String title,
-      String description,
-      String actionText,
-      Color iconColor,
-      VoidCallback onTap, // 👈 أضف هذا
-      ) {
+    IconData icon,
+    String title,
+    String description,
+    String actionText,
+    Color iconColor,
+    VoidCallback onTap, // 👈 أضف هذا
+  ) {
     return Container(
       margin: EdgeInsets.only(bottom: 16.h),
       decoration: BoxDecoration(
@@ -198,27 +251,39 @@ class HelpPage extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(title,
-                          style: TextStyle(
-                            fontSize: 16.sp,
-                            fontWeight: FontWeight.bold,
-                            color: AppColor.fourthColor,
-                          )),
+                      Text(
+                        title,
+                        style: TextStyle(
+                          fontSize: 16.sp,
+                          fontWeight: FontWeight.bold,
+                          color: AppColor.fourthColor,
+                        ),
+                      ),
                       SizedBox(height: 4.h),
-                      Text(description,
-                          style: TextStyle(fontSize: 12.sp, color: Colors.grey[600])),
+                      Text(
+                        description,
+                        style: TextStyle(
+                          fontSize: 12.sp,
+                          color: Colors.grey[600],
+                        ),
+                      ),
                       SizedBox(height: 8.h),
-                      Text(actionText,
-                          style: TextStyle(
-                            fontSize: 13.sp,
-                            color: AppColor.primaryColor,
-                            fontWeight: FontWeight.w600,
-                          )),
+                      Text(
+                        actionText,
+                        style: TextStyle(
+                          fontSize: 13.sp,
+                          color: AppColor.primaryColor,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
                     ],
                   ),
                 ),
-                Icon(Icons.arrow_forward_ios_rounded,
-                    color: Colors.grey[300], size: 16.r),
+                Icon(
+                  Icons.arrow_forward_ios_rounded,
+                  color: Colors.grey[300],
+                  size: 16.r,
+                ),
               ],
             ),
           ),

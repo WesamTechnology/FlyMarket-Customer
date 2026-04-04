@@ -50,7 +50,7 @@ class ItemsAll extends StatelessWidget {
                             gridDelegate:
                                 SliverGridDelegateWithFixedCrossAxisCount(
                                   crossAxisCount: 2,
-                                  childAspectRatio: 0.9,
+                                  childAspectRatio: 0.85,
                                 ),
                             itemBuilder: (BuildContext context, index) {
                               print(
@@ -178,15 +178,34 @@ class ListSearchAll extends GetView<ItemsAllControllerImp> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          translateDatabase(item.itmesNameAr!, item.itmesName!),
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
-                            fontSize: 15.sp,
-                            fontWeight: FontWeight.bold,
-                            color: AppColor.fourthColor,
-                          ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Expanded(
+                              child: Text(
+                                translateDatabase(item.itmesNameAr!, item.itmesName!),
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                  fontSize: 15.sp,
+                                  fontWeight: FontWeight.bold,
+                                  color: AppColor.fourthColor,
+                                ),
+                              ),
+                            ),
+                            Expanded(
+                              child: Text(
+                                translateDatabase(item.supermarketNameAr!, item.supermarketName!),
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                  fontSize: 12.sp,
+                                  fontWeight: FontWeight.bold,
+                                  color: AppColor.primaryColor,
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                         SizedBox(height: 4.h),
                         Text(

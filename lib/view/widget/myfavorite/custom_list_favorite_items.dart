@@ -142,7 +142,7 @@ class CustomListFavoriteItems extends GetView<MyFavoriteController> {
             ),
 
             // شارة الخصم (Discount Badge)
-            if (itemsModel.itmesDiscount != "0")
+            if (itemsModel.itmesDiscount != 0)
               Positioned(
                 top: 0,
                 left: 0,
@@ -159,7 +159,7 @@ class CustomListFavoriteItems extends GetView<MyFavoriteController> {
                     ),
                   ),
                   child: Text(
-                    "- ${itemsModel.itmesDiscount?.toStringAsFixed(1)}%",
+                    " ${itemsModel.itmesDiscount?.toStringAsFixed(1)}%",
                     style: const TextStyle(
                       color: Colors.white,
                       fontSize: 12,

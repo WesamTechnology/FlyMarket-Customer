@@ -138,11 +138,12 @@ class ProductAllCard extends GetView<ItemsAllControllerImp> {
 
               /// --- Product Info ---
               Expanded(
-                flex: 4,
+                flex: 5,
                 child: Padding(
                   padding: EdgeInsets.all(10.w),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Text(
                         translateDatabase(
@@ -156,7 +157,7 @@ class ProductAllCard extends GetView<ItemsAllControllerImp> {
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                       ),
-                      const Spacer(),
+
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -176,6 +177,7 @@ class ProductAllCard extends GetView<ItemsAllControllerImp> {
 
                         ],
                       ),
+
                     ],
                   ),
                 ),

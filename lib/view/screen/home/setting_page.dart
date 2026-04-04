@@ -78,20 +78,21 @@ class SettingPage extends StatelessWidget {
                         Get.toNamed(AppRoute.notification);
                       },
                     ),
-                    CustomListSetting(
-                      title: translateDatabase("المساعدة", "Help"),
-                      iconLeading: Icons.help_outline,
-                      iconTrailing: Icons.arrow_forward_ios_outlined,
-                      onTap: (){
-                        Get.to(HelpPage());
-                      },
-                    ),
+
                     CustomListSetting(
                       title: translateDatabase("اللغات", "Languages"),
                       iconLeading: Icons.language_outlined,
                       iconTrailing: Icons.arrow_forward_ios_outlined,
                       onTap: (){
                         Get.dialog(Language(appRoute: AppRoute.homepage,));
+                      },
+                    ),
+                    CustomListSetting(
+                      title: translateDatabase("المساعدة", "Help"),
+                      iconLeading: Icons.help_outline,
+                      iconTrailing: Icons.arrow_forward_ios_outlined,
+                      onTap: (){
+                        Get.to(HelpPage());
                       },
                     ),
                     CustomListSetting(

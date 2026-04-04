@@ -18,6 +18,7 @@ class MyCart extends StatelessWidget {
     final controller = Get.find<CartController>();
     return Scaffold(
       backgroundColor: Colors.white,
+      //resizeToAvoidBottomInset: true,
       bottomNavigationBar: GetBuilder<CartController>(
         builder:
             (controller) => BottomNavgationBarCart(

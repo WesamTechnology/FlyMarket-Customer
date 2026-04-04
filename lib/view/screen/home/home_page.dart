@@ -80,7 +80,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    // 🔴 أيقونة مع تصميم جميل
+
                     Container(
                       padding: EdgeInsets.all(18),
                       decoration: BoxDecoration(
@@ -116,7 +116,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
 
                     SizedBox(height: 10),
 
-                    // ✍️ الوصف
                     Text(
                       "لا يمكنك استخدام التطبيق حالياً\nيرجى التواصل مع الإدارة",
                       textAlign: TextAlign.center,
@@ -129,7 +128,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
 
                     SizedBox(height: 25),
 
-                    // 🔘 زر احترافي
                     SizedBox(
                       width: double.infinity,
                       child: ElevatedButton(

@@ -114,12 +114,15 @@ class ItemsDetailsControllerImp extends ItemsDetailsController {
     final cartController = Get.find<CartController>();
     isLoading =true;
     update();
-    await cartController.add(
+    bool success = await cartController.add(
       itemsModel.itmesId,
       itemsModel.itmesSuper,
+      itemsModel.itmesCount!,
     );
-    // addItems(itemsModel.itmesId,itemsModel.itmesSuper);
-    count++;
+
+    if (success) {
+      count++; // ✅ فقط إذا نجحت
+    }
     isLoading = false ;
     update();
   }

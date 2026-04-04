@@ -118,7 +118,7 @@ class LoginController extends GetxController {
       String userId = myServices.sharedPreferences.getString("id")!;
       FirebaseMessaging.instance.subscribeToTopic("users");
       FirebaseMessaging.instance.subscribeToTopic("users${userId}");
-      myServices.sharedPreferences.setString("step", "2");
+      myServices.sharedPreferences.setString("strep", "2");
 
       isLoading.value = false;
       Get.offAllNamed(AppRoute.homepage);
@@ -131,17 +131,17 @@ class LoginController extends GetxController {
 }
   void openWhatsApp() async {
     final phone = "967775904988";
-    final message = Uri.encodeComponent("مرحبا، حسابي غير مفعل وأحتاج المساعدة");
+    final message = Uri.encodeComponent(
+        "مرحبا، حسابي غير مفعل وأحتاج المساعدة");
 
-    final url = Uri.parse("https://wa.me/$phone?text=$message");
+    final url = Uri.parse("whatsapp://send?phone=$phone&text=$message");
 
     if (await canLaunchUrl(url)) {
-      await launchUrl(url, mode: LaunchMode.externalApplication);
+      await launchUrl(url);
     } else {
-      Get.snackbar(
-        translateDatabase("خطأ", "Error"),
-        translateDatabase("لا يمكن فتح واتساب", "Unable to open WhatsApp"),
-      );
+      // fallback إذا ما اشتغل
+      final webUrl = Uri.parse("https://wa.me/$phone?text=$message");
+      await launchUrl(webUrl, mode: LaunchMode.externalApplication);
     }
   }
 
@@ -150,7 +150,7 @@ class LoginController extends GetxController {
     Get.offAllNamed(AppRoute.signUp);
   }
   goToHomePage(){
-    myServices.sharedPreferences.setString("step", "2");
+    myServices.sharedPreferences.setString("strep", "2");
     myServices.sharedPreferences.setString(
         "approve", "1");  // ملاحضه لازم اشيلها بعد تسجيل الدخول
     myServices.sharedPreferences.setString("id", "14");
